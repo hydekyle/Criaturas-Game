@@ -1,0 +1,1156 @@
+fileFormatVersion: 2
+guid: 14940a166130a9749acf35e6d540f8fa
+timeCreated: 1511470440
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: POCIONES-EFECTOS_0
+    21300002: POCIONES-EFECTOS_1
+    21300004: POCIONES-EFECTOS_2
+    21300006: POCIONES-EFECTOS_3
+    21300008: POCIONES-EFECTOS_4
+    21300010: POCIONES-EFECTOS_5
+    21300012: POCIONES-EFECTOS_6
+    21300014: POCIONES-EFECTOS_7
+    21300016: POCIONES-EFECTOS_8
+    21300018: POCIONES-EFECTOS_9
+    21300020: POCIONES-EFECTOS_10
+    21300022: POCIONES-EFECTOS_11
+    21300024: POCIONES-EFECTOS_12
+    21300026: POCIONES-EFECTOS_13
+    21300028: POCIONES-EFECTOS_14
+    21300030: POCIONES-EFECTOS_15
+    21300032: POCIONES-EFECTOS_16
+    21300034: POCIONES-EFECTOS_17
+    21300036: POCIONES-EFECTOS_18
+    21300038: POCIONES-EFECTOS_19
+    21300040: POCIONES-EFECTOS_20
+    21300042: POCIONES-EFECTOS_21
+    21300044: POCIONES-EFECTOS_22
+    21300046: POCIONES-EFECTOS_23
+    21300048: POCIONES-EFECTOS_24
+    21300050: POCIONES-EFECTOS_25
+    21300052: POCIONES-EFECTOS_26
+    21300054: POCIONES-EFECTOS_27
+    21300056: POCIONES-EFECTOS_28
+    21300058: POCIONES-EFECTOS_29
+    21300060: POCIONES-EFECTOS_30
+    21300062: POCIONES-EFECTOS_31
+    21300064: POCIONES-EFECTOS_32
+    21300066: POCIONES-EFECTOS_33
+    21300068: POCIONES-EFECTOS_34
+    21300070: POCIONES-EFECTOS_35
+    21300072: POCIONES-EFECTOS_36
+    21300074: POCIONES-EFECTOS_37
+    21300076: POCIONES-EFECTOS_38
+    21300078: POCIONES-EFECTOS_39
+    21300080: POCIONES-EFECTOS_40
+    21300082: POCIONES-EFECTOS_41
+    21300084: POCIONES-EFECTOS_42
+    21300086: POCIONES-EFECTOS_43
+    21300088: POCIONES-EFECTOS_44
+    21300090: POCIONES-EFECTOS_45
+    21300092: POCIONES-EFECTOS_46
+    21300094: POCIONES-EFECTOS_47
+    21300096: POCIONES-EFECTOS_48
+    21300098: POCIONES-EFECTOS_49
+    21300100: POCIONES-EFECTOS_50
+    21300102: POCIONES-EFECTOS_51
+    21300104: POCIONES-EFECTOS_52
+    21300106: POCIONES-EFECTOS_53
+    21300108: POCIONES-EFECTOS_54
+    21300110: POCIONES-EFECTOS_55
+    21300112: POCIONES-EFECTOS_56
+    21300114: POCIONES-EFECTOS_57
+    21300116: POCIONES-EFECTOS_58
+    21300118: POCIONES-EFECTOS_59
+    21300120: POCIONES-EFECTOS_60
+    21300122: POCIONES-EFECTOS_61
+    21300124: POCIONES-EFECTOS_62
+    21300126: POCIONES-EFECTOS_63
+    21300128: POCIONES-EFECTOS_64
+    21300130: POCIONES-EFECTOS_65
+    21300132: POCIONES-EFECTOS_66
+    21300134: POCIONES-EFECTOS_67
+    21300136: POCIONES-EFECTOS_68
+    21300138: POCIONES-EFECTOS_69
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: -1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: iPhone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: tvOS
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 526
+        width: 69
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_1
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 522
+        width: 75
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_2
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 518
+        width: 81
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_3
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 517
+        width: 79
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_4
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 517
+        width: 82
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_5
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 521
+        width: 83
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_6
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 518
+        width: 85
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_7
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 520
+        width: 84
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_8
+      rect:
+        serializedVersion: 2
+        x: 731
+        y: 516
+        width: 89
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_9
+      rect:
+        serializedVersion: 2
+        x: 827
+        y: 516
+        width: 84
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_10
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 429
+        width: 71
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_11
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 429
+        width: 79
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_12
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 424
+        width: 87
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_13
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 425
+        width: 82
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_14
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 419
+        width: 80
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_15
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 424
+        width: 79
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_16
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 421
+        width: 81
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_17
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 420
+        width: 82
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_18
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 420
+        width: 79
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_19
+      rect:
+        serializedVersion: 2
+        x: 823
+        y: 424
+        width: 79
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_20
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 358
+        width: 74
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_21
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 355
+        width: 76
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_22
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 346
+        width: 83
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_23
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 341
+        width: 81
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_24
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 341
+        width: 83
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_25
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 343
+        width: 83
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_26
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 347
+        width: 83
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_27
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 344
+        width: 83
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_28
+      rect:
+        serializedVersion: 2
+        x: 739
+        y: 343
+        width: 80
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_29
+      rect:
+        serializedVersion: 2
+        x: 826
+        y: 347
+        width: 80
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_30
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 274
+        width: 84
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_31
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 271
+        width: 91
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_32
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 270
+        width: 92
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_33
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 264
+        width: 86
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_34
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 265
+        width: 78
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_35
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 265
+        width: 84
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_36
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 263
+        width: 90
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_37
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 264
+        width: 90
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_38
+      rect:
+        serializedVersion: 2
+        x: 741
+        y: 270
+        width: 78
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_39
+      rect:
+        serializedVersion: 2
+        x: 826
+        y: 268
+        width: 89
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_40
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 175
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_41
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 174
+        width: 74
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_42
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 175
+        width: 80
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_43
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 174
+        width: 82
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_44
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 174
+        width: 79
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_45
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 179
+        width: 83
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_46
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 180
+        width: 76
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_47
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 180
+        width: 78
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_48
+      rect:
+        serializedVersion: 2
+        x: 739
+        y: 182
+        width: 87
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_49
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 177
+        width: 92
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_50
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 92
+        width: 77
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_51
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 97
+        width: 67
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_52
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 100
+        width: 67
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_53
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 99
+        width: 63
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_54
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 96
+        width: 67
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_55
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 97
+        width: 70
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_56
+      rect:
+        serializedVersion: 2
+        x: 563
+        y: 94
+        width: 69
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_57
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 99
+        width: 71
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_58
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 100
+        width: 68
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_59
+      rect:
+        serializedVersion: 2
+        x: 842
+        y: 100
+        width: 73
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_60
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 14
+        width: 82
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_61
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 15
+        width: 81
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_62
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 13
+        width: 67
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_63
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 16
+        width: 69
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_64
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 15
+        width: 66
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_65
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 18
+        width: 68
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_66
+      rect:
+        serializedVersion: 2
+        x: 563
+        y: 16
+        width: 73
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_67
+      rect:
+        serializedVersion: 2
+        x: 663
+        y: 21
+        width: 72
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_68
+      rect:
+        serializedVersion: 2
+        x: 752
+        y: 17
+        width: 76
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: POCIONES-EFECTOS_69
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 21
+        width: 75
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
