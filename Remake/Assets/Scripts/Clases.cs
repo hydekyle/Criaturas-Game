@@ -1,18 +1,17 @@
 ﻿using Enums;
+using UnityEngine;
 
 namespace Enums {
-
     public enum Equip_Position { Head, Body, Arms, Weapon, Legs, Back };
     public enum Quality { Common, Rare, Epic, Legendary };
     public enum Stat { Damage, Health, Skill, Luck};
-
 }
 
+[System.Serializable]
 public class GiveStat {
     public Stat stat_type;
     public int value;
 }
-
 
 public class Equipment
 {
@@ -24,13 +23,16 @@ public class Equipment
     public Equipable_Item back;
 }
 
+[System.Serializable]
 public class Equipable_Item
 {
+    public Sprite sprite;
     public int ID;
     public string nombre;
     public Equip_Position position;
     public Quality quality;
     public GiveStat[] addStat;
+
 }
 
 public class Criatura
@@ -45,6 +47,5 @@ public class Player
     public string ID;
     public int gold;
     public int gold_VIP;
-
 }
 

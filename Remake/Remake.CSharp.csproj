@@ -340,6 +340,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Clases.cs" />
+    <Compile Include="Assets\Scripts\Items.cs" />
+    <Compile Include="Assets\Scripts\Lenguaje.cs" />
     <Compile Include="Assets\Scripts\Menu.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />

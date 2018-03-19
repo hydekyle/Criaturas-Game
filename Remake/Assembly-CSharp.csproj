@@ -52,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Clases.cs" />
+     <Compile Include="Assets\Scripts\Items.cs" />
+     <Compile Include="Assets\Scripts\Lenguaje.cs" />
      <Compile Include="Assets\Scripts\Menu.cs" />
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity 2018.1.0b2/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -228,7 +230,7 @@
  <HintPath>C:/Program Files/Unity 2018.1.0b2/Editor/Data/Managed/Unity.Locator.dll</HintPath>
  </Reference>
  <Reference Include="Facebook.Unity.Settings">
- <HintPath>C:/Users/Toor/Documents/1.HYDEKYLE/GitHub/Criaturas-Game/Remake/Library/FacebookSDK/Facebook.Unity.Settings.dll</HintPath>
+ <HintPath>C:/Users/Toor/Documents/1.HYDEKYLE/GitHub/Criaturas_Remake/Remake/Library/FacebookSDK/Facebook.Unity.Settings.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity 2018.1.0b2/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
