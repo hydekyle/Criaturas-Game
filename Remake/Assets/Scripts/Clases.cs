@@ -5,15 +5,18 @@ namespace Enums {
     public enum Equip_Position { Head, Body, Arms, Weapon, Legs, Back };
     public enum Quality { Common, Rare, Epic, Legendary };
     public enum Stat { Damage, Health, Skill, Luck};
+    public enum Class { Assassin, Pacifist, Charming, Alpha};
+    public enum Skill_Type { Punch, Spell };
 }
 
 [System.Serializable]
-public class GiveStat {
+public struct GiveStat {
     public Stat stat_type;
     public int value;
 }
 
-public class Equipment
+[SerializeField]
+public struct Equipment
 {
     public Equipable_Item head;
     public Equipable_Item body;
@@ -24,14 +27,19 @@ public class Equipment
 }
 
 [System.Serializable]
-public class Equipable_Item
+public struct Equipable_Item
 {
-    public Sprite sprite;
+    //public Sprite sprite;
     public int ID;
     public string nombre;
-    public Equip_Position position;
+    //public Equip_Position position;
     public Quality quality;
     public GiveStat[] addStat;
+
+}
+
+public class CombatAction
+{
 
 }
 

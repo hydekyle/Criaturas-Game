@@ -8,7 +8,6 @@ public class Menu : MonoBehaviour {
 
     public static Menu instance;
     Image background;
-    bool b = true;
     Image visor_headgear;
     Image visor_body;
     Image visor_back;
@@ -44,14 +43,6 @@ public class Menu : MonoBehaviour {
         SetStringsMainMenu();
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            FadeBackground(b);
-            b = !b;
-        }
-    }
 
     void FadeBackground(bool fadeState)
     {
