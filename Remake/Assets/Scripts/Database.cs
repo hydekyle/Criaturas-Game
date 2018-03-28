@@ -22,4 +22,17 @@ public class Database : MonoBehaviour {
         if (value.Contains("|")) value = value.Remove(value.IndexOf("|"));
         return value;
     }
+
+    //void ReadJSON()
+    //{
+    //    //Equipable_Item e1 = new Equipable_Item();
+    //    //e1 = JsonUtility.FromJson<Equipable_Item>(File.ReadAllText(Application.persistentDataPath + "/texto.txt"));
+    //}
+
+    //void TestJSON()
+    //{
+    //    Equipable_Item e1 = new Equipable_Item() { nombre = "AyozeReaper", ID = 111, addStat = null, quality = Quality.Rare }; headgear_list[0] = e1;
+    //    string json = JsonUtility.ToJson(headgear_list);
+    //    File.WriteAllText(Application.persistentDataPath + "/textoList.txt", json);
+    //}
 }

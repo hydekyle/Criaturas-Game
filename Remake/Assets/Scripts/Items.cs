@@ -23,47 +23,37 @@ public class Items : MonoBehaviour {
     {
         instance = this;
         CheckGameFolders();
-        //TestJSON();
-    }
-
-    void ReadJSON()
-    {
-        Equipable_Item e1 = new Equipable_Item();
-        e1 = JsonUtility.FromJson<Equipable_Item>(File.ReadAllText(Application.persistentDataPath + "/texto.txt"));
-    }
-
-    void TestJSON()
-    {
-        Equipable_Item e1 = new Equipable_Item() { nombre = "AyozeReaper", ID = 111, addStat = null, quality = Quality.Rare  }; headgear_list[0] = e1;
-        string json = JsonUtility.ToJson(headgear_list);
-        File.WriteAllText(Application.persistentDataPath + "/textoList.txt", json);
     }
 
     public IEnumerator SendImage(int id) {
-        int listNumber = int.Parse(id.ToString().Substring(0, 1));
         Sprite spriteBuscado = null;
         yield return StartCoroutine(ItemSpriteByID(id, value => spriteBuscado = value));
-        Menu.instance.SetImageVisor(spriteBuscado, listNumber);
+        Menu.instance.SetImageVisor(spriteBuscado, id);
     }
 
-    public Equipable_Item ItemByID(int id)
+    public Equipable_Item ItemByID(int bigID)
     {
         Equipable_Item item = new Equipable_Item();
-        int listID;
-        int.TryParse(id.ToString().Substring(0, 1), out listID);
-        try
+        int listID = int.Parse(bigID.ToString().Substring(0, 1));
+        int basicID = int.Parse(bigID.ToString().Substring(0, 3));
+        try                                                                         //BUSCAR OBJETO EN LA LISTA CORRESPONDIENTE
         {
             switch (listID)
             {
-                case 1: item = headgear_list.Find(e => e.ID == id); break;
-                case 2: item = bodies_list.Find(e => e.ID == id); break;
-                case 3: item = arms_list.Find(e => e.ID == id); break;
-                case 4: item = legs_list.Find(e => e.ID == id); break;
-                case 5: item = backs_list.Find(e => e.ID == id); break;
-                case 6: item = weapons_list.Find(e => e.ID == id); break;
+                case 1: item = headgear_list.Find(e => e.ID == basicID); break;
+                case 2: item = bodies_list.Find(e => e.ID == basicID); break;
+                case 3: item = arms_list.Find(e => e.ID == basicID); break;
+                case 4: item = legs_list.Find(e => e.ID == basicID); break;
+                case 5: item = backs_list.Find(e => e.ID == basicID); break;
+                case 6: item = weapons_list.Find(e => e.ID == basicID); break;
             }
-        }
-        catch { print("¡¡Item no encontrado!!"); }
+        } catch { print("¡¡Item no encontrado!!"); }
+        try                                                                         //AÑADIR PARÁMETROS ALEATORIOS DEL OBJETO
+        {
+            int randomStats = int.Parse(bigID.ToString().Substring(3, 6));
+            if (randomStats > 0) item.addStat.Add(MejoraAleatoria(randomStats));
+        } catch { }
+        
         return item;
     }
 
@@ -105,11 +95,64 @@ public class Items : MonoBehaviour {
         yield return new WaitForEndOfFrame();
     }
 
+
+    //MEJORAS
+    public GiveStat MejoraAleatoria(int randomValue)
+    {
+        int list = int.Parse(randomValue.ToString().Substring(0, 1));
+        int value = int.Parse(randomValue.ToString().Substring(1));
+        GiveStat mejora = new GiveStat();
+        switch (list)
+        {
+            case 1: mejora = GiveDamage(value); break;
+            case 2: mejora = GiveHealth(value); break;
+            case 3: mejora = GiveSkill(value); break;
+            case 4: mejora = GiveLuck(value); break;
+        }
+        return mejora;
+    }
+
+    private GiveStat GiveDamage(int value)
+    {
+        GiveStat mejora = new GiveStat() {
+            stat_type = Stat.Damage,
+            value = value
+        };
+        return mejora;
+    }
+    private GiveStat GiveHealth(int value)
+    {
+        GiveStat mejora = new GiveStat()
+        {
+            stat_type = Stat.Health,
+            value = value
+        };
+        return mejora;
+    }
+    private GiveStat GiveSkill(int value)
+    {
+        GiveStat mejora = new GiveStat()
+        {
+            stat_type = Stat.Skill,
+            value = value
+        };
+        return mejora;
+    }
+    private GiveStat GiveLuck(int value)
+    {
+        GiveStat mejora = new GiveStat()
+        {
+            stat_type = Stat.Luck,
+            value = value
+        };
+        return mejora;
+    }
+
+    //ARCHIVOS
     void CheckGameFolders()
     {
         if (!Directory.Exists(Application.persistentDataPath + "/Headgear")) CrearDirectorios();
     }
-
     void CrearDirectorios()
     {
         Directory.CreateDirectory(Application.persistentDataPath + "/Headgear");

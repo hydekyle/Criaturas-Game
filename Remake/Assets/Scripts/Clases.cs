@@ -1,5 +1,6 @@
 ﻿using Enums;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace Enums {
     public enum Equip_Position { Head, Body, Arms, Weapon, Legs, Back };
@@ -34,7 +35,7 @@ public struct Equipable_Item
     public string nombre;
     //public Equip_Position position;
     public Quality quality;
-    public GiveStat[] addStat;
+    public List<GiveStat> addStat;
 
 }
 

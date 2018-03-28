@@ -15,12 +15,12 @@ public class GameManager : MonoBehaviour {
         instance = this;
         player_equipment = new Equipment()
         {
-            head = Items.instance.ItemByID(100),
-            body = Items.instance.ItemByID(200),
-            arms = Items.instance.ItemByID(300),
-            legs = Items.instance.ItemByID(400),
-            back = Items.instance.ItemByID(500),
-            weapon = Items.instance.ItemByID(600)
+            head = Items.instance.ItemByID(100000),
+            body = Items.instance.ItemByID(200000),
+            arms = Items.instance.ItemByID(300000),
+            legs = Items.instance.ItemByID(400000),
+            back = Items.instance.ItemByID(500000),
+            weapon = Items.instance.ItemByID(600366)
         };
         LeerStats();
         StartCoroutine(VisualizarEquipamiento());
@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour {
         List<Equipable_Item> equipamiento_list = ObtenerListaEquipamiento();
         foreach(Equipable_Item e in equipamiento_list)
         {
-            for(var x = 0; x < e.addStat.Length; x++)
+            for(var x = 0; x < e.addStat.Count; x++)
             {
                 totalStats_list.Add(e.addStat[x]);
             }
