@@ -22,7 +22,6 @@ public class Items : MonoBehaviour {
     void Awake()
     {
         instance = this;
-        CheckGameFolders();
     }
 
     public IEnumerator SendImage(int id) {
@@ -148,18 +147,7 @@ public class Items : MonoBehaviour {
         return mejora;
     }
 
-    //ARCHIVOS
-    void CheckGameFolders()
-    {
-        if (!Directory.Exists(Application.persistentDataPath + "/Headgear")) CrearDirectorios();
-    }
-    void CrearDirectorios()
-    {
-        Directory.CreateDirectory(Application.persistentDataPath + "/Headgear");
-        Directory.CreateDirectory(Application.persistentDataPath + "/Bodies");
-        Directory.CreateDirectory(Application.persistentDataPath + "/Arms");
-        Directory.CreateDirectory(Application.persistentDataPath + "/Legs");
-        Directory.CreateDirectory(Application.persistentDataPath + "/Backs");
-        Directory.CreateDirectory(Application.persistentDataPath + "/Weapons");
-    }
+    
+
+    
 }

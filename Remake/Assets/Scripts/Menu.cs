@@ -15,7 +15,6 @@ public class Menu : MonoBehaviour {
     Image visor_arm_right;
     Image visor_leg_left;
     Image visor_leg_right;
-    Image visor_weapon;
 
     void Awake()
     {
@@ -27,14 +26,13 @@ public class Menu : MonoBehaviour {
     {
         background = transform.Find("Background").GetComponent<Image>();
         Transform visor = transform.Find("VISOR");
-        visor_headgear = visor.Find("BODY").Find("HEADGEAR").GetComponent<Image>();
+        visor_headgear = visor.Find("HEADGEAR").GetComponent<Image>();
         visor_body = visor.Find("BODY").GetComponent<Image>();
         visor_back = visor.Find("BACK").GetComponent<Image>();
         visor_arm_left = visor.Find("ARM_LEFT").GetComponent<Image>();
         visor_arm_right = visor.Find("ARM_RIGHT").GetComponent<Image>();
         visor_leg_left = visor.Find("LEG_LEFT").GetComponent<Image>();
         visor_leg_right = visor.Find("LEG_RIGHT").GetComponent<Image>();
-        visor_weapon = visor.Find("WEAPON").GetComponent<Image>();
     }
 
 
@@ -68,7 +66,6 @@ public class Menu : MonoBehaviour {
             case 3: visor_arm_left.sprite = visor_arm_right.sprite = sprite; break;
             case 4: visor_leg_left.sprite = visor_leg_right.sprite = sprite; break;
             case 5: visor_back.sprite = sprite; break;
-            case 6: visor_weapon.sprite = sprite; break;
         }
         
     }
@@ -76,53 +73,40 @@ public class Menu : MonoBehaviour {
     void ColocarBody(int bigID)
     {
         int id = int.Parse(bigID.ToString().Substring(0, 3));
-        switch (id)
-        {
-            case 200: ColocarPiezas(new Vector3(-11, 67, 0)) ; break;
-            case 201: ColocarPiezas(new Vector3(-23, 29, 0)); break;
-            case 202: ColocarPiezas(new Vector3(6, 67, 0)); break;
-            case 203: ColocarPiezas(new Vector3(8, 66, 0)); break;
-            case 204: ColocarPiezas(new Vector3(0, 64, 0)); break;
-            case 205: ColocarPiezas(new Vector3(0, 64, 0)); break;
-            case 206: ColocarPiezas(new Vector3(-2, 68, 0)); break;
-            case 207: ColocarPiezas(new Vector3(-2, 62, 0)); break;
-            case 208: ColocarPiezas(new Vector3(-5, 65, 0)); break;
-            case 209: ColocarPiezas(new Vector3(-8, 66, 0)); break;
-            case 210: ColocarPiezas(new Vector3(-10, 68, 0)); break;
-            case 211: ColocarPiezas(new Vector3(-3, 66, 0)); break;
-            case 212: ColocarPiezas(new Vector3(-3, 64, 0)); break;
-            case 213: ColocarPiezas(new Vector3(-1, 64, 0)); break;
-            case 214: ColocarPiezas(new Vector3(-3, 67, 0)); break;
-            case 215: ColocarPiezas(new Vector3(-3, 62, 0)); break;
-            case 216: ColocarPiezas(new Vector3(-3, 62, 0)); break;
-            case 217: ColocarPiezas(new Vector3(-25, 70, 0)); break;
-            case 218: ColocarPiezas(new Vector3(-3, 65, 0)); break;
-            case 219: ColocarPiezas(new Vector3(-3, 65, 0)); break;
-            case 220: ColocarPiezas(new Vector3(-6, 60, 0)); break;
-            case 221: ColocarPiezas(new Vector3(-1, 60, 0)); break;
-            case 222: ColocarPiezas(new Vector3(-10, 65, 0)); break;
-            case 223: ColocarPiezas(new Vector3(-16, 60, 0)); break;
-            case 224: ColocarPiezas(new Vector3(-3, 61, 0)); break;
-            case 225: ColocarPiezas(new Vector3(-21, 63, 0)); break;
-            case 226: ColocarPiezas(new Vector3(-3, 62, 0)); break;
-            case 227: ColocarPiezas(new Vector3(-3, 73, 0)); break;
-            case 228: ColocarPiezas(new Vector3(1, 68, 0)); break;
-            case 229: ColocarPiezas(new Vector3(-16, 62, 0)); break;
-            case 230: ColocarPiezas(new Vector3(9, 67, 0)); break;
-            case 231: ColocarPiezas(new Vector3(-4, 64, 0)); break;
-            case 232: ColocarPiezas(new Vector3(-5, 71, 0)); break;
-
-
-
-        }
-        print(id);
+        ColocarPiezas(Database.instance.LeerBodyBounds(id));
     }
 
-    void ColocarPiezas(Vector3 posiHead)
+    void ColocarPiezas(BodyBounds bounds)
     {
-        visor_headgear.rectTransform.localPosition = posiHead;
+        visor_headgear.rectTransform.position = bounds.head_POS;
+        visor_arm_right.rectTransform.position = bounds.arm_right_POS;
+        visor_arm_left.rectTransform.position = bounds.arm_left_POS;
+        visor_leg_right.rectTransform.position = bounds.leg_right_POS;
+        visor_leg_left.rectTransform.position = bounds.leg_left_POS;
+        visor_back.rectTransform.position = bounds.back_POS;
     }
 
+    void SaveBounds()
+    {
+        BodyBounds bounds = new BodyBounds()
+        {
+            head_POS = visor_headgear.rectTransform.position,
+            arm_left_POS = visor_arm_left.rectTransform.position,
+            arm_right_POS = visor_arm_right.rectTransform.position,
+            leg_left_POS = visor_leg_left.rectTransform.position,
+            leg_right_POS = visor_leg_right.rectTransform.position,
+            back_POS = visor_back.rectTransform.position
+        };
+        Database.instance.GuardarBodyBounds(bounds);
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            SaveBounds();
+        }
+    }
 
     public void BTN_Play()
     {

@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\Lenguaje.cs" />
      <Compile Include="Assets\Scripts\Menu.cs" />
      <Compile Include="Assets\Scripts\Skills.cs" />
+     <None Include="Assets\BodyBounds\200.txt" />
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity 2018.1.0b2/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
  </Reference>

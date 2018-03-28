@@ -1,10 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class Database : MonoBehaviour {
 
     public string[] Items;
+    public static Database instance { get; set; }
+    void Awake()
+    {
+        instance = this;
+        CheckGameFolders();
+    }
 
     IEnumerator Start()
     {
@@ -23,16 +30,34 @@ public class Database : MonoBehaviour {
         return value;
     }
 
-    //void ReadJSON()
-    //{
-    //    //Equipable_Item e1 = new Equipable_Item();
-    //    //e1 = JsonUtility.FromJson<Equipable_Item>(File.ReadAllText(Application.persistentDataPath + "/texto.txt"));
-    //}
 
-    //void TestJSON()
-    //{
-    //    Equipable_Item e1 = new Equipable_Item() { nombre = "AyozeReaper", ID = 111, addStat = null, quality = Quality.Rare }; headgear_list[0] = e1;
-    //    string json = JsonUtility.ToJson(headgear_list);
-    //    File.WriteAllText(Application.persistentDataPath + "/textoList.txt", json);
-    //}
+    //ARCHIVOS LOCALES
+    void CheckGameFolders()
+    {
+        if (!Directory.Exists(Application.persistentDataPath + "/Headgear")) CrearDirectorios();
+    }
+    void CrearDirectorios()
+    {
+        Directory.CreateDirectory(Application.persistentDataPath + "/Headgear");
+        Directory.CreateDirectory(Application.persistentDataPath + "/Bodies");
+        Directory.CreateDirectory(Application.persistentDataPath + "/Arms");
+        Directory.CreateDirectory(Application.persistentDataPath + "/Legs");
+        Directory.CreateDirectory(Application.persistentDataPath + "/Backs");
+        Directory.CreateDirectory(Application.persistentDataPath + "/Weapons");
+    }
+
+    public void GuardarBodyBounds(BodyBounds bounds)
+    {
+        string json = JsonUtility.ToJson(bounds);
+        File.WriteAllText(Application.dataPath + "/BodyBounds/" + GameManager.instance.player_equipment.body.ID.ToString() + ".txt", json);
+        print("Info guardada en " + Application.dataPath + " ID: " + GameManager.instance.player_equipment.body.ID);
+    }
+    public BodyBounds LeerBodyBounds(int bodyID)
+    {
+        BodyBounds bounds = new BodyBounds();
+        try { bounds = JsonUtility.FromJson<BodyBounds>(File.ReadAllText(Application.dataPath + "/BodyBounds/" + bodyID.ToString() + ".txt")); }
+        catch { print("BODY BOUNDS NOT FOUND"); }
+        return bounds;
+    }
+
 }

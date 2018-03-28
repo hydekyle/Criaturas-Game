@@ -19,8 +19,7 @@ public class GameManager : MonoBehaviour {
             body = Items.instance.ItemByID(200000),
             arms = Items.instance.ItemByID(300000),
             legs = Items.instance.ItemByID(400000),
-            back = Items.instance.ItemByID(500000),
-            weapon = Items.instance.ItemByID(600366)
+            back = Items.instance.ItemByID(500000)
         };
         LeerStats();
         StartCoroutine(VisualizarEquipamiento());
@@ -33,7 +32,6 @@ public class GameManager : MonoBehaviour {
         yield return StartCoroutine(Items.instance.SendImage(player_equipment.arms.ID));
         yield return StartCoroutine(Items.instance.SendImage(player_equipment.legs.ID));
         yield return StartCoroutine(Items.instance.SendImage(player_equipment.back.ID));
-        yield return StartCoroutine(Items.instance.SendImage(player_equipment.weapon.ID));
     }
 
     void LeerStats()
@@ -57,7 +55,6 @@ public class GameManager : MonoBehaviour {
         lista.Add(player_equipment.arms);
         lista.Add(player_equipment.legs);
         lista.Add(player_equipment.back);
-        lista.Add(player_equipment.weapon);
         return lista;
     }
 
@@ -82,10 +79,6 @@ public class GameManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.R))
         {
             AdelanteBack();
-        }
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            AdelanteWeapon();
         }
 
     }
@@ -135,13 +128,5 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    void AdelanteWeapon()
-    {
-        if (Items.instance.ItemByID(player_equipment.weapon.ID + 1).ID != 0)
-        {
-            player_equipment.weapon = Items.instance.ItemByID(player_equipment.weapon.ID + 1);
-            StartCoroutine(VisualizarEquipamiento());
-        }
-    }
 
 }

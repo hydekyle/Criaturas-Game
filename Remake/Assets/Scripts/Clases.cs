@@ -1,16 +1,28 @@
 ﻿using Enums;
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 namespace Enums {
-    public enum Equip_Position { Head, Body, Arms, Weapon, Legs, Back };
+    public enum Equip_Position { Head, Body, Arms, Legs, Back };
     public enum Quality { Common, Rare, Epic, Legendary };
     public enum Stat { Damage, Health, Skill, Luck};
     public enum Class { Assassin, Pacifist, Charming, Alpha};
     public enum Skill_Type { Punch, Spell };
 }
 
-[System.Serializable]
+public struct BodyBounds
+{
+    public Vector3 head_POS;
+    public Vector3 leg_right_POS;
+    public Vector3 leg_left_POS;
+    public Vector3 arm_right_POS;
+    public Vector3 arm_left_POS;
+    public Vector3 back_POS;
+}
+
+
+[Serializable]
 public struct GiveStat {
     public Stat stat_type;
     public int value;
@@ -22,12 +34,11 @@ public struct Equipment
     public Equipable_Item head;
     public Equipable_Item body;
     public Equipable_Item arms;
-    public Equipable_Item weapon;
     public Equipable_Item legs;
     public Equipable_Item back;
 }
 
-[System.Serializable]
+[Serializable]
 public struct Equipable_Item
 {
     //public Sprite sprite;
