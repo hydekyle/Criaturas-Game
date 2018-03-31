@@ -61,13 +61,62 @@ public class Menu : MonoBehaviour {
         int listNumber = int.Parse(id.ToString().Substring(0, 1));
         switch (listNumber)
         {
-            case 1: visor_headgear.sprite = sprite; break;
+            case 1: visor_headgear.sprite = sprite; FixHeadScale(id); break;
             case 2: visor_body.sprite = sprite; ColocarBody(id); break;
-            case 3: visor_arm_left.sprite = visor_arm_right.sprite = sprite; break;
+            case 3: visor_arm_left.sprite = visor_arm_right.sprite = sprite; FixArmScale(id); break;
             case 4: visor_leg_left.sprite = visor_leg_right.sprite = sprite; break;
             case 5: visor_back.sprite = sprite; break;
         }
         
+    }
+
+    void FixHeadScale(int bigID)
+    {
+        int id = int.Parse(bigID.ToString().Substring(0, 3));
+        print(id);
+        if      (id == 101) { visor_headgear.rectTransform.localScale = new Vector3(0.8f, 0.9f, 1); }
+        else if (id == 102) { visor_headgear.rectTransform.localScale = new Vector3(0.8f, 0.95f, 1); }
+        else if (id == 104) { visor_headgear.rectTransform.localScale = new Vector3(0.8f, 1, 1); }
+        else if (id == 105) { visor_headgear.rectTransform.localScale = new Vector3(0.9f, 0.82f, 1); }
+        else if (id == 106) { visor_headgear.rectTransform.localScale = new Vector3(0.9f, 0.7f, 1); }
+        else if (id == 107) { visor_headgear.rectTransform.localScale = new Vector3(1.3f, 0.65f, 1); }
+        else if (id == 108) { visor_headgear.rectTransform.localScale = new Vector3(0.8f, 1.4f, 1); }
+        else if (id == 109) { visor_headgear.rectTransform.localScale = new Vector3(1, 0.8f, 1); }
+        else if (id == 110) { visor_headgear.rectTransform.localScale = new Vector3(0.76f, 0.76f, 1); }
+        else if (id == 111) { visor_headgear.rectTransform.localScale = new Vector3(0.9f, 0.8f, 1); }
+        else if (id == 112) { visor_headgear.rectTransform.localScale = new Vector3(0.74f, 0.8f, 1); }
+        else if (id == 113) { visor_headgear.rectTransform.localScale = new Vector3(0.7f, 0.7f, 1); }
+        else if (id == 115) { visor_headgear.rectTransform.localScale = new Vector3(0.75f, 0.8f, 1); }
+        else if (id == 118) { visor_headgear.rectTransform.localScale = new Vector3(1, 0.8f, 1); }
+        else if (id == 119) { visor_headgear.rectTransform.localScale = new Vector3(0.7f, 0.8f, 1); }
+        else if (id == 120) { visor_headgear.rectTransform.localScale = new Vector3(0.8f, 0.9f, 1); }
+        else if (id == 121) { visor_headgear.rectTransform.localScale = new Vector3(0.9f, 0.7f, 1); }
+        else if (id == 122) { visor_headgear.rectTransform.localScale = new Vector3(0.7f, 1f, 1); }
+        else if (id == 123) { visor_headgear.rectTransform.localScale = new Vector3(1, 0.7f, 1); }
+        else if (id == 126) { visor_headgear.rectTransform.localScale = new Vector3(1.1f, 0.9f, 1); }
+        else if (id == 127) { visor_headgear.rectTransform.localScale = new Vector3(0.9f, 0.9f, 1); }
+        else if (id == 129) { visor_headgear.rectTransform.localScale = new Vector3(0.65f, 0.8f, 1); }
+        else if (id == 130) { visor_headgear.rectTransform.localScale = new Vector3(0.86f, 0.7f, 1); }
+        else if (id == 131) { visor_headgear.rectTransform.localScale = new Vector3(1, 1.6f, 1); }
+        else if (id == 133) { visor_headgear.rectTransform.localScale = new Vector3(0.75f, 0.75f, 1); }
+        else if (id == 134) { visor_headgear.rectTransform.localScale = new Vector3(0.87f, 1, 1); }
+        else if (id == 135) { visor_headgear.rectTransform.localScale = new Vector3(0.75f, 0.8f, 1); }
+        else if (id == 137) { visor_headgear.rectTransform.localScale = new Vector3(1, 0.8f, 1); }
+        else if (id == 138) { visor_headgear.rectTransform.localScale = new Vector3(0.8f, 1.5f, 1); }
+        else if (id == 139) { visor_headgear.rectTransform.localScale = new Vector3(1, 0.9f, 1); }
+        else if (id == 141) { visor_headgear.rectTransform.localScale = new Vector3(1.1f, 1.8f, 1); }
+        else if (id == 142) { visor_headgear.rectTransform.localScale = new Vector3(0.7f, 0.7f, 1); }
+        else if (id == 143) { visor_headgear.rectTransform.localScale = new Vector3(0.74f, 0.74f, 1); }
+        else if (id == 144) { visor_headgear.rectTransform.localScale = new Vector3(0.9f, 0.9f, 1); }
+
+        else { visor_headgear.rectTransform.localScale = new Vector3(0.8f, 0.8f, 1); }
+            
+    }
+
+    void FixArmScale(int bigID)
+    {
+        int id = int.Parse(bigID.ToString().Substring(0, 3));
+        if (id == 301) visor_arm_left.rectTransform.localScale = visor_arm_right.rectTransform.localScale = new Vector3(0,0,0);
     }
 
     void ColocarBody(int bigID)

@@ -689,6 +689,358 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+  - ID: 105
+    nombre: Cabeza 5
+    quality: 0
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 106
+    nombre: Cabeza 5
+    quality: 0
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 107
+    nombre: Cabeza 5
+    quality: 0
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 108
+    nombre: Cabeza 5
+    quality: 0
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 109
+    nombre: Cabeza 5
+    quality: 0
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 110
+    nombre: Cabeza 5
+    quality: 0
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 111
+    nombre: Cabeza 5
+    quality: 0
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 112
+    nombre: Cabeza Rara
+    quality: 1
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 113
+    nombre: Cabeza Rara
+    quality: 1
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 114
+    nombre: Cabeza Rara
+    quality: 1
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 115
+    nombre: Cabeza Rara
+    quality: 1
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 116
+    nombre: Cabeza Rara
+    quality: 1
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 117
+    nombre: Cabeza Rara
+    quality: 1
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 118
+    nombre: Cabeza Rara
+    quality: 1
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 119
+    nombre: Cabeza Rara
+    quality: 1
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 120
+    nombre: Cabeza Rara
+    quality: 1
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 121
+    nombre: Cabeza Rara
+    quality: 1
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 122
+    nombre: Cabeza Rara
+    quality: 1
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 123
+    nombre: Cabeza Rara
+    quality: 1
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 124
+    nombre: Cabeza Rara
+    quality: 1
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 125
+    nombre: Cabeza Rara
+    quality: 1
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 126
+    nombre: Cabeza Rara
+    quality: 1
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 127
+    nombre: Cabeza Rara
+    quality: 1
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 128
+    nombre: "Cabeza \xC9pica"
+    quality: 2
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 129
+    nombre: "Cabeza \xC9pica"
+    quality: 2
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 130
+    nombre: "Cabeza \xC9pica"
+    quality: 2
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 131
+    nombre: "Cabeza \xC9pica"
+    quality: 2
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 132
+    nombre: "Cabeza \xC9pica"
+    quality: 2
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 133
+    nombre: "Cabeza \xC9pica"
+    quality: 2
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 134
+    nombre: "Cabeza \xC9pica"
+    quality: 2
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 135
+    nombre: "Cabeza \xC9pica"
+    quality: 2
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 136
+    nombre: "Cabeza \xC9pica"
+    quality: 2
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 137
+    nombre: "Cabeza \xC9pica"
+    quality: 2
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 138
+    nombre: "Cabeza \xC9pica"
+    quality: 2
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 139
+    nombre: "Cabeza \xC9pica"
+    quality: 2
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 140
+    nombre: "Cabeza \xC9pica"
+    quality: 2
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 141
+    nombre: "Cabeza \xC9pica"
+    quality: 2
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 142
+    nombre: "Cabeza \xC9pica"
+    quality: 2
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 143
+    nombre: "Cabeza \xC9pica"
+    quality: 2
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 144
+    nombre: "Cabeza \xC9pica"
+    quality: 3
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 145
+    nombre: "Cabeza \xC9pica"
+    quality: 3
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 146
+    nombre: "Cabeza \xC9pica"
+    quality: 3
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 147
+    nombre: "Cabeza \xC9pica"
+    quality: 3
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
+  - ID: 148
+    nombre: "Cabeza \xC9pica"
+    quality: 3
+    addStat:
+    - stat_type: 1
+      value: 33
+    - stat_type: 0
+      value: 11
   bodies_list:
   - ID: 200
     nombre: Cuerpo 1
@@ -963,6 +1315,166 @@ MonoBehaviour:
     nombre: Brazos 2
     quality: 0
     addStat: []
+  - ID: 305
+    nombre: Brazos 2
+    quality: 0
+    addStat: []
+  - ID: 306
+    nombre: Brazos 2
+    quality: 0
+    addStat: []
+  - ID: 307
+    nombre: Brazos 2
+    quality: 0
+    addStat: []
+  - ID: 308
+    nombre: Brazos 2
+    quality: 0
+    addStat: []
+  - ID: 309
+    nombre: Brazos 2
+    quality: 0
+    addStat: []
+  - ID: 310
+    nombre: Brazos 2
+    quality: 0
+    addStat: []
+  - ID: 311
+    nombre: Brazos 2
+    quality: 0
+    addStat: []
+  - ID: 312
+    nombre: Brazos 2
+    quality: 0
+    addStat: []
+  - ID: 313
+    nombre: Brazos 2
+    quality: 0
+    addStat: []
+  - ID: 314
+    nombre: Brazos Raro
+    quality: 1
+    addStat: []
+  - ID: 315
+    nombre: Brazos Raro
+    quality: 1
+    addStat: []
+  - ID: 316
+    nombre: Brazos Raro
+    quality: 1
+    addStat: []
+  - ID: 317
+    nombre: Brazos Raro
+    quality: 1
+    addStat: []
+  - ID: 318
+    nombre: Brazos Raro
+    quality: 1
+    addStat: []
+  - ID: 319
+    nombre: Brazos Raro
+    quality: 1
+    addStat: []
+  - ID: 320
+    nombre: Brazos Raro
+    quality: 1
+    addStat: []
+  - ID: 321
+    nombre: Brazos Raro
+    quality: 1
+    addStat: []
+  - ID: 322
+    nombre: Brazos Raro
+    quality: 1
+    addStat: []
+  - ID: 323
+    nombre: Brazos Raro
+    quality: 1
+    addStat: []
+  - ID: 324
+    nombre: Brazos Raro
+    quality: 1
+    addStat: []
+  - ID: 325
+    nombre: Brazos Raro
+    quality: 2
+    addStat: []
+  - ID: 326
+    nombre: Brazos Raro
+    quality: 2
+    addStat: []
+  - ID: 327
+    nombre: Brazos Raro
+    quality: 2
+    addStat: []
+  - ID: 328
+    nombre: Brazos Raro
+    quality: 2
+    addStat: []
+  - ID: 329
+    nombre: Brazos Raro
+    quality: 2
+    addStat: []
+  - ID: 330
+    nombre: Brazos Raro
+    quality: 2
+    addStat: []
+  - ID: 331
+    nombre: Brazos Raro
+    quality: 2
+    addStat: []
+  - ID: 332
+    nombre: Brazos Raro
+    quality: 2
+    addStat: []
+  - ID: 333
+    nombre: Brazos Raro
+    quality: 2
+    addStat: []
+  - ID: 334
+    nombre: Brazos Raro
+    quality: 2
+    addStat: []
+  - ID: 335
+    nombre: Brazos Raro
+    quality: 2
+    addStat: []
+  - ID: 336
+    nombre: Brazos Raro
+    quality: 2
+    addStat: []
+  - ID: 337
+    nombre: Brazos Raro
+    quality: 2
+    addStat: []
+  - ID: 338
+    nombre: Brazos Raro
+    quality: 2
+    addStat: []
+  - ID: 339
+    nombre: Brazos Raro
+    quality: 2
+    addStat: []
+  - ID: 340
+    nombre: Brazos Raro
+    quality: 2
+    addStat: []
+  - ID: 341
+    nombre: Brazos Raro
+    quality: 2
+    addStat: []
+  - ID: 342
+    nombre: Brazos Raro
+    quality: 2
+    addStat: []
+  - ID: 343
+    nombre: Brazos Raro
+    quality: 2
+    addStat: []
+  - ID: 344
+    nombre: Brazos Raro
+    quality: 2
+    addStat: []
   legs_list:
   - ID: 400
     nombre: Piernas 1
@@ -981,6 +1493,62 @@ MonoBehaviour:
     quality: 0
     addStat: []
   - ID: 404
+    nombre: Piernas 2
+    quality: 0
+    addStat: []
+  - ID: 405
+    nombre: Piernas 2
+    quality: 0
+    addStat: []
+  - ID: 406
+    nombre: Piernas 2
+    quality: 0
+    addStat: []
+  - ID: 407
+    nombre: Piernas 2
+    quality: 0
+    addStat: []
+  - ID: 408
+    nombre: Piernas 2
+    quality: 0
+    addStat: []
+  - ID: 409
+    nombre: Piernas 2
+    quality: 0
+    addStat: []
+  - ID: 410
+    nombre: Piernas 2
+    quality: 0
+    addStat: []
+  - ID: 411
+    nombre: Piernas 2
+    quality: 0
+    addStat: []
+  - ID: 412
+    nombre: Piernas 2
+    quality: 0
+    addStat: []
+  - ID: 413
+    nombre: Piernas 2
+    quality: 0
+    addStat: []
+  - ID: 414
+    nombre: Piernas 2
+    quality: 0
+    addStat: []
+  - ID: 415
+    nombre: Piernas 2
+    quality: 0
+    addStat: []
+  - ID: 416
+    nombre: Piernas 2
+    quality: 0
+    addStat: []
+  - ID: 417
+    nombre: Piernas 2
+    quality: 0
+    addStat: []
+  - ID: 418
     nombre: Piernas 2
     quality: 0
     addStat: []
@@ -1814,7 +2382,7 @@ RectTransform:
   m_GameObject: {fileID: 1903296613}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.85292804, y: 0.8529281, z: 0.8529281}
+  m_LocalScale: {x: 0.1, y: 0.8, z: 0.8}
   m_Children: []
   m_Father: {fileID: 1018645131}
   m_RootOrder: 6
@@ -1822,7 +2390,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 89.08262, y: 61.91073}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.50000006}
 --- !u!114 &1903296615
 MonoBehaviour:
