@@ -15,11 +15,6 @@ public class GameManager : MonoBehaviour {
         ConstruirJugador();
     }
 
-    void Start()
-    {
-        
-    }
-
     void ConstruirJugador()  //TEST MODE
     {
         player = new Player() {
@@ -39,18 +34,12 @@ public class GameManager : MonoBehaviour {
             }
 
         };
-        StartCoroutine(VisualizarEquipamiento(1));
+        StartCoroutine(Menu.instance.VisualizarEquipamiento(player.criatura.equipment, 1));
+        Menu.instance.InitializeVisor(Menu.instance.GetPlayerVisor(1), new Vector3(-120, 0, 0), true);
         LeerStats();
     }
 
-    IEnumerator VisualizarEquipamiento(int playerNumber)
-    {
-        yield return StartCoroutine(Menu.instance.SendImage(player.criatura.equipment.head.ID, Menu.instance.GetPlayerVisor(playerNumber)));
-        yield return StartCoroutine(Menu.instance.SendImage(player.criatura.equipment.body.ID, Menu.instance.GetPlayerVisor(playerNumber)));
-        yield return StartCoroutine(Menu.instance.SendImage(player.criatura.equipment.arms.ID, Menu.instance.GetPlayerVisor(playerNumber)));
-        yield return StartCoroutine(Menu.instance.SendImage(player.criatura.equipment.legs.ID, Menu.instance.GetPlayerVisor(playerNumber)));
-        yield return StartCoroutine(Menu.instance.SendImage(player.criatura.equipment.back.ID, Menu.instance.GetPlayerVisor(playerNumber)));
-    }
+    
 
     public void LeerStats()
     {
@@ -112,7 +101,7 @@ public class GameManager : MonoBehaviour {
         if (Items.instance.ItemByID(player.criatura.equipment.head.ID + 1).ID != 0)
         {
             player.criatura.equipment.head = Items.instance.ItemByID(player.criatura.equipment.head.ID + 1);
-            StartCoroutine(VisualizarEquipamiento(1));
+            StartCoroutine(Menu.instance.VisualizarEquipamiento(player.criatura.equipment, 1));
         }
     }
 
@@ -121,7 +110,7 @@ public class GameManager : MonoBehaviour {
         if (Items.instance.ItemByID(player.criatura.equipment.body.ID + 1).ID != 0)
         {
             player.criatura.equipment.body = Items.instance.ItemByID(player.criatura.equipment.body.ID + 1);
-            StartCoroutine(VisualizarEquipamiento(1));
+            StartCoroutine(Menu.instance.VisualizarEquipamiento(player.criatura.equipment, 1));
         }
     }
 
@@ -130,7 +119,7 @@ public class GameManager : MonoBehaviour {
         if (Items.instance.ItemByID(player.criatura.equipment.arms.ID + 1).ID != 0)
         {
             player.criatura.equipment.arms = Items.instance.ItemByID(player.criatura.equipment.arms.ID + 1);
-            StartCoroutine(VisualizarEquipamiento(1));
+            StartCoroutine(Menu.instance.VisualizarEquipamiento(player.criatura.equipment, 1));
         }
     }
 
@@ -139,7 +128,7 @@ public class GameManager : MonoBehaviour {
         if (Items.instance.ItemByID(player.criatura.equipment.legs.ID + 1).ID != 0)
         {
             player.criatura.equipment.legs = Items.instance.ItemByID(player.criatura.equipment.legs.ID + 1);
-            StartCoroutine(VisualizarEquipamiento(1));
+            StartCoroutine(Menu.instance.VisualizarEquipamiento(player.criatura.equipment, 1));
         }
     }
 
@@ -148,7 +137,7 @@ public class GameManager : MonoBehaviour {
         if (Items.instance.ItemByID(player.criatura.equipment.back.ID + 1).ID != 0)
         {
             player.criatura.equipment.back = Items.instance.ItemByID(player.criatura.equipment.back.ID + 1);
-            StartCoroutine(VisualizarEquipamiento(1));
+            StartCoroutine(Menu.instance.VisualizarEquipamiento(player.criatura.equipment, 1));
         }
     }
 

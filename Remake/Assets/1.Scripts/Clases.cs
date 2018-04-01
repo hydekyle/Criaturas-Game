@@ -24,7 +24,6 @@ public struct BodyBounds
 
 public class Visor
 {
-    public Image background;
     public Image headgear;
     public Image body;
     public Image back;

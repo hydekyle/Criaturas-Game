@@ -16,10 +16,6 @@ public class Menu : MonoBehaviour {
         instance = this;
         visor_player1 = new Visor();
         visor_player2 = new Visor();
-    }
-
-    void Start()
-    {
         Initialize();
     }
 
@@ -28,12 +24,13 @@ public class Menu : MonoBehaviour {
         background = transform.Find("Background").GetComponent<Image>();
         visor_player1.myTransform = transform.Find("VISOR");
         visor_player2.myTransform = transform.Find("VISOR2");
-        InitializeVisor(visor_player1);
-
+        
     }
 
-    void InitializeVisor(Visor visor)
+    public void InitializeVisor(Visor visor, Vector3 visorPos, bool flip)
     {
+        visor.myTransform.gameObject.SetActive(false);
+        visor.myTransform.localPosition = Vector3.zero;
         visor.headgear = visor.myTransform.Find("HEADGEAR").GetComponent<Image>();
         visor.body = visor.myTransform.Find("BODY").GetComponent<Image>();
         visor.back = visor.myTransform.Find("BACK").GetComponent<Image>();
@@ -41,15 +38,16 @@ public class Menu : MonoBehaviour {
         visor.arm_right = visor.myTransform.Find("ARM_RIGHT").GetComponent<Image>();
         visor.leg_left = visor.myTransform.Find("LEG_LEFT").GetComponent<Image>();
         visor.leg_right = visor.myTransform.Find("LEG_RIGHT").GetComponent<Image>();
-        StartCoroutine(Visualizar(visor.myTransform));
+        StartCoroutine(Visualizar(visor.myTransform, visorPos, flip));
     }
 
-    IEnumerator Visualizar(Transform visor)
+    IEnumerator Visualizar(Transform visor, Vector3 localPos, bool flip)
     {
         yield return new WaitForSeconds(1);
+        visor.localPosition = localPos;
+        if (flip) visor.localRotation = Quaternion.Euler(0, 180, 0);
         visor.gameObject.SetActive(true);
     }
-
 
     void FadeBackground(bool fadeState)
     {
@@ -57,19 +55,20 @@ public class Menu : MonoBehaviour {
         background.color = lerpTo;
     }
 
-    void SetStringsMainMenu()
-    {
-        Transform mainMenu_transform = transform.Find("MAIN_MENU");
-        mainMenu_transform.Find("play_BTN").Find("Text").GetComponent<Text>().text = Lenguaje.Instance.play;
-        mainMenu_transform.Find("nest_BTN").Find("Text").GetComponent<Text>().text = Lenguaje.Instance.nest;
-        mainMenu_transform.Find("shop_BTN").Find("Text").GetComponent<Text>().text = Lenguaje.Instance.shop;
-    }
-
     public IEnumerator SendImage(int id, Visor visor)
     {
         Sprite spriteBuscado = null;
         yield return StartCoroutine(Items.instance.ItemSpriteByID(id, value => spriteBuscado = value));
         SetImageVisor(spriteBuscado, id, visor);
+    }
+
+    public IEnumerator VisualizarEquipamiento(Equipment e , int playerNumber)
+    {
+        yield return StartCoroutine(SendImage(e.head.ID, GetPlayerVisor(playerNumber)));
+        yield return StartCoroutine(SendImage(e.body.ID, GetPlayerVisor(playerNumber)));
+        yield return StartCoroutine(SendImage(e.arms.ID, GetPlayerVisor(playerNumber)));
+        yield return StartCoroutine(SendImage(e.legs.ID, GetPlayerVisor(playerNumber)));
+        yield return StartCoroutine(SendImage(e.back.ID, GetPlayerVisor(playerNumber)));
     }
 
     public void SetImageVisor(Sprite sprite, int id, Visor visor)
@@ -175,8 +174,7 @@ public class Menu : MonoBehaviour {
         else { visor = visor_player2; }
         return visor;
     }
-
-
+    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.G))
@@ -184,6 +182,10 @@ public class Menu : MonoBehaviour {
             SaveBounds();
         }
     }
+
+
+
+    //BOTONES MENÚ
 
     public void BTN_Play()
     {
@@ -200,4 +202,12 @@ public class Menu : MonoBehaviour {
         print("shop");
     }
 
+
+    void SetStringsMainMenu()
+    {
+        Transform mainMenu_transform = transform.Find("MAIN_MENU");
+        mainMenu_transform.Find("play_BTN").Find("Text").GetComponent<Text>().text = Lenguaje.Instance.play;
+        mainMenu_transform.Find("nest_BTN").Find("Text").GetComponent<Text>().text = Lenguaje.Instance.nest;
+        mainMenu_transform.Find("shop_BTN").Find("Text").GetComponent<Text>().text = Lenguaje.Instance.shop;
+    }
 }
