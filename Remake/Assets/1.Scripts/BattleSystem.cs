@@ -28,7 +28,6 @@ public class BattleSystem : MonoBehaviour {
     public SkillsButtons skill_buttons;
 
 
-
     void Start()
     {
         Initialize();
@@ -37,38 +36,6 @@ public class BattleSystem : MonoBehaviour {
         StartCoroutine(Menu.instance.VisualizarEquipamiento(jugador2.criatura.equipment, 2));
         Menu.instance.InitializeVisor(Menu.instance.GetPlayerVisor(2), new Vector3(120,0,0), false);
         LeerStats();
-    }
-
-    public void LeerStats() //Lee el equipamiento, y habilidades de los jugadores
-    {
-        List<Equipable_Item> equipamiento_list = ObtenerListaEquipamiento(jugador1);
-        foreach (Equipable_Item e in equipamiento_list)
-        {
-            for (var x = 0; x < e.addStat.Count; x++)
-            {
-                totalStats_player1.Add(e.addStat[x]);
-            }
-        }
-        equipamiento_list = ObtenerListaEquipamiento(jugador2);
-        foreach (Equipable_Item e in equipamiento_list)
-        {
-            for (var x = 0; x < e.addStat.Count; x++)
-            {
-                totalStats_player2.Add(e.addStat[x]);
-            }
-        }
-        skills_player1 = new MySkylls();
-        foreach (int sID in jugador1.criatura.equipment.head.skills_ID) { skills_player1.head.Add(sID); }
-        foreach (int sID in jugador1.criatura.equipment.body.skills_ID) { skills_player1.body.Add(sID); }
-        foreach (int sID in jugador1.criatura.equipment.arms.skills_ID) { skills_player1.arms.Add(sID); }
-        foreach (int sID in jugador1.criatura.equipment.legs.skills_ID) { skills_player1.legs.Add(sID); }
-        skills_player2 = new MySkylls();
-        foreach (int sID in jugador2.criatura.equipment.head.skills_ID) { skills_player2.head.Add(sID); }
-        foreach (int sID in jugador2.criatura.equipment.body.skills_ID) { skills_player2.body.Add(sID); }
-        foreach (int sID in jugador2.criatura.equipment.arms.skills_ID) { skills_player2.arms.Add(sID); }
-        foreach (int sID in jugador2.criatura.equipment.legs.skills_ID) { skills_player2.legs.Add(sID); }
-        UpdateSkillButtons();
-
     }
 
     void Initialize()
@@ -103,6 +70,38 @@ public class BattleSystem : MonoBehaviour {
         };
     }
 
+    public void LeerStats() //Lee el equipamiento, y habilidades de los jugadores
+    {
+        List<Equipable_Item> equipamiento_list = ObtenerListaEquipamiento(jugador1);
+        foreach (Equipable_Item e in equipamiento_list)
+        {
+            for (var x = 0; x < e.addStat.Count; x++)
+            {
+                totalStats_player1.Add(e.addStat[x]);
+            }
+        }
+        equipamiento_list = ObtenerListaEquipamiento(jugador2);
+        foreach (Equipable_Item e in equipamiento_list)
+        {
+            for (var x = 0; x < e.addStat.Count; x++)
+            {
+                totalStats_player2.Add(e.addStat[x]);
+            }
+        }
+        skills_player1 = new MySkylls();
+        foreach (int sID in jugador1.criatura.equipment.head.skills_ID) { skills_player1.head.Add(sID); }
+        foreach (int sID in jugador1.criatura.equipment.body.skills_ID) { skills_player1.body.Add(sID); }
+        foreach (int sID in jugador1.criatura.equipment.arms.skills_ID) { skills_player1.arms.Add(sID); }
+        foreach (int sID in jugador1.criatura.equipment.legs.skills_ID) { skills_player1.legs.Add(sID); }
+        skills_player2 = new MySkylls();
+        foreach (int sID in jugador2.criatura.equipment.head.skills_ID) { skills_player2.head.Add(sID); }
+        foreach (int sID in jugador2.criatura.equipment.body.skills_ID) { skills_player2.body.Add(sID); }
+        foreach (int sID in jugador2.criatura.equipment.arms.skills_ID) { skills_player2.arms.Add(sID); }
+        foreach (int sID in jugador2.criatura.equipment.legs.skills_ID) { skills_player2.legs.Add(sID); }
+        UpdateSkillButtons();
+
+    }
+
     public void UpdateSkillButtons()
     {
         skill_buttons.head_activable_skill_ID = skills_player1.head[Random.Range(0, skills_player1.head.Count)];
@@ -126,7 +125,6 @@ public class BattleSystem : MonoBehaviour {
         lista.Add(player.criatura.equipment.back);
         return lista;
     }
-
 
     Player ConstruirIA()
     {
@@ -174,7 +172,6 @@ public class BattleSystem : MonoBehaviour {
         return int.Parse(final);
     }
 
-
     public void Head_BTN()
     {
         LanzarSkill(skill_buttons.head_activable_skill_ID);
@@ -195,15 +192,9 @@ public class BattleSystem : MonoBehaviour {
         LanzarSkill(skill_buttons.legs_activable_skill_ID);
     }
 
-
     void LanzarSkill(int id)
     {
         print("HydeKyle lanza " + Lenguaje.Instance.SkillNameByID(id));
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.V)) UpdateSkillButtons();
     }
 
 }
