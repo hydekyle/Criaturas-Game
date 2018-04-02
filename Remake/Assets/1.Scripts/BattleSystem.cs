@@ -54,16 +54,15 @@ public class BattleSystem : MonoBehaviour {
             }
         }
         skills_player1 = new MySkylls();
-        foreach(int sID in jugador1.criatura.equipment.head.skills_ID)
-        {
-            skills_player1.head.Add(sID);
-        }
+        foreach (int sID in jugador1.criatura.equipment.head.skills_ID) { skills_player1.head.Add(sID); }
+        foreach (int sID in jugador1.criatura.equipment.body.skills_ID) { skills_player1.body.Add(sID); }
+        foreach (int sID in jugador1.criatura.equipment.arms.skills_ID) { skills_player1.arms.Add(sID); }
+        foreach (int sID in jugador1.criatura.equipment.legs.skills_ID) { skills_player1.legs.Add(sID); }
         skills_player2 = new MySkylls();
-        foreach (int sID in jugador2.criatura.equipment.head.skills_ID)
-        {
-            skills_player2.head.Add(sID);
-        }
-        print(skills_player1.head.Count);
+        foreach (int sID in jugador2.criatura.equipment.head.skills_ID) { skills_player2.head.Add(sID); }
+        foreach (int sID in jugador2.criatura.equipment.body.skills_ID) { skills_player2.body.Add(sID); }
+        foreach (int sID in jugador2.criatura.equipment.arms.skills_ID) { skills_player2.arms.Add(sID); }
+        foreach (int sID in jugador2.criatura.equipment.legs.skills_ID) { skills_player2.legs.Add(sID); }
 
     }
 
