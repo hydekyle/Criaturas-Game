@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Enums;
+using UnityEngine.UI;
 
 public class BattleSystem : MonoBehaviour {
 
@@ -24,10 +25,13 @@ public class BattleSystem : MonoBehaviour {
     public MySkylls skills_player1;
     public MySkylls skills_player2;
 
+    public SkillsButtons skill_buttons;
+
 
 
     void Start()
     {
+        Initialize();
         jugador1 = GameManager.instance.player;
         jugador2 = ConstruirIA();
         StartCoroutine(Menu.instance.VisualizarEquipamiento(jugador2.criatura.equipment, 2));
@@ -63,7 +67,53 @@ public class BattleSystem : MonoBehaviour {
         foreach (int sID in jugador2.criatura.equipment.body.skills_ID) { skills_player2.body.Add(sID); }
         foreach (int sID in jugador2.criatura.equipment.arms.skills_ID) { skills_player2.arms.Add(sID); }
         foreach (int sID in jugador2.criatura.equipment.legs.skills_ID) { skills_player2.legs.Add(sID); }
+        UpdateSkillButtons();
 
+    }
+
+    void Initialize()
+    {
+        Transform habilidadesT = transform.Find("Canvas").Find("[Habilidades]");
+        Transform headT = habilidadesT.Find("Skill_Head");
+        Transform bodyT = habilidadesT.Find("Skill_Body");
+        Transform armsT = habilidadesT.Find("Skill_Arms");
+        Transform legsT = habilidadesT.Find("Skill_Legs");
+        skill_buttons = new SkillsButtons()
+        {
+            head_button = new Button()
+            {
+                myImage = headT.GetComponent<Image>(),
+                myText = headT.GetChild(0).GetComponent<Text>()
+            },
+            body_button = new Button()
+            {
+                myImage = bodyT.GetComponent<Image>(),
+                myText = bodyT.GetChild(0).GetComponent<Text>()
+            },
+            arms_button = new Button()
+            {
+                myImage = armsT.GetComponent<Image>(),
+                myText = armsT.GetChild(0).GetComponent<Text>()
+            },
+            legs_button = new Button()
+            {
+                myImage = legsT.GetComponent<Image>(),
+                myText = legsT.GetChild(0).GetComponent<Text>()
+            }
+        };
+    }
+
+    public void UpdateSkillButtons()
+    {
+        skill_buttons.head_activable_skill_ID = skills_player1.head[Random.Range(0, skills_player1.head.Count)];
+        skill_buttons.body_activable_skill_ID = skills_player1.body[Random.Range(0, skills_player1.body.Count)];
+        skill_buttons.arms_activable_skill_ID = skills_player1.arms[Random.Range(0, skills_player1.arms.Count)];
+        skill_buttons.legs_activable_skill_ID = skills_player1.legs[Random.Range(0, skills_player1.legs.Count)];
+
+        skill_buttons.head_button.myText.text = Lenguaje.Instance.SkillNameByID(skill_buttons.head_activable_skill_ID);
+        skill_buttons.body_button.myText.text = Lenguaje.Instance.SkillNameByID(skill_buttons.body_activable_skill_ID);
+        skill_buttons.arms_button.myText.text = Lenguaje.Instance.SkillNameByID(skill_buttons.arms_activable_skill_ID);
+        skill_buttons.legs_button.myText.text = Lenguaje.Instance.SkillNameByID(skill_buttons.legs_activable_skill_ID);
     }
 
     public List<Equipable_Item> ObtenerListaEquipamiento(Player player)
@@ -122,6 +172,38 @@ public class BattleSystem : MonoBehaviour {
         if (randomID.ToString().Length < 2) randomID = "0" + randomID;
         string final = listNumber.ToString() + randomID + "000";
         return int.Parse(final);
+    }
+
+
+    public void Head_BTN()
+    {
+        LanzarSkill(skill_buttons.head_activable_skill_ID);
+    }
+
+    public void Body_BTN()
+    {
+        LanzarSkill(skill_buttons.body_activable_skill_ID);
+    }
+
+    public void Arms_BTN()
+    {
+        LanzarSkill(skill_buttons.arms_activable_skill_ID);
+    }
+
+    public void Legs_BTN()
+    {
+        LanzarSkill(skill_buttons.legs_activable_skill_ID);
+    }
+
+
+    void LanzarSkill(int id)
+    {
+        print("HydeKyle lanza " + Lenguaje.Instance.SkillNameByID(id));
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.V)) UpdateSkillButtons();
     }
 
 }

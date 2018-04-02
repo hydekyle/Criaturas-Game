@@ -60,16 +60,33 @@ public class MySkylls
 }
 
 [Serializable]
+public class SkillsButtons
+{
+    public Button head_button;
+    public Button body_button;
+    public Button arms_button;
+    public Button legs_button;
+    public int head_activable_skill_ID;
+    public int body_activable_skill_ID;
+    public int arms_activable_skill_ID;
+    public int legs_activable_skill_ID;
+}
+
+[Serializable]
+public class Button
+{
+    public Image myImage;
+    public Text myText;
+}
+
+[Serializable]
 public struct Equipable_Item
 {
-    //public Sprite sprite;
     public int ID;
     public string nombre;
-    //public Equip_Position position;
     public Quality quality;
     public List<GiveStat> addStat;
     public List<int> skills_ID;
-
 }
 
 [SerializeField]
