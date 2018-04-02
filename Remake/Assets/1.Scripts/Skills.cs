@@ -12,14 +12,7 @@ public class Skills : MonoBehaviour {
         Instance = this;
     }
 
+
+
 }
 
-public class Skill
-{
-    string name;
-    string description;
-    Class clase;
-    Skill_Type s_type;
-    int damage;
-    int actionNumber;
-}

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Enums;
 
-public class BattleIA : MonoBehaviour {
+public class BattleSystem : MonoBehaviour {
 
 
 
@@ -19,14 +19,64 @@ public class BattleIA : MonoBehaviour {
     Player jugador1;
     Player jugador2;
 
-    void OnEnable()
+    public List<GiveStat> totalStats_player1 = new List<GiveStat>();
+    public List<GiveStat> totalStats_player2 = new List<GiveStat>();
+    public MySkylls skills_player1;
+    public MySkylls skills_player2;
+
+
+
+    void Start()
     {
         jugador1 = GameManager.instance.player;
         jugador2 = ConstruirIA();
         StartCoroutine(Menu.instance.VisualizarEquipamiento(jugador2.criatura.equipment, 2));
         Menu.instance.InitializeVisor(Menu.instance.GetPlayerVisor(2), new Vector3(120,0,0), false);
+        LeerStats();
     }
 
+    public void LeerStats() //Lee el equipamiento, y habilidades de los jugadores
+    {
+        List<Equipable_Item> equipamiento_list = ObtenerListaEquipamiento(jugador1);
+        foreach (Equipable_Item e in equipamiento_list)
+        {
+            for (var x = 0; x < e.addStat.Count; x++)
+            {
+                totalStats_player1.Add(e.addStat[x]);
+            }
+        }
+        equipamiento_list = ObtenerListaEquipamiento(jugador2);
+        foreach (Equipable_Item e in equipamiento_list)
+        {
+            for (var x = 0; x < e.addStat.Count; x++)
+            {
+                totalStats_player2.Add(e.addStat[x]);
+            }
+        }
+        skills_player1 = new MySkylls();
+        foreach(int sID in jugador1.criatura.equipment.head.skills_ID)
+        {
+            skills_player1.head.Add(sID);
+        }
+        skills_player2 = new MySkylls();
+        foreach (int sID in jugador2.criatura.equipment.head.skills_ID)
+        {
+            skills_player2.head.Add(sID);
+        }
+        print(skills_player1.head.Count);
+
+    }
+
+    public List<Equipable_Item> ObtenerListaEquipamiento(Player player)
+    {
+        List<Equipable_Item> lista = new List<Equipable_Item>();
+        lista.Add(player.criatura.equipment.head);
+        lista.Add(player.criatura.equipment.body);
+        lista.Add(player.criatura.equipment.arms);
+        lista.Add(player.criatura.equipment.legs);
+        lista.Add(player.criatura.equipment.back);
+        return lista;
+    }
 
 
     Player ConstruirIA()
@@ -40,7 +90,7 @@ public class BattleIA : MonoBehaviour {
                 nombre = "Jesus Christ",
                 equipment = new Equipment()
                 {
-                    head = Items.instance.ItemByID(GetRandomItemID(1)),
+                    head = Items.instance.ItemByID(101000),
                     body = Items.instance.ItemByID(GetRandomItemID(2)),
                     arms = Items.instance.ItemByID(GetRandomItemID(3)),
                     legs = Items.instance.ItemByID(GetRandomItemID(4)),

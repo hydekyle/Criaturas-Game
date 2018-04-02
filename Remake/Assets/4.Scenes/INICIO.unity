@@ -185,6 +185,191 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 135675825}
+--- !u!1 &204761306
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 204761307}
+  - component: {fileID: 204761309}
+  - component: {fileID: 204761308}
+  m_Layer: 0
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &204761307
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 204761306}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 356090844}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &204761308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 204761306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Button
+--- !u!222 &204761309
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 204761306}
+--- !u!1 &356090843
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 356090844}
+  - component: {fileID: 356090847}
+  - component: {fileID: 356090846}
+  - component: {fileID: 356090845}
+  m_Layer: 0
+  m_Name: Skill_Arms
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &356090844
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 356090843}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 204761307}
+  m_Father: {fileID: 553637095}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 100, y: 26.658447}
+  m_SizeDelta: {x: 200, y: 60}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &356090845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 356090843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 356090846}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &356090846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 356090843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 85e61c2581e1857468a2c8086e7464e7, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &356090847
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 356090843}
 --- !u!1 &396817258
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,7 +466,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &399936088
 Transform:
   m_ObjectHideFlags: 0
@@ -291,7 +476,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1802928300}
   m_Father: {fileID: 1236433745}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -306,6 +492,117 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82e492cad4d6c944db0c1022c3570dfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &468897744
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 468897745}
+  - component: {fileID: 468897748}
+  - component: {fileID: 468897747}
+  - component: {fileID: 468897746}
+  m_Layer: 0
+  m_Name: Skill_Head
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &468897745
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 468897744}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1116519170}
+  m_Father: {fileID: 553637095}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -300, y: 26.658447}
+  m_SizeDelta: {x: 200, y: 60}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &468897746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 468897744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 468897747}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &468897747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 468897744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 85e61c2581e1857468a2c8086e7464e7, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &468897748
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 468897744}
 --- !u!1 &527126981
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,6 +694,78 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 527126981}
+--- !u!1 &553637094
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 553637095}
+  - component: {fileID: 553637097}
+  - component: {fileID: 553637096}
+  m_Layer: 0
+  m_Name: '[Habilidades]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &553637095
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 553637094}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 468897745}
+  - {fileID: 1842445530}
+  - {fileID: 356090844}
+  - {fileID: 739500171}
+  m_Father: {fileID: 1802928300}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &553637096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 553637094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &553637097
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 553637094}
 --- !u!1 &732463700
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,6 +875,117 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &739500170
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 739500171}
+  - component: {fileID: 739500174}
+  - component: {fileID: 739500173}
+  - component: {fileID: 739500172}
+  m_Layer: 0
+  m_Name: Skill_Legs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &739500171
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 739500170}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1895267848}
+  m_Father: {fileID: 553637095}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 300, y: 26.658447}
+  m_SizeDelta: {x: 200, y: 60}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &739500172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 739500170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 739500173}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &739500173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 739500170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 85e61c2581e1857468a2c8086e7464e7, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &739500174
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 739500170}
 --- !u!1 &866824662
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,6 +1378,80 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1116519169
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1116519170}
+  - component: {fileID: 1116519172}
+  - component: {fileID: 1116519171}
+  m_Layer: 0
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1116519170
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1116519169}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 468897745}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1116519171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1116519169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Button
+--- !u!222 &1116519172
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1116519169}
 --- !u!1 &1236433743
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,6 +1487,7 @@ MonoBehaviour:
     nombre: Cabeza 1
     quality: 0
     addStat: []
+    skills_ID: 0a0000000b000000
   - ID: 101
     nombre: Cabeza 2
     quality: 0
@@ -941,6 +1496,7 @@ MonoBehaviour:
       value: 1
     - stat_type: 2
       value: 5
+    skills_ID: 
   - ID: 102
     nombre: Cabeza 3
     quality: 0
@@ -949,6 +1505,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 103
     nombre: Cabeza 4
     quality: 0
@@ -957,6 +1514,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 104
     nombre: Cabeza 5
     quality: 0
@@ -965,6 +1523,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 105
     nombre: Cabeza 5
     quality: 0
@@ -973,6 +1532,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 106
     nombre: Cabeza 5
     quality: 0
@@ -981,6 +1541,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 107
     nombre: Cabeza 5
     quality: 0
@@ -989,6 +1550,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 108
     nombre: Cabeza 5
     quality: 0
@@ -997,6 +1559,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 109
     nombre: Cabeza 5
     quality: 0
@@ -1005,6 +1568,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 110
     nombre: Cabeza 5
     quality: 0
@@ -1013,6 +1577,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 111
     nombre: Cabeza 5
     quality: 0
@@ -1021,6 +1586,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 112
     nombre: Cabeza Rara
     quality: 1
@@ -1029,6 +1595,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 113
     nombre: Cabeza Rara
     quality: 1
@@ -1037,6 +1604,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 114
     nombre: Cabeza Rara
     quality: 1
@@ -1045,6 +1613,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 115
     nombre: Cabeza Rara
     quality: 1
@@ -1053,6 +1622,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 116
     nombre: Cabeza Rara
     quality: 1
@@ -1061,6 +1631,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 117
     nombre: Cabeza Rara
     quality: 1
@@ -1069,6 +1640,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 118
     nombre: Cabeza Rara
     quality: 1
@@ -1077,6 +1649,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 119
     nombre: Cabeza Rara
     quality: 1
@@ -1085,6 +1658,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 120
     nombre: Cabeza Rara
     quality: 1
@@ -1093,6 +1667,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 121
     nombre: Cabeza Rara
     quality: 1
@@ -1101,6 +1676,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 122
     nombre: Cabeza Rara
     quality: 1
@@ -1109,6 +1685,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 123
     nombre: Cabeza Rara
     quality: 1
@@ -1117,6 +1694,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 124
     nombre: Cabeza Rara
     quality: 1
@@ -1125,6 +1703,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 125
     nombre: Cabeza Rara
     quality: 1
@@ -1133,6 +1712,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 126
     nombre: Cabeza Rara
     quality: 1
@@ -1141,6 +1721,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 127
     nombre: Cabeza Rara
     quality: 1
@@ -1149,6 +1730,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 128
     nombre: "Cabeza \xC9pica"
     quality: 2
@@ -1157,6 +1739,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 129
     nombre: "Cabeza \xC9pica"
     quality: 2
@@ -1165,6 +1748,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 130
     nombre: "Cabeza \xC9pica"
     quality: 2
@@ -1173,6 +1757,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 131
     nombre: "Cabeza \xC9pica"
     quality: 2
@@ -1181,6 +1766,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 132
     nombre: "Cabeza \xC9pica"
     quality: 2
@@ -1189,6 +1775,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 133
     nombre: "Cabeza \xC9pica"
     quality: 2
@@ -1197,6 +1784,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 134
     nombre: "Cabeza \xC9pica"
     quality: 2
@@ -1205,6 +1793,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 135
     nombre: "Cabeza \xC9pica"
     quality: 2
@@ -1213,6 +1802,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 136
     nombre: "Cabeza \xC9pica"
     quality: 2
@@ -1221,6 +1811,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 137
     nombre: "Cabeza \xC9pica"
     quality: 2
@@ -1229,6 +1820,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 138
     nombre: "Cabeza \xC9pica"
     quality: 2
@@ -1237,6 +1829,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 139
     nombre: "Cabeza \xC9pica"
     quality: 2
@@ -1245,6 +1838,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 140
     nombre: "Cabeza \xC9pica"
     quality: 2
@@ -1253,6 +1847,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 141
     nombre: "Cabeza \xC9pica"
     quality: 2
@@ -1261,6 +1856,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 142
     nombre: "Cabeza \xC9pica"
     quality: 2
@@ -1269,6 +1865,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 143
     nombre: "Cabeza \xC9pica"
     quality: 2
@@ -1277,6 +1874,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 144
     nombre: "Cabeza \xC9pica"
     quality: 3
@@ -1285,6 +1883,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 145
     nombre: "Cabeza \xC9pica"
     quality: 3
@@ -1293,6 +1892,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 146
     nombre: "Cabeza \xC9pica"
     quality: 3
@@ -1301,6 +1901,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 147
     nombre: "Cabeza \xC9pica"
     quality: 3
@@ -1309,6 +1910,7 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   - ID: 148
     nombre: "Cabeza \xC9pica"
     quality: 3
@@ -1317,533 +1919,664 @@ MonoBehaviour:
       value: 33
     - stat_type: 0
       value: 11
+    skills_ID: 
   bodies_list:
   - ID: 200
     nombre: Cuerpo 1
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 201
     nombre: Cuerpo 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 202
     nombre: Cuerpo 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 203
     nombre: Cuerpo 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 204
     nombre: Cuerpo 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 205
     nombre: Cuerpo 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 206
     nombre: Cuerpo 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 207
     nombre: Cuerpo 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 208
     nombre: Cuerpo 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 209
     nombre: Cuerpo 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 210
     nombre: Cuerpo 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 211
     nombre: Cuerpo 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 212
     nombre: Cuerpo 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 213
     nombre: Cuerpo 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 214
     nombre: Cuerpo 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 215
     nombre: Cuerpo 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 216
     nombre: Cuerpo 2
     quality: 1
     addStat: []
+    skills_ID: 
   - ID: 217
     nombre: Cuerpo 2
     quality: 1
     addStat: []
+    skills_ID: 
   - ID: 218
     nombre: Cuerpo 2
     quality: 1
     addStat: []
+    skills_ID: 
   - ID: 219
     nombre: Cuerpo 2
     quality: 1
     addStat: []
+    skills_ID: 
   - ID: 220
     nombre: Cuerpo 2
     quality: 1
     addStat: []
+    skills_ID: 
   - ID: 221
     nombre: Cuerpo 2
     quality: 1
     addStat: []
+    skills_ID: 
   - ID: 222
     nombre: Cuerpo 2
     quality: 1
     addStat: []
+    skills_ID: 
   - ID: 223
     nombre: Cuerpo 2
     quality: 1
     addStat: []
+    skills_ID: 
   - ID: 224
     nombre: Cuerpo 2
     quality: 1
     addStat: []
+    skills_ID: 
   - ID: 225
     nombre: Cuerpo 2
     quality: 1
     addStat: []
+    skills_ID: 
   - ID: 226
     nombre: Cuerpo 2
     quality: 1
     addStat: []
+    skills_ID: 
   - ID: 227
     nombre: Cuerpo 2
     quality: 1
     addStat: []
+    skills_ID: 
   - ID: 228
     nombre: Cuerpo 2
     quality: 1
     addStat: []
+    skills_ID: 
   - ID: 229
     nombre: Cuerpo 2
     quality: 1
     addStat: []
+    skills_ID: 
   - ID: 230
     nombre: Cuerpo 2
     quality: 1
     addStat: []
+    skills_ID: 
   - ID: 231
     nombre: Cuerpo 2
     quality: 1
     addStat: []
+    skills_ID: 
   - ID: 232
     nombre: Cuerpo 2
     quality: 1
     addStat: []
+    skills_ID: 
   - ID: 233
     nombre: Cuerpo Epico
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 234
     nombre: Cuerpo Epico
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 235
     nombre: Cuerpo Epico
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 236
     nombre: Cuerpo Epico
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 237
     nombre: Cuerpo Epico
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 238
     nombre: Cuerpo Epico
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 239
     nombre: Cuerpo Epico
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 240
     nombre: Cuerpo Epico
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 241
     nombre: Cuerpo Epico
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 242
     nombre: Cuerpo Epico
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 243
     nombre: Cuerpo Epico
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 244
     nombre: Cuerpo Epico
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 245
     nombre: Cuerpo Epico
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 246
     nombre: Cuerpo Epico
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 247
     nombre: Cuerpo Epico
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 248
     nombre: Cuerpo Epico
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 249
     nombre: Cuerpo Epico
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 250
     nombre: Cuerpo Epico
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 251
     nombre: Cuerpo Epico
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 252
     nombre: Cuerpo Legendario
     quality: 3
     addStat: []
+    skills_ID: 
   - ID: 253
     nombre: Cuerpo Legendario
     quality: 3
     addStat: []
+    skills_ID: 
   - ID: 254
     nombre: Cuerpo Legendario
     quality: 3
     addStat: []
+    skills_ID: 
   - ID: 255
     nombre: Cuerpo Legendario
     quality: 3
     addStat: []
+    skills_ID: 
   - ID: 256
     nombre: Cuerpo Legendario
     quality: 3
     addStat: []
+    skills_ID: 
   - ID: 257
     nombre: Cuerpo Legendario
     quality: 3
     addStat: []
+    skills_ID: 
   - ID: 258
     nombre: Cuerpo Legendario
     quality: 3
     addStat: []
+    skills_ID: 
   - ID: 259
     nombre: Cuerpo Legendario
     quality: 3
     addStat: []
+    skills_ID: 
   - ID: 260
     nombre: Cuerpo Legendario
     quality: 3
     addStat: []
+    skills_ID: 
   - ID: 261
     nombre: Cuerpo Legendario
     quality: 3
     addStat: []
+    skills_ID: 
   - ID: 262
     nombre: Cuerpo Legendario
     quality: 3
     addStat: []
+    skills_ID: 
   arms_list:
   - ID: 300
     nombre: Brazos 1
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 301
     nombre: Brazos 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 302
     nombre: Brazos 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 303
     nombre: Brazos 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 304
     nombre: Brazos 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 305
     nombre: Brazos 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 306
     nombre: Brazos 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 307
     nombre: Brazos 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 308
     nombre: Brazos 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 309
     nombre: Brazos 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 310
     nombre: Brazos 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 311
     nombre: Brazos 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 312
     nombre: Brazos 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 313
     nombre: Brazos 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 314
     nombre: Brazos Raro
     quality: 1
     addStat: []
+    skills_ID: 
   - ID: 315
     nombre: Brazos Raro
     quality: 1
     addStat: []
+    skills_ID: 
   - ID: 316
     nombre: Brazos Raro
     quality: 1
     addStat: []
+    skills_ID: 
   - ID: 317
     nombre: Brazos Raro
     quality: 1
     addStat: []
+    skills_ID: 
   - ID: 318
     nombre: Brazos Raro
     quality: 1
     addStat: []
+    skills_ID: 
   - ID: 319
     nombre: Brazos Raro
     quality: 1
     addStat: []
+    skills_ID: 
   - ID: 320
     nombre: Brazos Raro
     quality: 1
     addStat: []
+    skills_ID: 
   - ID: 321
     nombre: Brazos Raro
     quality: 1
     addStat: []
+    skills_ID: 
   - ID: 322
     nombre: Brazos Raro
     quality: 1
     addStat: []
+    skills_ID: 
   - ID: 323
     nombre: Brazos Raro
     quality: 1
     addStat: []
+    skills_ID: 
   - ID: 324
     nombre: Brazos Raro
     quality: 1
     addStat: []
+    skills_ID: 
   - ID: 325
     nombre: Brazos Raro
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 326
     nombre: Brazos Raro
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 327
     nombre: Brazos Raro
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 328
     nombre: Brazos Raro
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 329
     nombre: Brazos Raro
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 330
     nombre: Brazos Raro
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 331
     nombre: Brazos Raro
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 332
     nombre: Brazos Raro
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 333
     nombre: Brazos Raro
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 334
     nombre: Brazos Raro
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 335
     nombre: Brazos Raro
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 336
     nombre: Brazos Raro
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 337
     nombre: Brazos Raro
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 338
     nombre: Brazos Raro
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 339
     nombre: Brazos Raro
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 340
     nombre: Brazos Raro
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 341
     nombre: Brazos Raro
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 342
     nombre: Brazos Raro
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 343
     nombre: Brazos Raro
     quality: 2
     addStat: []
+    skills_ID: 
   - ID: 344
     nombre: Brazos Raro
     quality: 2
     addStat: []
+    skills_ID: 
   legs_list:
   - ID: 400
     nombre: Piernas 1
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 401
     nombre: Piernas 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 402
     nombre: Piernas 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 403
     nombre: Piernas 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 404
     nombre: Piernas 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 405
     nombre: Piernas 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 406
     nombre: Piernas 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 407
     nombre: Piernas 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 408
     nombre: Piernas 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 409
     nombre: Piernas 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 410
     nombre: Piernas 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 411
     nombre: Piernas 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 412
     nombre: Piernas 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 413
     nombre: Piernas 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 414
     nombre: Piernas 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 415
     nombre: Piernas 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 416
     nombre: Piernas 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 417
     nombre: Piernas 2
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 418
     nombre: Piernas 2
     quality: 0
     addStat: []
+    skills_ID: 
   backs_list:
   - ID: 500
     nombre: Back 1
     quality: 0
     addStat: []
+    skills_ID: 
   weapons_list:
   - ID: 600
     nombre: Arma 1
     quality: 0
     addStat: []
+    skills_ID: 
   - ID: 601
     nombre: Arma 2
     quality: 0
     addStat:
     - stat_type: 0
       value: 666
+    skills_ID: 
 --- !u!4 &1236433745
 Transform:
   m_ObjectHideFlags: 0
@@ -2239,6 +2972,80 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1 &1593167933
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1593167934}
+  - component: {fileID: 1593167936}
+  - component: {fileID: 1593167935}
+  m_Layer: 0
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1593167934
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1593167933}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1842445530}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1593167935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1593167933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Button
+--- !u!222 &1593167936
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1593167933}
 --- !u!1 &1648712352
 GameObject:
   m_ObjectHideFlags: 0
@@ -2651,6 +3458,211 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1762031614}
+--- !u!1 &1802928299
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1802928300}
+  - component: {fileID: 1802928303}
+  - component: {fileID: 1802928302}
+  - component: {fileID: 1802928301}
+  m_Layer: 0
+  m_Name: Canvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1802928300
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1802928299}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 553637095}
+  m_Father: {fileID: 399936088}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+--- !u!114 &1802928301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1802928299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1301386320, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &1802928302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1802928299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 1
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+--- !u!223 &1802928303
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1802928299}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!1 &1842445529
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1842445530}
+  - component: {fileID: 1842445533}
+  - component: {fileID: 1842445532}
+  - component: {fileID: 1842445531}
+  m_Layer: 0
+  m_Name: Skill_Body
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1842445530
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1842445529}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1593167934}
+  m_Father: {fileID: 553637095}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -100, y: 26.658447}
+  m_SizeDelta: {x: 200, y: 60}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1842445531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1842445529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1842445532}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &1842445532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1842445529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 85e61c2581e1857468a2c8086e7464e7, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &1842445533
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1842445529}
 --- !u!1 &1881705790
 GameObject:
   m_ObjectHideFlags: 0
@@ -2687,6 +3699,80 @@ RectTransform:
   m_AnchoredPosition: {x: 400, y: 0}
   m_SizeDelta: {x: 100, y: -214}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1895267847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1895267848}
+  - component: {fileID: 1895267850}
+  - component: {fileID: 1895267849}
+  m_Layer: 0
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1895267848
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1895267847}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 739500171}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1895267849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1895267847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Button
+--- !u!222 &1895267850
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1895267847}
 --- !u!1 &1898638494
 GameObject:
   m_ObjectHideFlags: 0

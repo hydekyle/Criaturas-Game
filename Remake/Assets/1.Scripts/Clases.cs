@@ -9,7 +9,7 @@ namespace Enums {
     public enum Quality { Common, Rare, Epic, Legendary };
     public enum Stat { Damage, Health, Skill, Luck};
     public enum Class { Assassin, Pacifist, Charming, Alpha};
-    public enum Skill_Type { Punch, Spell };
+    public enum Skill_Type { Attack, Spell, Buff };
 }
 
 public struct BodyBounds
@@ -51,6 +51,15 @@ public struct Equipment
 }
 
 [Serializable]
+public class MySkylls
+{
+    public List<int> head = new List<int>();
+    public List<int> body = new List<int>();
+    public List<int> arms = new List<int>();
+    public List<int> legs = new List<int>();
+}
+
+[Serializable]
 public struct Equipable_Item
 {
     //public Sprite sprite;
@@ -59,6 +68,7 @@ public struct Equipable_Item
     //public Equip_Position position;
     public Quality quality;
     public List<GiveStat> addStat;
+    public List<int> skills_ID;
 
 }
 
@@ -76,6 +86,16 @@ public class Player
     public string nombre;
     public Criatura criatura;
 }
+
+public class Skill
+{
+    int ID;
+    string name;
+    string description;
+    Class clase;
+    Skill_Type s_type;
+}
+
 
 
 

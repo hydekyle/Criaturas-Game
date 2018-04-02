@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager instance;
     public Player player;
-    public List<GiveStat> totalStats_list = new List<GiveStat>();
+    
 
     void Awake()
     {
@@ -36,63 +36,36 @@ public class GameManager : MonoBehaviour {
         };
         StartCoroutine(Menu.instance.VisualizarEquipamiento(player.criatura.equipment, 1));
         Menu.instance.InitializeVisor(Menu.instance.GetPlayerVisor(1), new Vector3(-120, 0, 0), true);
-        LeerStats();
-    }
-
-    
-
-    public void LeerStats()
-    {
-        totalStats_list = new List<GiveStat>();
-        List<Equipable_Item> equipamiento_list = ObtenerListaEquipamiento();
-        foreach(Equipable_Item e in equipamiento_list)
-        {
-            for(var x = 0; x < e.addStat.Count; x++)
-            {
-                totalStats_list.Add(e.addStat[x]);
-            }
-        }
         
-    }
-
-    List<Equipable_Item> ObtenerListaEquipamiento()
-    {
-        List<Equipable_Item> lista = new List<Equipable_Item>();
-        lista.Add(player.criatura.equipment.head);
-        lista.Add(player.criatura.equipment.body);
-        lista.Add(player.criatura.equipment.arms);
-        lista.Add(player.criatura.equipment.legs);
-        lista.Add(player.criatura.equipment.back);
-        return lista;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            AdelanteHeadgear();
-            LeerStats();
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            AdelanteBody();
-            LeerStats();
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            AdelanteArms();
-            LeerStats();
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            AdelanteLegs();
-            LeerStats();
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            AdelanteBack();
-            LeerStats();
-        }
+        //if (Input.GetKeyDown(KeyCode.W))
+        //{
+        //    AdelanteHeadgear();
+        //    LeerStats();
+        //}
+        //if (Input.GetKeyDown(KeyCode.S))
+        //{
+        //    AdelanteBody();
+        //    LeerStats();
+        //}
+        //if (Input.GetKeyDown(KeyCode.A))
+        //{
+        //    AdelanteArms();
+        //    LeerStats();
+        //}
+        //if (Input.GetKeyDown(KeyCode.D))
+        //{
+        //    AdelanteLegs();
+        //    LeerStats();
+        //}
+        //if (Input.GetKeyDown(KeyCode.R))
+        //{
+        //    AdelanteBack();
+        //    LeerStats();
+        //}
 
     }
 
