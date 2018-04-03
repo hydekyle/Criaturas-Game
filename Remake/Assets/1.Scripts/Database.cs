@@ -18,9 +18,9 @@ public class Database : MonoBehaviour {
         WWW itemsData = new WWW("http://localhost/CoolGame/users.php");
         yield return itemsData;
         string itemsDataString = itemsData.text;
-        print(itemsDataString);
+        //print(itemsDataString);
         Items = itemsData.text.Split(';');
-        print(GetDataValue(Items[0], "Name:"));
+        //print(GetDataValue(Items[0], "Name:"));
     }
 
     string GetDataValue(string data, string index)

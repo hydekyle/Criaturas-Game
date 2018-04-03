@@ -9,7 +9,7 @@ public class Menu : MonoBehaviour {
     public static Menu instance;
     Visor visor_player1;
     Visor visor_player2;
-    Image background;
+    
 
     void Awake()
     {
@@ -21,7 +21,7 @@ public class Menu : MonoBehaviour {
 
     void Initialize()
     {
-        background = transform.Find("Background").GetComponent<Image>();
+        
         visor_player1.myTransform = transform.Find("VISOR");
         visor_player2.myTransform = transform.Find("VISOR2");
         
@@ -43,16 +43,10 @@ public class Menu : MonoBehaviour {
 
     IEnumerator Visualizar(Transform visor, Vector3 localPos, bool flip)
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.1f);
         visor.localPosition = localPos;
         if (flip) visor.localRotation = Quaternion.Euler(0, 180, 0);
         visor.gameObject.SetActive(true);
-    }
-
-    void FadeBackground(bool fadeState)
-    {
-        Color lerpTo = fadeState ? Color.grey : Color.white;
-        background.color = lerpTo;
     }
 
     public IEnumerator SendImage(int id, Visor visor)
@@ -79,7 +73,7 @@ public class Menu : MonoBehaviour {
             case 1: visor.headgear.sprite = sprite; FixHeadScale(id, visor); break;
             case 2: visor.body.sprite = sprite; ColocarBody(id, visor); break;
             case 3: visor.arm_left.sprite = visor.arm_right.sprite = sprite; FixArmScale(id, visor); break;
-            case 4: visor.leg_left.sprite = visor.leg_right.sprite = sprite; break;
+            case 4: visor.leg_left.sprite = visor.leg_right.sprite = sprite; FixLegScale(id, visor);  break;
             case 5: visor.back.sprite = sprite; break;
         }
     }
@@ -133,8 +127,75 @@ public class Menu : MonoBehaviour {
     void FixArmScale(int bigID, Visor visor)
     {
         int id = int.Parse(bigID.ToString().Substring(0, 3));
-        if (id == 399) visor.arm_left.rectTransform.localScale = visor.arm_right.rectTransform.localScale = new Vector3(0,0,0);
-        else { visor.arm_left.rectTransform.localScale = visor.arm_right.rectTransform.localScale = Vector3.one; }
+        Vector3 fixScale = Vector3.one;
+        if (id == 301) fixScale = new Vector3(1.5f, 1, 1);
+        if (id == 303) fixScale = new Vector3(1, 1.2f, 1);
+        if (id == 304) fixScale = new Vector3(0.9f, 1, 1);
+        if (id == 305) fixScale = new Vector3(1.3f, 1, 1);
+        if (id == 306) fixScale = new Vector3(1.5f, 1.1f, 1);
+        if (id == 307) fixScale = new Vector3(1.3f, 1.1f, 1);
+        if (id == 308) fixScale = new Vector3(1, 1.3f, 1);
+        if (id == 309) fixScale = new Vector3(1.5f, 1, 1);
+        if (id == 310) fixScale = new Vector3(1.5f, 1.1f, 1);
+        if (id == 314) fixScale = new Vector3(1, 1.6f, 1);
+        if (id == 318) fixScale = new Vector3(1.1f, 1.1f, 1);
+        if (id == 319) fixScale = new Vector3(1.2f, 1.2f, 1);
+        if (id == 320) fixScale = new Vector3(1.2f, 1.2f, 1);
+        if (id == 321) fixScale = new Vector3(1.2f, 1.2f, 1);
+        if (id == 322) fixScale = new Vector3(1.2f, 1.2f, 1);
+        if (id == 323) fixScale = new Vector3(1.2f, 1.2f, 1);
+        if (id == 324) fixScale = new Vector3(1.2f, 1.2f, 1);
+        if (id == 325) fixScale = new Vector3(1.3f, 1.4f, 1);
+        if (id == 326) fixScale = new Vector3(1.7f, 1, 1);
+        if (id == 327) fixScale = new Vector3(1.7f, 1, 1);
+        if (id == 328) fixScale = new Vector3(1.5f, 1.2f, 1);
+        if (id == 329) fixScale = new Vector3(1.2f, 1.1f, 1);
+        if (id == 330) fixScale = new Vector3(1.27f, 1.17f, 1);
+        if (id == 331) fixScale = new Vector3(1.28f, 1.22f, 1);
+        if (id == 332) fixScale = new Vector3(1.3f, 1.2f, 1);
+        if (id == 332) fixScale = new Vector3(1.3f, 1.2f, 1);
+        if (id == 333) fixScale = new Vector3(1.3f, 1.2f, 1);
+        if (id == 334) fixScale = new Vector3(1.5f, 1.3f, 1);
+        if (id == 335) fixScale = new Vector3(1.3f, 1.3f, 1);
+        if (id == 336) fixScale = new Vector3(1.2f, 1.4f, 1);
+        if (id == 337) fixScale = new Vector3(1.7f, 1.1f, 1);
+        if (id == 338) fixScale = new Vector3(1.34f, 1.25f, 1);
+        if (id == 339) fixScale = new Vector3(1.3f, 1.3f, 1);
+        if (id == 340) fixScale = new Vector3(1.25f, 1.15f, 1);
+        if (id == 340) fixScale = new Vector3(1.25f, 1.15f, 1);
+        if (id == 341) fixScale = new Vector3(1.1f, 1.24f, 1);
+        if (id == 342) fixScale = new Vector3(1.1f, 1.23f, 1);
+        if (id == 343) fixScale = new Vector3(0.9f, 1.3f, 1);
+        if (id == 344) fixScale = new Vector3(1.28f, 1.2f, 1);
+
+
+
+        visor.arm_left.rectTransform.localScale = visor.arm_right.rectTransform.localScale = fixScale;
+    }
+
+    void FixLegScale(int bidID, Visor visor)
+    {
+        int id = int.Parse(bidID.ToString().Substring(0, 3));
+        Vector3 fixScale = new Vector3(1.2f, 1.1f, 1);
+        if (id == 400) fixScale = new Vector3(1.1f, 1, 1);
+        if (id == 401) fixScale = new Vector3(1.4f, 1.1f, 1);
+        if (id == 402) fixScale = new Vector3(1.2f, 1.1f, 1);
+        if (id == 405) fixScale = new Vector3(1, 1.2f, 1);
+        if (id == 406) fixScale = new Vector3(0.75f, 1f, 1);
+        if (id == 407) fixScale = new Vector3(0.9f, 1.7f, 1);
+        if (id == 408) fixScale = new Vector3(2, 1.2f, 1);
+        if (id == 409) fixScale = new Vector3(1.5f, 1.5f, 1);
+        if (id == 410) fixScale = new Vector3(2f, 1.5f, 1);
+        if (id == 411) fixScale = new Vector3(0.8f, 1.3f, 1);
+        if (id == 412) fixScale = new Vector3(0.8f, 1.3f, 1);
+        if (id == 413) fixScale = new Vector3(0.8f, 1.3f, 1);
+        if (id == 414) fixScale = new Vector3(0.8f, 1.3f, 1);
+        if (id == 415) fixScale = new Vector3(0.8f, 1.2f, 1);
+        if (id == 416) fixScale = new Vector3(0.8f, 1.2f, 1);
+        if (id == 417) fixScale = new Vector3(1, 1.3f, 1);
+        if (id == 418) fixScale = new Vector3(1.5f, 1.2f, 1);
+
+        visor.leg_right.rectTransform.localScale = visor.leg_left.rectTransform.localScale = fixScale;
     }
 
     void ColocarBody(int bigID, Visor visor)

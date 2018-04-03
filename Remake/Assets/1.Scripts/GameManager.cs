@@ -32,40 +32,33 @@ public class GameManager : MonoBehaviour {
                     back = Items.instance.ItemByID(500000)
                 }
             }
-
         };
         StartCoroutine(Menu.instance.VisualizarEquipamiento(player.criatura.equipment, 1));
-        Menu.instance.InitializeVisor(Menu.instance.GetPlayerVisor(1), new Vector3(-120, 0, 0), true);
-        
+        Menu.instance.InitializeVisor(Menu.instance.GetPlayerVisor(1), new Vector3(0, 0, 0), false);
     }
 
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.W))
-        //{
-        //    AdelanteHeadgear();
-        //    LeerStats();
-        //}
-        //if (Input.GetKeyDown(KeyCode.S))
-        //{
-        //    AdelanteBody();
-        //    LeerStats();
-        //}
-        //if (Input.GetKeyDown(KeyCode.A))
-        //{
-        //    AdelanteArms();
-        //    LeerStats();
-        //}
-        //if (Input.GetKeyDown(KeyCode.D))
-        //{
-        //    AdelanteLegs();
-        //    LeerStats();
-        //}
-        //if (Input.GetKeyDown(KeyCode.R))
-        //{
-        //    AdelanteBack();
-        //    LeerStats();
-        //}
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            AdelanteHeadgear();
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            AdelanteBody();
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            AdelanteArms();
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            AdelanteLegs();
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            AdelanteBack();
+        }
 
     }
 
@@ -94,6 +87,7 @@ public class GameManager : MonoBehaviour {
             player.criatura.equipment.arms = Items.instance.ItemByID(player.criatura.equipment.arms.ID + 1);
             StartCoroutine(Menu.instance.VisualizarEquipamiento(player.criatura.equipment, 1));
         }
+        print(player.criatura.equipment.arms.ID);
     }
 
     void AdelanteLegs()
@@ -102,6 +96,7 @@ public class GameManager : MonoBehaviour {
         {
             player.criatura.equipment.legs = Items.instance.ItemByID(player.criatura.equipment.legs.ID + 1);
             StartCoroutine(Menu.instance.VisualizarEquipamiento(player.criatura.equipment, 1));
+            print(player.criatura.equipment.legs.ID);
         }
     }
 
