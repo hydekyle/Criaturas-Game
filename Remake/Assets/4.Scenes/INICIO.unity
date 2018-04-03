@@ -2757,7 +2757,162 @@ MonoBehaviour:
     skills_ID: 
   - ID: 418
     nombre: Piernas 2
-    quality: 0
+    quality: 1
+    addStat: []
+    skills_ID: 
+  - ID: 419
+    nombre: Piernas 2
+    quality: 1
+    addStat: []
+    skills_ID: 
+  - ID: 420
+    nombre: Piernas 2
+    quality: 1
+    addStat: []
+    skills_ID: 
+  - ID: 421
+    nombre: Piernas 2
+    quality: 1
+    addStat: []
+    skills_ID: 
+  - ID: 422
+    nombre: Piernas 2
+    quality: 1
+    addStat: []
+    skills_ID: 
+  - ID: 423
+    nombre: Piernas 2
+    quality: 1
+    addStat: []
+    skills_ID: 
+  - ID: 424
+    nombre: Piernas 2
+    quality: 1
+    addStat: []
+    skills_ID: 
+  - ID: 425
+    nombre: Piernas 2
+    quality: 1
+    addStat: []
+    skills_ID: 
+  - ID: 426
+    nombre: Piernas 2
+    quality: 1
+    addStat: []
+    skills_ID: 
+  - ID: 427
+    nombre: Piernas 2
+    quality: 1
+    addStat: []
+    skills_ID: 
+  - ID: 428
+    nombre: Piernas 2
+    quality: 1
+    addStat: []
+    skills_ID: 
+  - ID: 429
+    nombre: Piernas 2
+    quality: 1
+    addStat: []
+    skills_ID: 
+  - ID: 430
+    nombre: Piernas 2
+    quality: 2
+    addStat: []
+    skills_ID: 
+  - ID: 431
+    nombre: Piernas 2
+    quality: 2
+    addStat: []
+    skills_ID: 
+  - ID: 432
+    nombre: Piernas 2
+    quality: 2
+    addStat: []
+    skills_ID: 
+  - ID: 433
+    nombre: Piernas 2
+    quality: 2
+    addStat: []
+    skills_ID: 
+  - ID: 434
+    nombre: Piernas 2
+    quality: 2
+    addStat: []
+    skills_ID: 
+  - ID: 435
+    nombre: Piernas 2
+    quality: 2
+    addStat: []
+    skills_ID: 
+  - ID: 436
+    nombre: Piernas 2
+    quality: 2
+    addStat: []
+    skills_ID: 
+  - ID: 437
+    nombre: Piernas 2
+    quality: 2
+    addStat: []
+    skills_ID: 
+  - ID: 438
+    nombre: Piernas 2
+    quality: 2
+    addStat: []
+    skills_ID: 
+  - ID: 439
+    nombre: Piernas 2
+    quality: 2
+    addStat: []
+    skills_ID: 
+  - ID: 440
+    nombre: Piernas 2
+    quality: 2
+    addStat: []
+    skills_ID: 
+  - ID: 441
+    nombre: Piernas 2
+    quality: 2
+    addStat: []
+    skills_ID: 
+  - ID: 442
+    nombre: Piernas 2
+    quality: 2
+    addStat: []
+    skills_ID: 
+  - ID: 443
+    nombre: Piernas 2
+    quality: 2
+    addStat: []
+    skills_ID: 
+  - ID: 444
+    nombre: Piernas 2
+    quality: 3
+    addStat: []
+    skills_ID: 
+  - ID: 445
+    nombre: Piernas 2
+    quality: 3
+    addStat: []
+    skills_ID: 
+  - ID: 446
+    nombre: Piernas 2
+    quality: 3
+    addStat: []
+    skills_ID: 
+  - ID: 447
+    nombre: Piernas 2
+    quality: 3
+    addStat: []
+    skills_ID: 
+  - ID: 448
+    nombre: Piernas 2
+    quality: 3
+    addStat: []
+    skills_ID: 
+  - ID: 449
+    nombre: Piernas 2
+    quality: 3
     addStat: []
     skills_ID: 
   backs_list:

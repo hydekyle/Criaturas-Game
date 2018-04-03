@@ -34,7 +34,7 @@ public class BattleSystem : MonoBehaviour {
         jugador1 = GameManager.instance.player;
         jugador2 = ConstruirIA();
         StartCoroutine(Menu.instance.VisualizarEquipamiento(jugador2.criatura.equipment, 2));
-        Menu.instance.InitializeVisor(Menu.instance.GetPlayerVisor(2), new Vector3(0,0,0), false);
+        Menu.instance.InitializeVisor(Menu.instance.GetPlayerVisor(2), new Vector3(120,40,0), false);
         LeerStats();
     }
 

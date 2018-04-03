@@ -43,9 +43,9 @@ public class Menu : MonoBehaviour {
 
     IEnumerator Visualizar(Transform visor, Vector3 localPos, bool flip)
     {
-        yield return new WaitForSeconds(0.1f);
         visor.localPosition = localPos;
-        if (flip) visor.localRotation = Quaternion.Euler(0, 180, 0);
+        yield return new WaitForSeconds(0.1f);
+        if (flip) visor.rotation = Quaternion.Euler(0, 180, 0);
         visor.gameObject.SetActive(true);
     }
 
@@ -206,24 +206,24 @@ public class Menu : MonoBehaviour {
 
     private void ColocarPiezas(BodyBounds bounds, Visor visor)
     {
-        visor.headgear.rectTransform.position = bounds.head_POS;
-        visor.arm_right.rectTransform.position = bounds.arm_right_POS;
-        visor.arm_left.rectTransform.position = bounds.arm_left_POS;
-        visor.leg_right.rectTransform.position = bounds.leg_right_POS;
-        visor.leg_left.rectTransform.position = bounds.leg_left_POS;
-        visor.back.rectTransform.position = bounds.back_POS;
+        visor.headgear.rectTransform.localPosition = visor.body.rectTransform.localPosition + bounds.head_POS;
+        visor.arm_right.rectTransform.localPosition = visor.body.rectTransform.localPosition + bounds.arm_right_POS;
+        visor.arm_left.rectTransform.localPosition = visor.body.rectTransform.localPosition + bounds.arm_left_POS;
+        visor.leg_right.rectTransform.localPosition = visor.body.rectTransform.localPosition + bounds.leg_right_POS;
+        visor.leg_left.rectTransform.localPosition = visor.body.rectTransform.localPosition + bounds.leg_left_POS;
+        visor.back.rectTransform.localPosition = visor.body.rectTransform.localPosition + bounds.back_POS;
     }
 
     void SaveBounds()
     {
         BodyBounds bounds = new BodyBounds()
         {
-            head_POS = visor_player1.headgear.rectTransform.position,
-            arm_left_POS = visor_player1.arm_left.rectTransform.position,
-            arm_right_POS = visor_player1.arm_right.rectTransform.position,
-            leg_left_POS = visor_player1.leg_left.rectTransform.position,
-            leg_right_POS = visor_player1.leg_right.rectTransform.position,
-            back_POS = visor_player1.back.rectTransform.position
+            head_POS = visor_player1.headgear.rectTransform.localPosition,
+            arm_left_POS = visor_player1.arm_left.rectTransform.localPosition,
+            arm_right_POS = visor_player1.arm_right.rectTransform.localPosition,
+            leg_left_POS = visor_player1.leg_left.rectTransform.localPosition,
+            leg_right_POS = visor_player1.leg_right.rectTransform.localPosition,
+            back_POS = visor_player1.back.rectTransform.localPosition
         };
         Database.instance.GuardarBodyBounds(bounds);
     }
