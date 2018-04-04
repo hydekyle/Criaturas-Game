@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour {
             }
         };
         StartCoroutine(Menu.instance.VisualizarEquipamiento(player.criatura.equipment, 1));
-        Menu.instance.InitializeVisor(Menu.instance.GetPlayerVisor(1), new Vector3(-120, 40, 0), true);
+        Menu.instance.InitializeVisor(Menu.instance.GetPlayerVisor(1), new Vector3(120, 40, 0), true);
     }
 
     void Update()

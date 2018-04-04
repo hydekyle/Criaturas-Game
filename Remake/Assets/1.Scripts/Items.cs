@@ -74,7 +74,7 @@ public class Items : MonoBehaviour {
         {
             byte[] bytes = File.ReadAllBytes(Application.persistentDataPath + localizador);
             Texture2D texture = new Texture2D(1, 1);
-            texture.LoadImage(bytes);
+            yield return texture.LoadImage(bytes);
             Sprite mySprite = Sprite.Create(texture, new Rect(0f, 0f, texture.width, texture.height), Vector2.zero);
             result(mySprite);
         }
