@@ -14,7 +14,7 @@ public class EquipMenu : MonoBehaviour {
 
     void Start()
     {
-        inventarioT = transform.Find("Inventario");
+        inventarioT = transform.Find("Panel_Inventario").Find("Inventario");
         Inicialize();
     }
 
@@ -78,8 +78,20 @@ public class EquipMenu : MonoBehaviour {
     public void BTN_ITEM()
     {
         int id = int.Parse(EventSystem.current.currentSelectedGameObject.name);
-        GameManager.instance.player.criatura.equipment.legs = Items.instance.ItemByID(storage_ID[id]);
+        EquiparItem(storage_ID[id]);
         StartCoroutine(Menu.instance.VisualizarEquipamiento(GameManager.instance.player.criatura.equipment, 1));
+    }
+
+    void EquiparItem(int id)
+    {
+        int list = int.Parse(id.ToString().Substring(0, 1));
+        switch (list)
+        {
+            case 1: GameManager.instance.player.criatura.equipment.head = Items.instance.ItemByID(id); break;
+            case 2: GameManager.instance.player.criatura.equipment.body = Items.instance.ItemByID(id); break;
+            case 3: GameManager.instance.player.criatura.equipment.arms = Items.instance.ItemByID(id); break;
+            case 4: GameManager.instance.player.criatura.equipment.legs = Items.instance.ItemByID(id); break;
+        }
     }
 
 }
