@@ -68,7 +68,6 @@ public class Items : MonoBehaviour {
             case 5: localizador = "/Backs/Traseras" + spriteNumber + ".png"; break;
             case 6: localizador = "/Weapons/Arma" + spriteNumber + ".png"; break;
         }
-        
 
         if (File.Exists(Application.persistentDataPath + localizador))
         {

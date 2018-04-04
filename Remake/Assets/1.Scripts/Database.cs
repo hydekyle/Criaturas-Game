@@ -48,14 +48,20 @@ public class Database : MonoBehaviour {
 
     public void GuardarBodyBounds(BodyBounds bounds)
     {
-        string json = JsonUtility.ToJson(bounds);
-        File.WriteAllText(Application.dataPath + "/5.BodyBounds/" + GameManager.instance.player.criatura.equipment.body.ID.ToString() + ".txt", json);
-        print("Info guardada en " + Application.dataPath + " ID: " + GameManager.instance.player.criatura.equipment.body.ID);
+        if(Application.platform == RuntimePlatform.WindowsEditor)
+        {
+            string json = JsonUtility.ToJson(bounds);
+            File.WriteAllText(Resources.Load("BodyBounds/") + GameManager.instance.player.criatura.equipment.body.ID.ToString() + ".txt", json);
+            print("Guardado BodyBounds de " + "ID: " + GameManager.instance.player.criatura.equipment.body.ID);
+        }
+        
     }
     public BodyBounds LeerBodyBounds(int bodyID)
     {
         BodyBounds bounds = new BodyBounds();
-        try { bounds = JsonUtility.FromJson<BodyBounds>(File.ReadAllText(Application.dataPath + "/5.BodyBounds/" + bodyID.ToString() + ".txt")); }
+        string ruta = "BodyBounds/" + bodyID.ToString();
+        TextAsset txt = (TextAsset)Resources.Load(ruta);
+        try { bounds = JsonUtility.FromJson<BodyBounds>(txt.text); }
         catch { print("BODY BOUNDS NOT FOUND"); }
         return bounds;
     }

@@ -22,7 +22,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_1_0;UNITY_2018_1;UNITY_2018;PLATFORM_ARCH_64;UNITY_64;UNITY_ANALYTICS;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_GRID;ENABLE_TILEMAP;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_DIRECTOR;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_TIMELINE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;INCLUDE_DYNAMIC_GI;INCLUDE_GI;ENABLE_MONO_BDWGC;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_VIDEO;ENABLE_PACKMAN;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_LOCALIZATION;PLATFORM_STANDALONE_WIN;PLATFORM_STANDALONE;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_EVENT_QUEUE;ENABLE_CLUSTERINPUT;ENABLE_VR;ENABLE_AR;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_2_0_SUBSET;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;UNITY_TEAM_LICENSE;ENABLE_VSTU</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_1_0;UNITY_2018_1;UNITY_2018;UNITY_ANALYTICS;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_GRID;ENABLE_TILEMAP;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_DIRECTOR;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_TIMELINE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;INCLUDE_DYNAMIC_GI;INCLUDE_GI;ENABLE_MONO_BDWGC;PLATFORM_SUPPORTS_MONO;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_VIDEO;ENABLE_PACKMAN;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_LOCALIZATION;PLATFORM_ANDROID;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_SUBSTANCE;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_EVENT_QUEUE;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;PLATFORM_SUPPORTS_ADS_ID;UNITY_CAN_SHOW_SPLASH_SCREEN;ENABLE_VR;ENABLE_AR;ENABLE_SPATIALTRACKING;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;NET_2_0_SUBSET;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;UNITY_TEAM_LICENSE;ENABLE_VSTU;UNITY_HAS_GOOGLEVR;UNITY_HAS_TANGO</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
@@ -61,69 +61,69 @@
      <Compile Include="Assets\1.Scripts\Menu.cs" />
      <Compile Include="Assets\1.Scripts\NetworkManager.cs" />
      <Compile Include="Assets\1.Scripts\Skills.cs" />
-     <None Include="Assets\5.BodyBounds\221.txt" />
-     <None Include="Assets\5.BodyBounds\228.txt" />
-     <None Include="Assets\5.BodyBounds\226.txt" />
-     <None Include="Assets\5.BodyBounds\219.txt" />
-     <None Include="Assets\5.BodyBounds\224.txt" />
-     <None Include="Assets\5.BodyBounds\230.txt" />
-     <None Include="Assets\5.BodyBounds\235.txt" />
-     <None Include="Assets\5.BodyBounds\214.txt" />
-     <None Include="Assets\5.BodyBounds\249.txt" />
-     <None Include="Assets\5.BodyBounds\247.txt" />
-     <None Include="Assets\5.BodyBounds\233.txt" />
-     <None Include="Assets\5.BodyBounds\229.txt" />
-     <None Include="Assets\5.BodyBounds\207.txt" />
-     <None Include="Assets\5.BodyBounds\245.txt" />
-     <None Include="Assets\5.BodyBounds\258.txt" />
-     <None Include="Assets\5.BodyBounds\254.txt" />
-     <None Include="Assets\5.BodyBounds\234.txt" />
-     <None Include="Assets\5.BodyBounds\217.txt" />
-     <None Include="Assets\5.BodyBounds\205.txt" />
-     <None Include="Assets\5.BodyBounds\243.txt" />
-     <None Include="Assets\5.BodyBounds\218.txt" />
-     <None Include="Assets\5.BodyBounds\227.txt" />
-     <None Include="Assets\5.BodyBounds\225.txt" />
-     <None Include="Assets\5.BodyBounds\222.txt" />
-     <None Include="Assets\5.BodyBounds\204.txt" />
-     <None Include="Assets\5.BodyBounds\261.txt" />
-     <None Include="Assets\5.BodyBounds\241.txt" />
-     <None Include="Assets\5.BodyBounds\248.txt" />
-     <None Include="Assets\5.BodyBounds\203.txt" />
-     <None Include="Assets\5.BodyBounds\220.txt" />
-     <None Include="Assets\5.BodyBounds\259.txt" />
-     <None Include="Assets\5.BodyBounds\236.txt" />
-     <None Include="Assets\5.BodyBounds\255.txt" />
-     <None Include="Assets\5.BodyBounds\252.txt" />
-     <None Include="Assets\5.BodyBounds\223.txt" />
-     <None Include="Assets\5.BodyBounds\216.txt" />
-     <None Include="Assets\5.BodyBounds\209.txt" />
-     <None Include="Assets\5.BodyBounds\260.txt" />
-     <None Include="Assets\5.BodyBounds\212.txt" />
-     <None Include="Assets\5.BodyBounds\239.txt" />
-     <None Include="Assets\5.BodyBounds\232.txt" />
-     <None Include="Assets\5.BodyBounds\231.txt" />
-     <None Include="Assets\5.BodyBounds\238.txt" />
-     <None Include="Assets\5.BodyBounds\256.txt" />
-     <None Include="Assets\5.BodyBounds\206.txt" />
-     <None Include="Assets\5.BodyBounds\240.txt" />
-     <None Include="Assets\5.BodyBounds\242.txt" />
-     <None Include="Assets\5.BodyBounds\213.txt" />
-     <None Include="Assets\5.BodyBounds\202.txt" />
-     <None Include="Assets\5.BodyBounds\200.txt" />
-     <None Include="Assets\5.BodyBounds\257.txt" />
-     <None Include="Assets\5.BodyBounds\210.txt" />
-     <None Include="Assets\5.BodyBounds\244.txt" />
-     <None Include="Assets\5.BodyBounds\251.txt" />
-     <None Include="Assets\5.BodyBounds\246.txt" />
-     <None Include="Assets\5.BodyBounds\201.txt" />
-     <None Include="Assets\5.BodyBounds\253.txt" />
-     <None Include="Assets\5.BodyBounds\208.txt" />
-     <None Include="Assets\5.BodyBounds\237.txt" />
-     <None Include="Assets\5.BodyBounds\215.txt" />
-     <None Include="Assets\5.BodyBounds\250.txt" />
-     <None Include="Assets\5.BodyBounds\262.txt" />
-     <None Include="Assets\5.BodyBounds\211.txt" />
+     <None Include="Assets\Resources\BodyBounds\221.txt" />
+     <None Include="Assets\Resources\BodyBounds\228.txt" />
+     <None Include="Assets\Resources\BodyBounds\226.txt" />
+     <None Include="Assets\Resources\BodyBounds\219.txt" />
+     <None Include="Assets\Resources\BodyBounds\224.txt" />
+     <None Include="Assets\Resources\BodyBounds\230.txt" />
+     <None Include="Assets\Resources\BodyBounds\235.txt" />
+     <None Include="Assets\Resources\BodyBounds\214.txt" />
+     <None Include="Assets\Resources\BodyBounds\249.txt" />
+     <None Include="Assets\Resources\BodyBounds\247.txt" />
+     <None Include="Assets\Resources\BodyBounds\233.txt" />
+     <None Include="Assets\Resources\BodyBounds\229.txt" />
+     <None Include="Assets\Resources\BodyBounds\207.txt" />
+     <None Include="Assets\Resources\BodyBounds\245.txt" />
+     <None Include="Assets\Resources\BodyBounds\258.txt" />
+     <None Include="Assets\Resources\BodyBounds\254.txt" />
+     <None Include="Assets\Resources\BodyBounds\234.txt" />
+     <None Include="Assets\Resources\BodyBounds\217.txt" />
+     <None Include="Assets\Resources\BodyBounds\205.txt" />
+     <None Include="Assets\Resources\BodyBounds\243.txt" />
+     <None Include="Assets\Resources\BodyBounds\218.txt" />
+     <None Include="Assets\Resources\BodyBounds\227.txt" />
+     <None Include="Assets\Resources\BodyBounds\225.txt" />
+     <None Include="Assets\Resources\BodyBounds\222.txt" />
+     <None Include="Assets\Resources\BodyBounds\204.txt" />
+     <None Include="Assets\Resources\BodyBounds\261.txt" />
+     <None Include="Assets\Resources\BodyBounds\241.txt" />
+     <None Include="Assets\Resources\BodyBounds\248.txt" />
+     <None Include="Assets\Resources\BodyBounds\203.txt" />
+     <None Include="Assets\Resources\BodyBounds\220.txt" />
+     <None Include="Assets\Resources\BodyBounds\259.txt" />
+     <None Include="Assets\Resources\BodyBounds\236.txt" />
+     <None Include="Assets\Resources\BodyBounds\255.txt" />
+     <None Include="Assets\Resources\BodyBounds\252.txt" />
+     <None Include="Assets\Resources\BodyBounds\223.txt" />
+     <None Include="Assets\Resources\BodyBounds\216.txt" />
+     <None Include="Assets\Resources\BodyBounds\209.txt" />
+     <None Include="Assets\Resources\BodyBounds\260.txt" />
+     <None Include="Assets\Resources\BodyBounds\212.txt" />
+     <None Include="Assets\Resources\BodyBounds\239.txt" />
+     <None Include="Assets\Resources\BodyBounds\232.txt" />
+     <None Include="Assets\Resources\BodyBounds\231.txt" />
+     <None Include="Assets\Resources\BodyBounds\238.txt" />
+     <None Include="Assets\Resources\BodyBounds\256.txt" />
+     <None Include="Assets\Resources\BodyBounds\206.txt" />
+     <None Include="Assets\Resources\BodyBounds\240.txt" />
+     <None Include="Assets\Resources\BodyBounds\242.txt" />
+     <None Include="Assets\Resources\BodyBounds\213.txt" />
+     <None Include="Assets\Resources\BodyBounds\202.txt" />
+     <None Include="Assets\Resources\BodyBounds\200.txt" />
+     <None Include="Assets\Resources\BodyBounds\257.txt" />
+     <None Include="Assets\Resources\BodyBounds\210.txt" />
+     <None Include="Assets\Resources\BodyBounds\244.txt" />
+     <None Include="Assets\Resources\BodyBounds\251.txt" />
+     <None Include="Assets\Resources\BodyBounds\246.txt" />
+     <None Include="Assets\Resources\BodyBounds\201.txt" />
+     <None Include="Assets\Resources\BodyBounds\253.txt" />
+     <None Include="Assets\Resources\BodyBounds\208.txt" />
+     <None Include="Assets\Resources\BodyBounds\237.txt" />
+     <None Include="Assets\Resources\BodyBounds\215.txt" />
+     <None Include="Assets\Resources\BodyBounds\250.txt" />
+     <None Include="Assets\Resources\BodyBounds\262.txt" />
+     <None Include="Assets\Resources\BodyBounds\211.txt" />
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity 2018.1.0b2/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
  </Reference>
@@ -150,12 +150,6 @@
  </Reference>
  <Reference Include="UnityEngine.CloudWebServicesModule">
  <HintPath>C:/Program Files/Unity 2018.1.0b2/Editor/Data/Managed/UnityEngine/UnityEngine.CloudWebServicesModule.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.ClusterInputModule">
- <HintPath>C:/Program Files/Unity 2018.1.0b2/Editor/Data/Managed/UnityEngine/UnityEngine.ClusterInputModule.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.ClusterRendererModule">
- <HintPath>C:/Program Files/Unity 2018.1.0b2/Editor/Data/Managed/UnityEngine/UnityEngine.ClusterRendererModule.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.CoreModule">
  <HintPath>C:/Program Files/Unity 2018.1.0b2/Editor/Data/Managed/UnityEngine/UnityEngine.CoreModule.dll</HintPath>
