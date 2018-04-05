@@ -65,6 +65,7 @@
      <None Include="Assets\Resources\BodyBounds\228.txt" />
      <None Include="Assets\Resources\BodyBounds\226.txt" />
      <None Include="Assets\Resources\BodyBounds\219.txt" />
+     <None Include="Assets\Resources\Equip_Setting.txt" />
      <None Include="Assets\Resources\BodyBounds\224.txt" />
      <None Include="Assets\Resources\BodyBounds\230.txt" />
      <None Include="Assets\Resources\BodyBounds\235.txt" />

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Enums;
+using System.IO;
 
 public class GameManager : MonoBehaviour {
 
@@ -12,27 +13,59 @@ public class GameManager : MonoBehaviour {
     void Awake()
     {
         instance = this;
+    }
+
+    void Start()
+    {
         ConstruirJugador();
     }
 
     void ConstruirJugador()  //TEST MODE
     {
-        player = new Player() {
-            nombre = "Hyde",
-            ID = "666",
-            criatura = new Criatura()
+        if (File.Exists("Assets/Resources/Equip_Setting.txt"))  //Remover este IF en la versión final
+        {
+            Equipment e = new Equipment();
+            e = Database.instance.ObtenerEquipSetting();
+            player = new Player()
             {
-                nombre = "Hyde Criatura",
-                equipment = new Equipment()
+                nombre = "Hyde",
+                ID = "666",
+                criatura = new Criatura()
                 {
-                    head = Items.instance.ItemByID(100000),
-                    body = Items.instance.ItemByID(200000),
-                    arms = Items.instance.ItemByID(300000),
-                    legs = Items.instance.ItemByID(400000),
-                    back = Items.instance.ItemByID(500000)
+                    nombre = "Hyde Criatura",
+                    equipment = new Equipment()
+                    {
+                        head = Items.instance.ItemByID(e.head.ID),
+                        body = Items.instance.ItemByID(e.body.ID),
+                        arms = Items.instance.ItemByID(e.arms.ID),
+                        legs = Items.instance.ItemByID(e.legs.ID),
+                        back = Items.instance.ItemByID(e.back.ID)
+                    }
                 }
-            }
-        };
+            };
+        }
+        else
+        {
+            player = new Player()
+            {
+                nombre = "Hyde",
+                ID = "666",
+                criatura = new Criatura()
+                {
+                    nombre = "Hyde Criatura",
+                    equipment = new Equipment()
+                    {
+                        head = Items.instance.ItemByID(100000),
+                        body = Items.instance.ItemByID(200000),
+                        arms = Items.instance.ItemByID(300000),
+                        legs = Items.instance.ItemByID(400000),
+                        back = Items.instance.ItemByID(500000)
+                    }
+                }
+            };
+        }
+
+        
         StartCoroutine(Menu.instance.VisualizarEquipamiento(player.criatura.equipment, 1));
         Menu.instance.InitializeVisor(Menu.instance.GetPlayerVisor(1), new Vector3(120, 40, 0), true);
     }

@@ -408,6 +408,7 @@
     <None Include="Assets\Resources\BodyBounds\260.txt" />
     <None Include="Assets\Resources\BodyBounds\261.txt" />
     <None Include="Assets\Resources\BodyBounds\262.txt" />
+    <None Include="Assets\Resources\Equip_Setting.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
