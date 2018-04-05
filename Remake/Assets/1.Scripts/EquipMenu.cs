@@ -16,20 +16,26 @@ public class EquipMenu : MonoBehaviour {
     Button btn_back;
     Button btn_forw;
     List<Equipable_Item> actualList = new List<Equipable_Item>();
-    
+    RectTransform tic_new;
+    RectTransform tic_equip;
+    Vector3 pos_tic_new = new Vector3(17, 17, 0);
+    Vector3 pos_tic_equip = new Vector3(15, -11, 0);
+    List<int> equip_list_id = new List<int>();
 
     void Start()
     {
-        Transform inventario = transform.Find("Panel_Inventario").Find("Inventario");
-        inventarioT = inventario.Find("Botones_Items");
-        btn_back = inventario.Find("Arrow_Left").GetComponent<Button>();
-        btn_forw = inventario.Find("Arrow_Right").GetComponent<Button>();
-        storage_ID = new int[inventarioT.childCount];
         Inicialize();
     }
 
     void Inicialize()
     {
+        Transform inventario = transform.Find("Panel_Inventario").Find("Inventario");
+        inventarioT = inventario.Find("Botones_Items");
+        btn_back = inventario.Find("Arrow_Left").GetComponent<Button>();
+        btn_forw = inventario.Find("Arrow_Right").GetComponent<Button>();
+        tic_new = inventario.Find("Tic_New").GetComponent<RectTransform>();
+        tic_equip = inventario.Find("Tic_Equip").GetComponent<RectTransform>();
+        storage_ID = new int[inventarioT.childCount];
         item_image = new Image[inventarioT.childCount];
         rarity_image = new Image[inventarioT.childCount];
         for (var x = 0; x < inventarioT.childCount; x++)
@@ -79,48 +85,62 @@ public class EquipMenu : MonoBehaviour {
         return color;
     }
 
+    bool CheckEquipedID(int id)
+    {
+        int lista = int.Parse(id.ToString().Substring(0, 1));
+        Equipment e = GameManager.instance.player.criatura.equipment;
+        return true;
+    }
+
     IEnumerator Visualizar(Equip_Position equipList, int pagNumber)
     {
         if (pagNumber == 0) btn_back.interactable = false; else btn_back.interactable = true;
         int totalSlots = inventarioT.childCount;
-        int y = 0 + (totalSlots * pagNumber);
+        int y = 0 + (totalSlots * pagNumber); //ITERATOR
+        int equipedID = 0;
         storage_ID = new int[totalSlots];
         Equip_Position lastView = currentEquipView;
         currentEquipView = equipList;
         currentPage = pagNumber;
-        for (var x = 0; x < totalSlots; x++)
+        tic_equip.transform.gameObject.SetActive(false);
+        for (var x = 0; x < totalSlots; x++) //Limpia las imagenes antes de cargar las nuevas.
         {
             item_image[x].sprite = null;
         }
-        if(lastView != currentEquipView)
+        if(lastView != currentEquipView) //Lee lista de objetos y los ordena.
         {
             switch (equipList)
             {
-                case Equip_Position.Head: actualList = SortListByQuality(Items.instance.headgear_list); break;
-                case Equip_Position.Body: actualList = SortListByQuality(Items.instance.bodies_list); break;
-                case Equip_Position.Arms: actualList = SortListByQuality(Items.instance.arms_list); break;
-                case Equip_Position.Legs: actualList = SortListByQuality(Items.instance.legs_list); break;
+                case Equip_Position.Head: actualList = SortListByQuality(Items.instance.headgear_list); equipedID = GameManager.instance.player.criatura.equipment.head.ID; break;
+                case Equip_Position.Body: actualList = SortListByQuality(Items.instance.bodies_list); equipedID = GameManager.instance.player.criatura.equipment.body.ID; break;
+                case Equip_Position.Arms: actualList = SortListByQuality(Items.instance.arms_list); equipedID = GameManager.instance.player.criatura.equipment.arms.ID; break;
+                case Equip_Position.Legs: actualList = SortListByQuality(Items.instance.legs_list); equipedID = GameManager.instance.player.criatura.equipment.legs.ID; break;
             }
         }
-        for (var x = 0; x < totalSlots; x++)
+        switch (equipList) //Lee ID equipado según lista.
         {
-            if(y < actualList.Count)
+            case Equip_Position.Head: equipedID = GameManager.instance.player.criatura.equipment.head.ID; break;
+            case Equip_Position.Body: equipedID = GameManager.instance.player.criatura.equipment.body.ID; break;
+            case Equip_Position.Arms: equipedID = GameManager.instance.player.criatura.equipment.arms.ID; break;
+            case Equip_Position.Legs: equipedID = GameManager.instance.player.criatura.equipment.legs.ID; break;
+        }
+        for (var x = 0; x < totalSlots; x++) //Por cada slot de equipamiento.
+        {
+            if(y < actualList.Count) //Lee elementos y si no hay acaba el bucle
             {
                 storage_ID[x] = actualList[y].ID;
                 rarity_image[x].color = ColorByQuality(actualList[y].quality);
                 yield return Items.instance.ItemSpriteByID(actualList[y].ID, result => item_image[x].sprite = result);
+                if (storage_ID[x] == equipedID) Colocar_Tic_Equip(x);
                 y++;
             }else
             {
                 btn_forw.interactable = false;
                 break;
-            }
-            
+            }  
         }
-        
-        
+
         if (storage_ID[inventarioT.childCount - 1] > 0) btn_forw.interactable = true; else btn_forw.interactable = false;
-        
     }
 
     void MostrarEquipo(Equip_Position equipList)
@@ -129,6 +149,18 @@ public class EquipMenu : MonoBehaviour {
         {
             case Equip_Position.Head: print("head"); break;
         }
+    }
+
+    void Colocar_Tic_New(int id)
+    {
+        tic_new.position = item_image[id].rectTransform.position + pos_tic_new;
+        tic_new.transform.gameObject.SetActive(true);
+    }
+
+    void Colocar_Tic_Equip(int id)
+    {
+        tic_equip.position = item_image[id].rectTransform.position + pos_tic_equip;
+        tic_equip.transform.gameObject.SetActive(true);
     }
 
     public void BTN_HEAD()
@@ -151,6 +183,18 @@ public class EquipMenu : MonoBehaviour {
         StartCoroutine(Visualizar(Equip_Position.Legs, 0));
     }
 
+    public void BTN_BACK()
+    {
+        StopCoroutine("Visualizar");
+        if (currentPage > 0) StartCoroutine(Visualizar(currentEquipView, --currentPage));
+    }
+
+    public void BTN_NEXT()
+    {
+        StopCoroutine("Visualizar");
+        if (storage_ID[inventarioT.childCount - 1] > 0) StartCoroutine(Visualizar(currentEquipView, ++currentPage));
+    }
+
     public void BTN_ITEM()
     {
         int id = int.Parse(EventSystem.current.currentSelectedGameObject.name);
@@ -158,19 +202,12 @@ public class EquipMenu : MonoBehaviour {
         {
             EquiparItem(storage_ID[id]);
             StartCoroutine(Menu.instance.VisualizarEquipamiento(GameManager.instance.player.criatura.equipment, 1));
+            Colocar_Tic_Equip(id);
         }
         
     }
 
-    public void BTN_BACK()
-    {
-        if(currentPage > 0) StartCoroutine(Visualizar(currentEquipView, --currentPage));
-    }
-
-    public void BTN_NEXT()
-    {
-        if (storage_ID[inventarioT.childCount - 1] > 0) StartCoroutine(Visualizar(currentEquipView, ++currentPage));
-    }
+    
 
     void EquiparItem(int id)
     {
