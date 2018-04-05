@@ -5,7 +5,7 @@ using System;
 using UnityEngine.UI;
 
 namespace Enums {
-    public enum Equip_Position { Head, Body, Arms, Legs, Back };
+    public enum Equip_Position { Head, Body, Arms, Legs, Back, None };
     public enum Quality { Common, Rare, Epic, Legendary };
     public enum Stat { Damage, Health, Skill, Luck};
     public enum Class { Assassin, Pacifist, Charming, Alpha};
@@ -62,10 +62,10 @@ public class MySkylls
 [Serializable]
 public class SkillsButtons
 {
-    public Button head_button;
-    public Button body_button;
-    public Button arms_button;
-    public Button legs_button;
+    public SkillButton head_button;
+    public SkillButton body_button;
+    public SkillButton arms_button;
+    public SkillButton legs_button;
     public int head_activable_skill_ID;
     public int body_activable_skill_ID;
     public int arms_activable_skill_ID;
@@ -73,7 +73,7 @@ public class SkillsButtons
 }
 
 [Serializable]
-public class Button
+public class SkillButton
 {
     public Image myImage;
     public Text myText;

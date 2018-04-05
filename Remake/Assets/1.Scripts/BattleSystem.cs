@@ -47,22 +47,22 @@ public class BattleSystem : MonoBehaviour {
         Transform legsT = habilidadesT.Find("Skill_Legs");
         skill_buttons = new SkillsButtons()
         {
-            head_button = new Button()
+            head_button = new SkillButton()
             {
                 myImage = headT.GetComponent<Image>(),
                 myText = headT.GetChild(0).GetComponent<Text>()
             },
-            body_button = new Button()
+            body_button = new SkillButton()
             {
                 myImage = bodyT.GetComponent<Image>(),
                 myText = bodyT.GetChild(0).GetComponent<Text>()
             },
-            arms_button = new Button()
+            arms_button = new SkillButton()
             {
                 myImage = armsT.GetComponent<Image>(),
                 myText = armsT.GetChild(0).GetComponent<Text>()
             },
-            legs_button = new Button()
+            legs_button = new SkillButton()
             {
                 myImage = legsT.GetComponent<Image>(),
                 myText = legsT.GetChild(0).GetComponent<Text>()
