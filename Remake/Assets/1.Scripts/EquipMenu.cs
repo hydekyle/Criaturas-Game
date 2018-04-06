@@ -106,6 +106,7 @@ public class EquipMenu : MonoBehaviour {
         for (var x = 0; x < totalSlots; x++) //Limpia las imagenes antes de cargar las nuevas.
         {
             item_image[x].sprite = null;
+            rarity_image[x].color = ColorByQuality(Quality.Common);
         }
         if(lastView != currentEquipView) //Lee lista de objetos y los ordena.
         {
