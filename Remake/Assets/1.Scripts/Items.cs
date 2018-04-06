@@ -24,8 +24,6 @@ public class Items : MonoBehaviour {
         instance = this;
     }
 
-    
-
     public Equipable_Item ItemByID(int bigID)
     {
         Equipable_Item item = new Equipable_Item();

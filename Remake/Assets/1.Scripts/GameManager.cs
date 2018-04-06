@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour {
 
     void ConstruirJugador()  //TEST MODE
     {
-        if (File.Exists("Assets/Resources/Equip_Setting.txt"))  //Remover este IF en la versión final
+        if (File.Exists(Application.persistentDataPath + "/Equip_Setting.txt"))
         {
             Equipment e = new Equipment();
             e = Database.instance.ObtenerEquipSetting();
@@ -64,10 +64,14 @@ public class GameManager : MonoBehaviour {
                 }
             };
         }
+        StartCoroutine(MostrarJugador(player, 1, new Vector3(120, 40, 0), false));
+    }
 
-        
-        StartCoroutine(Menu.instance.VisualizarEquipamiento(player.criatura.equipment, 1));
-        Menu.instance.InitializeVisor(Menu.instance.GetPlayerVisor(1), new Vector3(120, 40, 0), true);
+    public IEnumerator MostrarJugador(Player playerP, int visorN, Vector3 visorPosition, bool flip)
+    {
+        StartCoroutine(Menu.instance.VisualizarEquipamiento(playerP.criatura.equipment, visorN));
+        yield return null;
+        Menu.instance.InitializeVisor(Menu.instance.GetPlayerVisor(visorN), visorPosition, flip);
     }
 
     void Update()

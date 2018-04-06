@@ -94,6 +94,7 @@ public class Criatura
 {
     public string nombre;
     public Equipment equipment;
+    public MySkylls skills;
 }
 
 [SerializeField]
@@ -110,6 +111,19 @@ public class Skill
     string name;
     string description;
     Class clase;
+    Skill_Type s_type;
+}
+
+public class Skill_Result
+{
+    int damage;
+}
+
+public class DataTurn
+{
+    byte turn_number;
+    int used_skill;
+    int power_skill;
     Skill_Type s_type;
 }
 

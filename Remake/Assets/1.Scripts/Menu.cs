@@ -41,6 +41,15 @@ public class Menu : MonoBehaviour {
         StartCoroutine(Visualizar(visor.myTransform, visorPos, flip));
     }
 
+    public void SetVisorPosition(int playerN, Vector3 newPos, bool flip)
+    {
+        Visor visor = new Visor();
+
+        if (playerN == 1) visor = visor_player1; else visor = visor_player1;
+        visor.myTransform.localPosition = newPos;
+        if (flip) visor.myTransform.localRotation = Quaternion.Euler(0, 180, 0);
+    }
+
     IEnumerator Visualizar(Transform visor, Vector3 localPos, bool flip)
     {
         visor.localPosition = localPos;
@@ -216,6 +225,7 @@ public class Menu : MonoBehaviour {
 
     void SaveBounds()
     {
+    #if UNITY_EDITOR
         BodyBounds bounds = new BodyBounds()
         {
             head_POS = visor_player1.headgear.rectTransform.localPosition,
@@ -226,7 +236,8 @@ public class Menu : MonoBehaviour {
             back_POS = visor_player1.back.rectTransform.localPosition
         };
         Database.instance.GuardarBodyBounds(bounds);
-    }
+    #endif
+    } 
 
     public Visor GetPlayerVisor(int playerNumber)
     {
@@ -242,8 +253,7 @@ public class Menu : MonoBehaviour {
         {
             SaveBounds();
         }
-    }
-
+    } //ONLY FOR EDITION PURPOSE
 
 
     //BOTONES MENÚ

@@ -192,23 +192,29 @@ public class EquipMenu : MonoBehaviour {
 
     public void BTN_NEXT()
     {
-        StopCoroutine("Visualizar");
-        if (storage_ID[inventarioT.childCount - 1] > 0) StartCoroutine(Visualizar(currentEquipView, ++currentPage));
+        try
+        {
+            StopCoroutine("Visualizar");
+            if (storage_ID[inventarioT.childCount - 1] > 0) StartCoroutine(Visualizar(currentEquipView, ++currentPage));
+        }catch { print("Oops"); }
+        
     }
 
     public void BTN_ITEM()
     {
-        int id = int.Parse(EventSystem.current.currentSelectedGameObject.name);
-        if(storage_ID[id] > 0)
+        try
         {
-            EquiparItem(storage_ID[id]);
-            StartCoroutine(Menu.instance.VisualizarEquipamiento(GameManager.instance.player.criatura.equipment, 1));
-            Colocar_Tic_Equip(id);
-        }
+            int id = int.Parse(EventSystem.current.currentSelectedGameObject.name);
+            if (storage_ID[id] > 0)
+            {
+                EquiparItem(storage_ID[id]);
+                StartCoroutine(Menu.instance.VisualizarEquipamiento(GameManager.instance.player.criatura.equipment, 1));
+                Colocar_Tic_Equip(id);
+            }
+        }catch { print("Oops"); }
         
     }
 
-    
 
     void EquiparItem(int id)
     {

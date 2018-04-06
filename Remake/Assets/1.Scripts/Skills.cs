@@ -12,7 +12,12 @@ public class Skills : MonoBehaviour {
         Instance = this;
     }
 
+    public Skill_Result SkillResolve(int ID_skill)
+    {
+        Skill_Result result = new Skill_Result();
 
+        return result;
+    }
 
 }
 

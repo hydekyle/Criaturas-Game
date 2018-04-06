@@ -69,13 +69,13 @@ public class Database : MonoBehaviour {
     public void GuardarEquipSetting(Equipment equipment)
     {
         string json = JsonUtility.ToJson(equipment);
-        File.WriteAllText("Assets/Resources/Equip_Setting.txt", json);
+        File.WriteAllText(Application.persistentDataPath+"/Equip_Setting.txt", json);
     }
 
     public Equipment ObtenerEquipSetting()
     {
         Equipment e = new Equipment();
-        e = JsonUtility.FromJson<Equipment>(File.ReadAllText("Assets/Resources/Equip_Setting.txt"));
+        e = JsonUtility.FromJson<Equipment>(File.ReadAllText(Application.persistentDataPath + "/Equip_Setting.txt"));
         return e;
     }
 
