@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.IO;
 
 public class Menu : MonoBehaviour {
 
     public static Menu instance;
+    [SerializeField]
+    public Equipment loadedEquipment = new Equipment();
     Visor visor_player1;
     Visor visor_player2;
     
@@ -16,12 +19,17 @@ public class Menu : MonoBehaviour {
         instance = this;
         visor_player1 = new Visor();
         visor_player2 = new Visor();
+    }
+
+    void Start()
+    {
+        
+        print(loadedEquipment.head.ID);
         Initialize();
     }
 
     void Initialize()
     {
-        
         visor_player1.myTransform = transform.Find("VISOR");
         visor_player2.myTransform = transform.Find("VISOR2");
         
@@ -65,72 +73,73 @@ public class Menu : MonoBehaviour {
         SetImageVisor(spriteBuscado, id, visor);
     }
 
-    public IEnumerator VisualizarEquipamiento(Equipment e , int playerNumber)
-    {
-        yield return StartCoroutine(SendImage(e.head.ID, GetPlayerVisor(playerNumber)));
-        yield return StartCoroutine(SendImage(e.body.ID, GetPlayerVisor(playerNumber)));
-        yield return StartCoroutine(SendImage(e.arms.ID, GetPlayerVisor(playerNumber)));
-        yield return StartCoroutine(SendImage(e.legs.ID, GetPlayerVisor(playerNumber)));
-        yield return StartCoroutine(SendImage(e.back.ID, GetPlayerVisor(playerNumber)));
-    }
-
     public void SetImageVisor(Sprite sprite, int id, Visor visor)
     {
         int listNumber = int.Parse(id.ToString().Substring(0, 1));
         switch (listNumber)
         {
-            case 1: visor.headgear.sprite = sprite; FixHeadScale(id, visor); break;
+            case 1: visor.headgear.sprite = sprite; break;
             case 2: visor.body.sprite = sprite; ColocarBody(id, visor); break;
-            case 3: visor.arm_left.sprite = visor.arm_right.sprite = sprite; FixArmScale(id, visor); break;
-            case 4: visor.leg_left.sprite = visor.leg_right.sprite = sprite; FixLegScale(id, visor);  break;
+            case 3: visor.arm_left.sprite = visor.arm_right.sprite = sprite; break;
+            case 4: visor.leg_left.sprite = visor.leg_right.sprite = sprite; break;
             case 5: visor.back.sprite = sprite; break;
         }
+    }
+
+    public IEnumerator VisualizarEquipamiento(Equipment e, int playerNumber)
+    {
+        if (loadedEquipment.head.ID != e.head.ID) {
+            yield return StartCoroutine(SendImage(e.head.ID, GetPlayerVisor(playerNumber)));
+            FixHeadScale(e.head.ID, GetPlayerVisor(playerNumber));
+        }
+        if (loadedEquipment.body.ID != e.body.ID) {
+            yield return StartCoroutine(SendImage(e.body.ID, GetPlayerVisor(playerNumber)));
+        }
+        if (loadedEquipment.arms.ID != e.arms.ID) {
+            yield return StartCoroutine(SendImage(e.arms.ID, GetPlayerVisor(playerNumber)));
+        }
+        if (loadedEquipment.legs.ID != e.legs.ID) {
+            yield return StartCoroutine(SendImage(e.legs.ID, GetPlayerVisor(playerNumber)));
+        }
+        if (loadedEquipment.back.ID != e.back.ID) {
+            yield return StartCoroutine(SendImage(e.back.ID, GetPlayerVisor(playerNumber)));
+        } 
+        loadedEquipment = e;
+    }
+
+    
+
+    void SetFixedScales(Equipment e, Visor visor)
+    {
+        FixHeadScale(e.head.ID, visor);
     }
 
     void FixHeadScale(int bigID, Visor visor)
     {
         int id = int.Parse(bigID.ToString().Substring(0, 3));
-        Vector3 fixScale;
-        if      (id == 101) { fixScale = new Vector3(0.8f, 0.9f, 1); }
-        else if (id == 102) { fixScale = new Vector3(0.8f, 0.95f, 1); }
-        else if (id == 104) { fixScale = new Vector3(0.8f, 1, 1); }
-        else if (id == 105) { fixScale = new Vector3(0.9f, 0.82f, 1); }
-        else if (id == 106) { fixScale = new Vector3(0.9f, 0.7f, 1); }
-        else if (id == 107) { fixScale = new Vector3(1.3f, 0.65f, 1); }
-        else if (id == 108) { fixScale = new Vector3(0.8f, 1.4f, 1); }
-        else if (id == 109) { fixScale = new Vector3(1, 0.8f, 1); }
-        else if (id == 110) { fixScale = new Vector3(0.76f, 0.76f, 1); }
-        else if (id == 111) { fixScale = new Vector3(0.9f, 0.8f, 1); }
-        else if (id == 112) { fixScale = new Vector3(0.74f, 0.8f, 1); }
-        else if (id == 113) { fixScale = new Vector3(0.7f, 0.7f, 1); }
-        else if (id == 115) { fixScale = new Vector3(0.75f, 0.8f, 1); }
-        else if (id == 118) { fixScale = new Vector3(1, 0.8f, 1); }
-        else if (id == 119) { fixScale = new Vector3(0.7f, 0.8f, 1); }
-        else if (id == 120) { fixScale = new Vector3(0.8f, 0.9f, 1); }
-        else if (id == 121) { fixScale = new Vector3(0.9f, 0.7f, 1); }
-        else if (id == 122) { fixScale = new Vector3(0.7f, 1f, 1); }
-        else if (id == 123) { fixScale = new Vector3(1, 0.7f, 1); }
-        else if (id == 126) { fixScale = new Vector3(1.1f, 0.9f, 1); }
-        else if (id == 127) { fixScale = new Vector3(0.9f, 0.9f, 1); }
-        else if (id == 129) { fixScale = new Vector3(0.65f, 0.8f, 1); }
-        else if (id == 130) { fixScale = new Vector3(0.86f, 0.7f, 1); }
-        else if (id == 131) { fixScale = new Vector3(1, 1.6f, 1); }
-        else if (id == 133) { fixScale = new Vector3(0.75f, 0.75f, 1); }
-        else if (id == 134) { fixScale = new Vector3(0.87f, 1, 1); }
-        else if (id == 135) { fixScale = new Vector3(0.75f, 0.8f, 1); }
-        else if (id == 137) { fixScale = new Vector3(1, 0.8f, 1); }
-        else if (id == 138) { fixScale = new Vector3(0.8f, 1.5f, 1); }
-        else if (id == 139) { fixScale = new Vector3(1, 0.9f, 1); }
-        else if (id == 141) { fixScale = new Vector3(1.1f, 1.8f, 1); }
-        else if (id == 142) { fixScale = new Vector3(0.7f, 0.7f, 1); }
-        else if (id == 143) { fixScale = new Vector3(0.74f, 0.74f, 1); }
-        else if (id == 144) { fixScale = new Vector3(0.9f, 0.9f, 1); }
-        else { fixScale = new Vector3(0.8f, 0.8f, 1); }
+        string ruta = "Assets/Resources/FixedScale/" + id.ToString() + ".txt";
+        if (File.Exists(ruta))
+        {
+            FixedScale fix = JsonUtility.FromJson<FixedScale>(File.ReadAllText(ruta));
+            Vector3 fixScale = fix.customScale;
+            Vector3 fixPosition = fix.customPosition;
+            visor.headgear.rectTransform.localScale = fixScale;
+            visor.headgear.rectTransform.localPosition = Database.instance.LeerBodyBounds(GameManager.instance.player.criatura.equipment.body.ID).head_POS + fixPosition;
+        }
+    }
 
-        visor.headgear.rectTransform.localScale = fixScale;
-
-
-
+    void SaveScale()
+    {
+        int headID = int.Parse(GameManager.instance.player.criatura.equipment.head.ID.ToString().Substring(0, 3));
+        int bodyID = int.Parse(GameManager.instance.player.criatura.equipment.body.ID.ToString().Substring(0, 3));
+        string ruta = "Assets/Resources/FixedScale/" + headID.ToString() + ".txt";
+        FixedScale f = new FixedScale()
+        {
+            customPosition = visor_player1.headgear.rectTransform.localPosition - Database.instance.LeerBodyBounds(bodyID).head_POS,
+            customScale = visor_player1.headgear.rectTransform.localScale
+        };
+        File.WriteAllText(ruta, JsonUtility.ToJson(f));
+        print("Saving");
     }
 
     void FixArmScale(int bigID, Visor visor)
@@ -252,6 +261,10 @@ public class Menu : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.G))
         {
             SaveBounds();
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            SaveScale();
         }
     } //ONLY FOR EDITION PURPOSE
 

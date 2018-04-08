@@ -64,7 +64,28 @@ public class GameManager : MonoBehaviour {
                 }
             };
         }
-        StartCoroutine(MostrarJugador(player, 1, new Vector3(120, 40, 0), false));
+        Menu.instance.loadedEquipment = new Equipment() {
+            head = new Equipable_Item() {
+                ID = 0
+            },
+            arms = new Equipable_Item()
+            {
+                ID = 0
+            },
+            back = new Equipable_Item()
+            {
+                ID = 0
+            },
+            body = new Equipable_Item()
+            {
+                ID = 0
+            },
+            legs = new Equipable_Item()
+            {
+                ID = 0
+            }
+        };
+        StartCoroutine(MostrarJugador(player, 1, new Vector3(120, 40, -1), false));
     }
 
     public IEnumerator MostrarJugador(Player playerP, int visorN, Vector3 visorPosition, bool flip)

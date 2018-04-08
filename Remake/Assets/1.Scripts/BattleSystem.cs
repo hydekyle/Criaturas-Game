@@ -66,7 +66,7 @@ public class BattleSystem : MonoBehaviour {
         
 
         StartCoroutine(GameManager.instance.MostrarJugador(jugador2, 2, new Vector3(120, 40, 0), false)); //Visualizar oponente
-        Menu.instance.SetVisorPosition(1, new Vector3(-120, 40, 0), true); //Recolocar jugador 1
+        Menu.instance.SetVisorPosition(1, new Vector3(-120, 40, -1), true); //Recolocar jugador 1
 
         LeerStats();
     }

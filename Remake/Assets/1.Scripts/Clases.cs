@@ -22,6 +22,12 @@ public struct BodyBounds
     public Vector3 back_POS;
 }
 
+public struct FixedScale
+{
+    public Vector3 customScale;
+    public Vector3 customPosition;
+}
+
 public class Visor
 {
     public Image headgear;
