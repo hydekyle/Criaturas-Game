@@ -22,10 +22,12 @@ public struct BodyBounds
     public Vector3 back_POS;
 }
 
-public struct FixedScale
+public class FixedScale
 {
     public Vector3 customScale;
     public Vector3 customPosition;
+    public Vector3 customPosition_right;
+    public Vector3 customRotation_right = Vector3.zero;
 }
 
 public class Visor

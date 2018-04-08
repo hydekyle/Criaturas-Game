@@ -8,7 +8,6 @@ using System.IO;
 public class Menu : MonoBehaviour {
 
     public static Menu instance;
-    [SerializeField]
     public Equipment loadedEquipment = new Equipment();
     Visor visor_player1;
     Visor visor_player2;
@@ -77,7 +76,7 @@ public class Menu : MonoBehaviour {
         switch (listNumber)
         {
             case 1: visor.headgear.sprite = sprite; break;
-            case 2: visor.body.sprite = sprite; ColocarBody(id, visor); break;
+            case 2: visor.body.sprite = sprite; break;
             case 3: visor.arm_left.sprite = visor.arm_right.sprite = sprite; break;
             case 4: visor.leg_left.sprite = visor.leg_right.sprite = sprite; break;
             case 5: visor.back.sprite = sprite; break;
@@ -86,71 +85,122 @@ public class Menu : MonoBehaviour {
 
     public IEnumerator VisualizarEquipamiento(Equipment e, int playerNumber)
     {
-        if(playerNumber == 1) //Actuar solo en equipamiento cambiado
-        {
-            if (loadedEquipment.body.ID != e.body.ID)
-            {
-                yield return StartCoroutine(SendImage(e.body.ID, GetPlayerVisor(playerNumber)));
-            }
-            if (loadedEquipment.head.ID != e.head.ID)
-            {
-                yield return StartCoroutine(SendImage(e.head.ID, GetPlayerVisor(playerNumber)));
-                FixHeadScale(e, GetPlayerVisor(playerNumber));
-            }
-            if (loadedEquipment.arms.ID != e.arms.ID)
-            {
-                yield return StartCoroutine(SendImage(e.arms.ID, GetPlayerVisor(playerNumber)));
-            }
-            if (loadedEquipment.legs.ID != e.legs.ID)
-            {
-                yield return StartCoroutine(SendImage(e.legs.ID, GetPlayerVisor(playerNumber)));
-            }
-            if (loadedEquipment.back.ID != e.back.ID)
-            {
-                yield return StartCoroutine(SendImage(e.back.ID, GetPlayerVisor(playerNumber)));
-            }
-            loadedEquipment = e;
-        }else
+        //Actuar solo si el equipamiento ha cambiado. Para el jugador 2 se muestra sin checkear.
+        if (loadedEquipment.body.ID != e.body.ID || playerNumber == 2)
         {
             yield return StartCoroutine(SendImage(e.body.ID, GetPlayerVisor(playerNumber)));
-            yield return StartCoroutine(SendImage(e.head.ID, GetPlayerVisor(playerNumber))); FixHeadScale(e, GetPlayerVisor(playerNumber));
+        }
+        if (loadedEquipment.head.ID != e.head.ID || playerNumber == 2)
+        {
+            yield return StartCoroutine(SendImage(e.head.ID, GetPlayerVisor(playerNumber)));
+        }
+        if (loadedEquipment.arms.ID != e.arms.ID || playerNumber == 2)
+        {
             yield return StartCoroutine(SendImage(e.arms.ID, GetPlayerVisor(playerNumber)));
+        }
+        if (loadedEquipment.legs.ID != e.legs.ID || playerNumber == 2)
+        {
             yield return StartCoroutine(SendImage(e.legs.ID, GetPlayerVisor(playerNumber)));
+        }
+        if (loadedEquipment.back.ID != e.back.ID || playerNumber == 2)
+        {
             yield return StartCoroutine(SendImage(e.back.ID, GetPlayerVisor(playerNumber)));
         }
-        
+
+        loadedEquipment = e;
+        ColocarPiezas(e, GetPlayerVisor(playerNumber));
+
     }
 
-    void FixHeadScale(Equipment e, Visor visor)
+    void ColocarPiezas(Equipment e, Visor visor)
+    {
+        ColocarBody(e.body.ID, visor);
+        FixScales(e, visor);
+    }
+
+    void ColocarBody(int bigID, Visor visor)
+    {
+        int id = int.Parse(bigID.ToString().Substring(0, 3));
+        ColocarPiezas(Database.instance.LeerBodyBounds(id), visor);
+    }
+
+    void FixScales(Equipment e, Visor visor)
     {
         int id = int.Parse(e.head.ID.ToString().Substring(0, 3));
         string ruta = "Assets/Resources/FixedScale/" + id.ToString() + ".txt";
-        if (File.Exists(ruta))
+        if (File.Exists(ruta))  //HEADGEAR
         {
             FixedScale fix = JsonUtility.FromJson<FixedScale>(File.ReadAllText(ruta));
             Vector3 fixScale = fix.customScale;
             Vector3 fixPosition = fix.customPosition;
-            visor.headgear.rectTransform.localScale = fixScale;
+            visor.headgear.rectTransform.localScale    = fixScale;
             visor.headgear.rectTransform.localPosition = Database.instance.LeerBodyBounds(e.body.ID).head_POS + fixPosition;
         }else
         {
-            visor.headgear.rectTransform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+            visor.headgear.rectTransform.localScale    = new Vector3(0.8f, 0.8f, 0.8f);
             visor.headgear.rectTransform.localPosition = Database.instance.LeerBodyBounds(e.body.ID).head_POS;
         }
+
+        id = int.Parse(e.arms.ID.ToString().Substring(0, 3));
+        ruta = "Assets/Resources/FixedScale/" + id.ToString() + ".txt";
+        if (File.Exists(ruta))  //ARMS
+        {
+            FixedScale fix = JsonUtility.FromJson<FixedScale>(File.ReadAllText(ruta));
+            Vector3 fixScale = fix.customScale;
+            Vector3 fixPosition = fix.customPosition;
+            visor.arm_left.rectTransform.localScale     = visor.arm_right.rectTransform.localScale = fixScale;
+            visor.arm_left.rectTransform.localPosition  = Database.instance.LeerBodyBounds(e.body.ID).arm_left_POS + fixPosition;
+            visor.arm_right.rectTransform.localPosition = Database.instance.LeerBodyBounds(e.body.ID).arm_right_POS + fixPosition;
+        }
+        else
+        {
+            visor.arm_left.rectTransform.localScale     = Vector3.one;
+            visor.arm_right.rectTransform.localScale    = Vector3.one;
+            visor.arm_left.rectTransform.localPosition  = Database.instance.LeerBodyBounds(e.body.ID).arm_left_POS;
+            visor.arm_right.rectTransform.localPosition = Database.instance.LeerBodyBounds(e.body.ID).arm_right_POS;
+        }
+
+        id = int.Parse(e.legs.ID.ToString().Substring(0, 3));
+        ruta = "Assets/Resources/FixedScale/" + id.ToString() + ".txt";
+        if (File.Exists(ruta))  //LEGS
+        {
+            FixedScale fix = JsonUtility.FromJson<FixedScale>(File.ReadAllText(ruta));
+            Vector3 fixScale = fix.customScale;
+            Vector3 fixPosition = fix.customPosition;
+            visor.leg_left.rectTransform.localScale     = visor.leg_right.rectTransform.localScale = fixScale;
+            visor.leg_left.rectTransform.localPosition  = Database.instance.LeerBodyBounds(e.body.ID).leg_left_POS + fixPosition;
+            visor.leg_right.rectTransform.localPosition = Database.instance.LeerBodyBounds(e.body.ID).leg_right_POS + fix.customPosition_right;
+            visor.leg_right.rectTransform.localRotation = Quaternion.Euler(fix.customRotation_right);
+            
+            
+        }
+        else
+        {
+            visor.leg_left.rectTransform.localScale     = Vector3.one;
+            visor.leg_right.rectTransform.localScale    = Vector3.one;
+            visor.leg_left.rectTransform.localPosition  = Database.instance.LeerBodyBounds(e.body.ID).leg_left_POS;
+            visor.leg_right.rectTransform.localPosition = Database.instance.LeerBodyBounds(e.body.ID).leg_right_POS;
+            visor.leg_right.rectTransform.localRotation = Quaternion.Euler(Vector3.zero);
+        }
+
+
+
     }
 
     void SaveScale()
     {
-        int headID = int.Parse(GameManager.instance.player.criatura.equipment.head.ID.ToString().Substring(0, 3));
+        int id = int.Parse(GameManager.instance.player.criatura.equipment.legs.ID.ToString().Substring(0, 3));
         int bodyID = int.Parse(GameManager.instance.player.criatura.equipment.body.ID.ToString().Substring(0, 3));
-        string ruta = "Assets/Resources/FixedScale/" + headID.ToString() + ".txt";
+        string ruta = "Assets/Resources/FixedScale/" + id.ToString() + ".txt";
         FixedScale f = new FixedScale()
         {
-            customPosition = visor_player1.headgear.rectTransform.localPosition - Database.instance.LeerBodyBounds(bodyID).head_POS,
-            customScale = visor_player1.headgear.rectTransform.localScale
+            customRotation_right = Mathf.Approximately(visor_player1.leg_right.rectTransform.rotation.eulerAngles.y, 0f) ? Vector3.zero : visor_player1.leg_right.rectTransform.rotation.eulerAngles,
+            customPosition = visor_player1.leg_left.rectTransform.localPosition - Database.instance.LeerBodyBounds(bodyID).leg_left_POS,
+            customPosition_right = visor_player1.leg_right.rectTransform.localPosition - Database.instance.LeerBodyBounds(bodyID).leg_right_POS,
+            customScale = visor_player1.leg_right.rectTransform.localScale
         };
         File.WriteAllText(ruta, JsonUtility.ToJson(f));
-        print("Saving");
+        print("Saving " + id);
     }
 
     void FixArmScale(int bigID, Visor visor)
@@ -227,11 +277,7 @@ public class Menu : MonoBehaviour {
         visor.leg_right.rectTransform.localScale = visor.leg_left.rectTransform.localScale = fixScale;
     }
 
-    void ColocarBody(int bigID, Visor visor)
-    {
-        int id = int.Parse(bigID.ToString().Substring(0, 3));
-        ColocarPiezas(Database.instance.LeerBodyBounds(id), visor);
-    }
+    
 
     private void ColocarPiezas(BodyBounds bounds, Visor visor)
     {
