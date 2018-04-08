@@ -192,7 +192,7 @@ public class Menu : MonoBehaviour {
 
     }
 
-    void SaveScale()
+    void SaveLegsScale()
     {
         int id = int.Parse(GameManager.instance.player.criatura.equipment.legs.ID.ToString().Substring(0, 3));
         int bodyID = int.Parse(GameManager.instance.player.criatura.equipment.body.ID.ToString().Substring(0, 3));
@@ -203,6 +203,22 @@ public class Menu : MonoBehaviour {
             customPosition = visor_player1.leg_left.rectTransform.localPosition - Database.instance.LeerBodyBounds(bodyID).leg_left_POS,
             customPosition_right = visor_player1.leg_right.rectTransform.localPosition - Database.instance.LeerBodyBounds(bodyID).leg_right_POS,
             customScale = visor_player1.leg_right.rectTransform.localScale
+        };
+        File.WriteAllText(ruta, JsonUtility.ToJson(f));
+        print("Saving " + id);
+    }
+
+    void SaveArmsScale()
+    {
+        int id = int.Parse(GameManager.instance.player.criatura.equipment.arms.ID.ToString().Substring(0, 3));
+        int bodyID = int.Parse(GameManager.instance.player.criatura.equipment.body.ID.ToString().Substring(0, 3));
+        string ruta = "Assets/Resources/FixedScale/" + id.ToString() + ".txt";
+        FixedScale f = new FixedScale()
+        {
+            customRotation_right = Mathf.Approximately(visor_player1.arm_right.rectTransform.rotation.eulerAngles.y, 0f) ? Vector3.zero : visor_player1.arm_right.rectTransform.rotation.eulerAngles,
+            customPosition = visor_player1.arm_left.rectTransform.localPosition - Database.instance.LeerBodyBounds(bodyID).arm_left_POS,
+            customPosition_right = visor_player1.arm_right.rectTransform.localPosition - Database.instance.LeerBodyBounds(bodyID).arm_right_POS,
+            customScale = visor_player1.arm_right.rectTransform.localScale
         };
         File.WriteAllText(ruta, JsonUtility.ToJson(f));
         print("Saving " + id);
@@ -324,9 +340,13 @@ public class Menu : MonoBehaviour {
         {
             SaveBounds();
         }
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.F1))
         {
-            SaveScale();
+            SaveArmsScale();
+        }
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            SaveLegsScale();
         }
     } //ONLY FOR EDITION PURPOSE
 
