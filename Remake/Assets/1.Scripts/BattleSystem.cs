@@ -115,15 +115,22 @@ public class BattleSystem : MonoBehaviour {
 
     public void UpdateSkillButtons()
     {
-        skill_buttons.head_activable_skill_ID = jugador1.criatura.skills.head[Random.Range(0, jugador1.criatura.skills.head.Count)];
-        skill_buttons.body_activable_skill_ID = jugador1.criatura.skills.body[Random.Range(0, jugador1.criatura.skills.body.Count)];
-        skill_buttons.arms_activable_skill_ID = jugador1.criatura.skills.arms[Random.Range(0, jugador1.criatura.skills.arms.Count)];
-        skill_buttons.legs_activable_skill_ID = jugador1.criatura.skills.legs[Random.Range(0, jugador1.criatura.skills.legs.Count)];
+        try
+        {
+            skill_buttons.head_activable_skill_ID = jugador1.criatura.skills.head[Random.Range(0, jugador1.criatura.skills.head.Count)];
+            skill_buttons.body_activable_skill_ID = jugador1.criatura.skills.body[Random.Range(0, jugador1.criatura.skills.body.Count)];
+            skill_buttons.arms_activable_skill_ID = jugador1.criatura.skills.arms[Random.Range(0, jugador1.criatura.skills.arms.Count)];
+            skill_buttons.legs_activable_skill_ID = jugador1.criatura.skills.legs[Random.Range(0, jugador1.criatura.skills.legs.Count)];
 
-        skill_buttons.head_button.myText.text = Lenguaje.Instance.SkillNameByID(skill_buttons.head_activable_skill_ID);
-        skill_buttons.body_button.myText.text = Lenguaje.Instance.SkillNameByID(skill_buttons.body_activable_skill_ID);
-        skill_buttons.arms_button.myText.text = Lenguaje.Instance.SkillNameByID(skill_buttons.arms_activable_skill_ID);
-        skill_buttons.legs_button.myText.text = Lenguaje.Instance.SkillNameByID(skill_buttons.legs_activable_skill_ID);
+            skill_buttons.head_button.myText.text = Lenguaje.Instance.SkillNameByID(skill_buttons.head_activable_skill_ID);
+            skill_buttons.body_button.myText.text = Lenguaje.Instance.SkillNameByID(skill_buttons.body_activable_skill_ID);
+            skill_buttons.arms_button.myText.text = Lenguaje.Instance.SkillNameByID(skill_buttons.arms_activable_skill_ID);
+            skill_buttons.legs_button.myText.text = Lenguaje.Instance.SkillNameByID(skill_buttons.legs_activable_skill_ID);
+        }catch
+        {
+            print("Falta setear habilidades");
+        }
+        
     }  //Realizar al cambiar de turno
 
     Player ConstruirIA()
@@ -137,7 +144,7 @@ public class BattleSystem : MonoBehaviour {
                 nombre = "Jesus Christ",
                 equipment = new Equipment()
                 {
-                    head = Items.instance.ItemByID(101000),
+                    head = Items.instance.ItemByID(GetRandomItemID(1)),
                     body = Items.instance.ItemByID(GetRandomItemID(2)),
                     arms = Items.instance.ItemByID(GetRandomItemID(3)),
                     legs = Items.instance.ItemByID(GetRandomItemID(4)),

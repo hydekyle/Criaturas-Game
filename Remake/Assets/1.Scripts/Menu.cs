@@ -23,8 +23,6 @@ public class Menu : MonoBehaviour {
 
     void Start()
     {
-        
-        print(loadedEquipment.head.ID);
         Initialize();
     }
 
@@ -61,7 +59,7 @@ public class Menu : MonoBehaviour {
     IEnumerator Visualizar(Transform visor, Vector3 localPos, bool flip)
     {
         visor.localPosition = localPos;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.1f); // ¿?
         if (flip) visor.rotation = Quaternion.Euler(0, 180, 0);
         visor.gameObject.SetActive(true);
     }
@@ -88,35 +86,44 @@ public class Menu : MonoBehaviour {
 
     public IEnumerator VisualizarEquipamiento(Equipment e, int playerNumber)
     {
-        if (loadedEquipment.head.ID != e.head.ID) {
-            yield return StartCoroutine(SendImage(e.head.ID, GetPlayerVisor(playerNumber)));
-            FixHeadScale(e.head.ID, GetPlayerVisor(playerNumber));
-        }
-        if (loadedEquipment.body.ID != e.body.ID) {
+        if(playerNumber == 1) //Actuar solo en equipamiento cambiado
+        {
+            if (loadedEquipment.body.ID != e.body.ID)
+            {
+                yield return StartCoroutine(SendImage(e.body.ID, GetPlayerVisor(playerNumber)));
+            }
+            if (loadedEquipment.head.ID != e.head.ID)
+            {
+                yield return StartCoroutine(SendImage(e.head.ID, GetPlayerVisor(playerNumber)));
+                FixHeadScale(e, GetPlayerVisor(playerNumber));
+            }
+            if (loadedEquipment.arms.ID != e.arms.ID)
+            {
+                yield return StartCoroutine(SendImage(e.arms.ID, GetPlayerVisor(playerNumber)));
+            }
+            if (loadedEquipment.legs.ID != e.legs.ID)
+            {
+                yield return StartCoroutine(SendImage(e.legs.ID, GetPlayerVisor(playerNumber)));
+            }
+            if (loadedEquipment.back.ID != e.back.ID)
+            {
+                yield return StartCoroutine(SendImage(e.back.ID, GetPlayerVisor(playerNumber)));
+            }
+            loadedEquipment = e;
+        }else
+        {
             yield return StartCoroutine(SendImage(e.body.ID, GetPlayerVisor(playerNumber)));
-        }
-        if (loadedEquipment.arms.ID != e.arms.ID) {
+            yield return StartCoroutine(SendImage(e.head.ID, GetPlayerVisor(playerNumber))); FixHeadScale(e, GetPlayerVisor(playerNumber));
             yield return StartCoroutine(SendImage(e.arms.ID, GetPlayerVisor(playerNumber)));
-        }
-        if (loadedEquipment.legs.ID != e.legs.ID) {
             yield return StartCoroutine(SendImage(e.legs.ID, GetPlayerVisor(playerNumber)));
-        }
-        if (loadedEquipment.back.ID != e.back.ID) {
             yield return StartCoroutine(SendImage(e.back.ID, GetPlayerVisor(playerNumber)));
-        } 
-        loadedEquipment = e;
+        }
+        
     }
 
-    
-
-    void SetFixedScales(Equipment e, Visor visor)
+    void FixHeadScale(Equipment e, Visor visor)
     {
-        FixHeadScale(e.head.ID, visor);
-    }
-
-    void FixHeadScale(int bigID, Visor visor)
-    {
-        int id = int.Parse(bigID.ToString().Substring(0, 3));
+        int id = int.Parse(e.head.ID.ToString().Substring(0, 3));
         string ruta = "Assets/Resources/FixedScale/" + id.ToString() + ".txt";
         if (File.Exists(ruta))
         {
@@ -124,7 +131,11 @@ public class Menu : MonoBehaviour {
             Vector3 fixScale = fix.customScale;
             Vector3 fixPosition = fix.customPosition;
             visor.headgear.rectTransform.localScale = fixScale;
-            visor.headgear.rectTransform.localPosition = Database.instance.LeerBodyBounds(GameManager.instance.player.criatura.equipment.body.ID).head_POS + fixPosition;
+            visor.headgear.rectTransform.localPosition = Database.instance.LeerBodyBounds(e.body.ID).head_POS + fixPosition;
+        }else
+        {
+            visor.headgear.rectTransform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+            visor.headgear.rectTransform.localPosition = Database.instance.LeerBodyBounds(e.body.ID).head_POS;
         }
     }
 

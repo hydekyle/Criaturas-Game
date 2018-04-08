@@ -409,8 +409,36 @@
     <None Include="Assets\Resources\BodyBounds\260.txt" />
     <None Include="Assets\Resources\BodyBounds\261.txt" />
     <None Include="Assets\Resources\BodyBounds\262.txt" />
+    <None Include="Assets\Resources\FixedScale\105.txt" />
+    <None Include="Assets\Resources\FixedScale\106.txt" />
+    <None Include="Assets\Resources\FixedScale\107.txt" />
+    <None Include="Assets\Resources\FixedScale\108.txt" />
+    <None Include="Assets\Resources\FixedScale\114.txt" />
+    <None Include="Assets\Resources\FixedScale\116.txt" />
+    <None Include="Assets\Resources\FixedScale\117.txt" />
+    <None Include="Assets\Resources\FixedScale\120.txt" />
+    <None Include="Assets\Resources\FixedScale\121.txt" />
+    <None Include="Assets\Resources\FixedScale\122.txt" />
+    <None Include="Assets\Resources\FixedScale\123.txt" />
+    <None Include="Assets\Resources\FixedScale\127.txt" />
+    <None Include="Assets\Resources\FixedScale\128.txt" />
+    <None Include="Assets\Resources\FixedScale\129.txt" />
+    <None Include="Assets\Resources\FixedScale\130.txt" />
+    <None Include="Assets\Resources\FixedScale\131.txt" />
+    <None Include="Assets\Resources\FixedScale\132.txt" />
+    <None Include="Assets\Resources\FixedScale\133.txt" />
+    <None Include="Assets\Resources\FixedScale\134.txt" />
+    <None Include="Assets\Resources\FixedScale\136.txt" />
+    <None Include="Assets\Resources\FixedScale\137.txt" />
+    <None Include="Assets\Resources\FixedScale\138.txt" />
+    <None Include="Assets\Resources\FixedScale\139.txt" />
     <None Include="Assets\Resources\FixedScale\140.txt" />
     <None Include="Assets\Resources\FixedScale\141.txt" />
+    <None Include="Assets\Resources\FixedScale\144.txt" />
+    <None Include="Assets\Resources\FixedScale\145.txt" />
+    <None Include="Assets\Resources\FixedScale\146.txt" />
+    <None Include="Assets\Resources\FixedScale\147.txt" />
+    <None Include="Assets\Resources\FixedScale\148.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
