@@ -127,10 +127,11 @@ public class Menu : MonoBehaviour {
     void FixScales(Equipment e, Visor visor)
     {
         int id = int.Parse(e.head.ID.ToString().Substring(0, 3));
-        string ruta = "Assets/Resources/FixedScale/" + id.ToString() + ".txt";
-        if (File.Exists(ruta))  //HEADGEAR
+        string ruta = "FixedScale/" + id.ToString();
+        TextAsset txt = (TextAsset)Resources.Load(ruta);
+        if (txt != null)  //HEADGEAR
         {
-            FixedScale fix = JsonUtility.FromJson<FixedScale>(File.ReadAllText(ruta));
+            FixedScale fix = JsonUtility.FromJson<FixedScale>(txt.text);
             Vector3 fixScale = fix.customScale;
             Vector3 fixPosition = fix.customPosition;
             visor.headgear.rectTransform.localScale    = fixScale;
@@ -142,10 +143,12 @@ public class Menu : MonoBehaviour {
         }
 
         id = int.Parse(e.arms.ID.ToString().Substring(0, 3));
-        ruta = "Assets/Resources/FixedScale/" + id.ToString() + ".txt";
-        if (File.Exists(ruta))  //ARMS
+        ruta = "FixedScale/" + id.ToString();
+        txt = null;
+        txt = (TextAsset)Resources.Load(ruta);
+        if (txt != null)  //ARMS
         {
-            FixedScale fix = JsonUtility.FromJson<FixedScale>(File.ReadAllText(ruta));
+            FixedScale fix = JsonUtility.FromJson<FixedScale>(txt.text);
             Vector3 fixScale = fix.customScale;
             Vector3 fixPosition = fix.customPosition;
             visor.arm_left.rectTransform.localScale     = visor.arm_right.rectTransform.localScale = fixScale;
@@ -161,10 +164,12 @@ public class Menu : MonoBehaviour {
         }
 
         id = int.Parse(e.legs.ID.ToString().Substring(0, 3));
-        ruta = "Assets/Resources/FixedScale/" + id.ToString() + ".txt";
-        if (File.Exists(ruta))  //LEGS
+        ruta = "FixedScale/" + id.ToString();
+        txt = null;
+        txt = (TextAsset)Resources.Load(ruta);
+        if (txt != null)  //LEGS
         {
-            FixedScale fix = JsonUtility.FromJson<FixedScale>(File.ReadAllText(ruta));
+            FixedScale fix = JsonUtility.FromJson<FixedScale>(txt.text);
             Vector3 fixScale = fix.customScale;
             Vector3 fixPosition = fix.customPosition;
             visor.leg_left.rectTransform.localScale     = visor.leg_right.rectTransform.localScale = fixScale;
