@@ -97,7 +97,7 @@ public class Items : MonoBehaviour {
         GiveStat mejora = new GiveStat();
         switch (list)
         {
-            case 1: mejora = GiveDamage(value); break;
+            case 1: mejora = GiveStrenght(value); break;
             case 2: mejora = GiveHealth(value); break;
             case 3: mejora = GiveSkill(value); break;
             case 4: mejora = GiveLuck(value); break;
@@ -105,10 +105,10 @@ public class Items : MonoBehaviour {
         return mejora;
     }
 
-    private GiveStat GiveDamage(int value)
+    private GiveStat GiveStrenght(int value)
     {
         GiveStat mejora = new GiveStat() {
-            stat_type = Stat.Damage,
+            stat_type = Stat.Strenght,
             value = value
         };
         return mejora;

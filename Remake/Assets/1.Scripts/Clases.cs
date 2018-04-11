@@ -7,9 +7,9 @@ using UnityEngine.UI;
 namespace Enums {
     public enum Equip_Position { Head, Body, Arms, Legs, Back, None };
     public enum Quality { Common, Rare, Epic, Legendary };
-    public enum Stat { Damage, Health, Skill, Luck};
+    public enum Stat { Strenght, Health, Skill, Luck};
     public enum Class { Assassin, Pacifist, Charming, Alpha};
-    public enum Skill_Type { Attack, Spell, Buff };
+    public enum Skill_Type { Attack, Spell, Buff, Heal };
 }
 
 public struct BodyBounds
@@ -115,16 +115,16 @@ public class Player
 
 public class Skill
 {
-    int ID;
-    string name;
-    string description;
-    Class clase;
-    Skill_Type s_type;
+    public int ID;
+    public string name;
+    public string description;
+    public Class s_class;
+    public Skill_Type s_type;
 }
 
-public class Skill_Result
+public class Skill_Result : Skill
 {
-    int damage;
+    public float value;
 }
 
 public class DataTurn
@@ -135,6 +135,21 @@ public class DataTurn
     Skill_Type s_type;
 }
 
+public class Stats
+{
+    public float damage_base;
+    public float health_base;
+    public float skill_base;
+    public float luck_base;
+
+    public float damage_now;
+    public float health_now;
+    public float skill_now;
+    public float luck_now;
+
+    public List<int> buffs_ID;
+    public List<int> debuffs_ID;
+}
 
 
 

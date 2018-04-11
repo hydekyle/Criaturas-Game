@@ -4,7 +4,7 @@ using UnityEngine;
 using Enums;
 using UnityEngine.UI;
 
-public class BattleSystem : MonoBehaviour {
+public class BattleSystem : Skills {
 
 
 
@@ -17,14 +17,16 @@ public class BattleSystem : MonoBehaviour {
      *      
      */
 
-    Player jugador1;
-    Player jugador2;
+    Player player1;
+    Player player2;
 
     public List<GiveStat> totalStats_player1 = new List<GiveStat>();
     public List<GiveStat> totalStats_player2 = new List<GiveStat>();
 
     public SkillsButtons skill_buttons;
 
+    public Stats myStats;
+    public Stats enemyStats;
 
     void Start()
     {
@@ -33,11 +35,14 @@ public class BattleSystem : MonoBehaviour {
 
     void Initialize()
     {
+        #region Transforms
         Transform habilidadesT = transform.Find("Canvas").Find("[Habilidades]");
         Transform headT = habilidadesT.Find("Skill_Head");
         Transform bodyT = habilidadesT.Find("Skill_Body");
         Transform armsT = habilidadesT.Find("Skill_Arms");
         Transform legsT = habilidadesT.Find("Skill_Legs");
+        #endregion
+        #region Skill_Buttons
         skill_buttons = new SkillsButtons()
         {
             head_button = new SkillButton()
@@ -61,11 +66,12 @@ public class BattleSystem : MonoBehaviour {
                 myText = legsT.GetChild(0).GetComponent<Text>()
             }
         };
-        jugador1 = GameManager.instance.player;
-        jugador2 = ConstruirIA();
+        #endregion
+        player1 = GameManager.instance.player;
+        player2 = ConstruirIA();
         
 
-        StartCoroutine(GameManager.instance.MostrarJugador(jugador2, 2, new Vector3(120, 40, 0), false)); //Visualizar oponente
+        StartCoroutine(GameManager.instance.MostrarJugador(player2, 2, new Vector3(120, 40, 0), false)); //Visualizar oponente
         Menu.instance.SetVisorPosition(1, new Vector3(-120, 40, -1), true); //Recolocar jugador 1
 
         LeerStats();
@@ -82,9 +88,9 @@ public class BattleSystem : MonoBehaviour {
         return lista;
     }
 
-    public void LeerStats() //Lee el equipamiento, y habilidades de los jugadores
+    public void LeerStats() //Lee stats, y habilidades de los jugadores
     {
-        List<Equipable_Item> equipamiento_list = ObtenerListaEquipamiento(jugador1);
+        List<Equipable_Item> equipamiento_list = ObtenerListaEquipamiento(player1);
         foreach (Equipable_Item e in equipamiento_list)
         {
             for (var x = 0; x < e.addStat.Count; x++)
@@ -92,7 +98,7 @@ public class BattleSystem : MonoBehaviour {
                 totalStats_player1.Add(e.addStat[x]);
             }
         }
-        equipamiento_list = ObtenerListaEquipamiento(jugador2);
+        equipamiento_list = ObtenerListaEquipamiento(player2);
         foreach (Equipable_Item e in equipamiento_list)
         {
             for (var x = 0; x < e.addStat.Count; x++)
@@ -100,27 +106,32 @@ public class BattleSystem : MonoBehaviour {
                 totalStats_player2.Add(e.addStat[x]);
             }
         }
-        jugador1.criatura.skills = new MySkylls();
-        foreach (int sID in jugador1.criatura.equipment.head.skills_ID) { jugador1.criatura.skills.head.Add(sID); }
-        foreach (int sID in jugador1.criatura.equipment.body.skills_ID) { jugador1.criatura.skills.body.Add(sID); }
-        foreach (int sID in jugador1.criatura.equipment.arms.skills_ID) { jugador1.criatura.skills.arms.Add(sID); }
-        foreach (int sID in jugador1.criatura.equipment.legs.skills_ID) { jugador1.criatura.skills.legs.Add(sID); }
-        jugador2.criatura.skills = new MySkylls();
-        foreach (int sID in jugador2.criatura.equipment.head.skills_ID) { jugador2.criatura.skills.head.Add(sID); }
-        foreach (int sID in jugador2.criatura.equipment.body.skills_ID) { jugador2.criatura.skills.body.Add(sID); }
-        foreach (int sID in jugador2.criatura.equipment.arms.skills_ID) { jugador2.criatura.skills.arms.Add(sID); }
-        foreach (int sID in jugador2.criatura.equipment.legs.skills_ID) { jugador2.criatura.skills.legs.Add(sID); }
+        player1.criatura.skills = new MySkylls();
+        foreach (int sID in player1.criatura.equipment.head.skills_ID) { player1.criatura.skills.head.Add(sID); }
+        foreach (int sID in player1.criatura.equipment.body.skills_ID) { player1.criatura.skills.body.Add(sID); }
+        foreach (int sID in player1.criatura.equipment.arms.skills_ID) { player1.criatura.skills.arms.Add(sID); }
+        foreach (int sID in player1.criatura.equipment.legs.skills_ID) { player1.criatura.skills.legs.Add(sID); }
+        player2.criatura.skills = new MySkylls();
+        foreach (int sID in player2.criatura.equipment.head.skills_ID) { player2.criatura.skills.head.Add(sID); }
+        foreach (int sID in player2.criatura.equipment.body.skills_ID) { player2.criatura.skills.body.Add(sID); }
+        foreach (int sID in player2.criatura.equipment.arms.skills_ID) { player2.criatura.skills.arms.Add(sID); }
+        foreach (int sID in player2.criatura.equipment.legs.skills_ID) { player2.criatura.skills.legs.Add(sID); }
         UpdateSkillButtons();
+        myStats = new Stats()
+        {
+            health_base = 1000,
+            skill_now = 10
+        };
     }
 
     public void UpdateSkillButtons()
     {
         try
         {
-            skill_buttons.head_activable_skill_ID = jugador1.criatura.skills.head[Random.Range(0, jugador1.criatura.skills.head.Count)];
-            skill_buttons.body_activable_skill_ID = jugador1.criatura.skills.body[Random.Range(0, jugador1.criatura.skills.body.Count)];
-            skill_buttons.arms_activable_skill_ID = jugador1.criatura.skills.arms[Random.Range(0, jugador1.criatura.skills.arms.Count)];
-            skill_buttons.legs_activable_skill_ID = jugador1.criatura.skills.legs[Random.Range(0, jugador1.criatura.skills.legs.Count)];
+            skill_buttons.head_activable_skill_ID = player1.criatura.skills.head[Random.Range(0, player1.criatura.skills.head.Count)];
+            skill_buttons.body_activable_skill_ID = player1.criatura.skills.body[Random.Range(0, player1.criatura.skills.body.Count)];
+            skill_buttons.arms_activable_skill_ID = player1.criatura.skills.arms[Random.Range(0, player1.criatura.skills.arms.Count)];
+            skill_buttons.legs_activable_skill_ID = player1.criatura.skills.legs[Random.Range(0, player1.criatura.skills.legs.Count)];
 
             skill_buttons.head_button.myText.text = Lenguaje.Instance.SkillNameByID(skill_buttons.head_activable_skill_ID);
             skill_buttons.body_button.myText.text = Lenguaje.Instance.SkillNameByID(skill_buttons.body_activable_skill_ID);
@@ -183,7 +194,7 @@ public class BattleSystem : MonoBehaviour {
     //BOTONES
     public void Head_BTN()
     {
-        LanzarSkill(skill_buttons.head_activable_skill_ID);
+        LanzarSkill(40);
     }
 
     public void Body_BTN()
@@ -204,8 +215,21 @@ public class BattleSystem : MonoBehaviour {
 
     void LanzarSkill(int ID_skill)
     {
-        Skill_Result result = Skills.Instance.SkillResolve(ID_skill);
-        print(Lenguaje.Instance.SkillNameByID(ID_skill));
+        DoSkill(SkillResolve(ID_skill, myStats, enemyStats));
+    }
+
+    void DoSkill(Skill_Result result)
+    {
+        switch (result.s_type)
+        {
+            case Skill_Type.Heal: ApplyHeal(result.value); break;
+        }
+    }
+
+    void ApplyHeal(float value)
+    {
+        float newHealthValue = myStats.health_now + value;
+        myStats.health_now = Mathf.Clamp(newHealthValue, 0, myStats.health_base);
     }
 
 }
