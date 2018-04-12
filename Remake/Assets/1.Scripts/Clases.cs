@@ -151,5 +151,10 @@ public class Stats
     public List<int> debuffs_ID;
 }
 
+public struct Osu_Ball
+{
+    
+}
+
 
 

@@ -343,6 +343,7 @@
     <Compile Include="Assets\1.Scripts\Lenguaje.cs" />
     <Compile Include="Assets\1.Scripts\Menu.cs" />
     <Compile Include="Assets\1.Scripts\NetworkManager.cs" />
+    <Compile Include="Assets\1.Scripts\OsuBall.cs" />
     <Compile Include="Assets\1.Scripts\Skills.cs" />
   </ItemGroup>
   <ItemGroup>
