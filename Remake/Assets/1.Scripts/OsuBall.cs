@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Enums;
 
 public class OsuBall : MonoBehaviour {
 
@@ -11,9 +12,10 @@ public class OsuBall : MonoBehaviour {
     Image circle_out_image;
     float velocity = 1.8f;
     float maxRangeOK = 1.1f;
-    float minRangeOK = 0.7f;
+    float minRangeOK = 0.6f;
     bool isActive = true;
     bool ok;
+    public bool isLastBall;
 
     void OnEnable()
     {
@@ -22,6 +24,16 @@ public class OsuBall : MonoBehaviour {
         circle_out = transform.GetChild(0).GetComponent<RectTransform>();
         circle_out_image = circle_out.GetComponent<Image>();
         circle_out.gameObject.SetActive(true);
+    }
+
+    public void SetSpeed(Speed speed)
+    {
+        switch (speed)
+        {
+            case Speed.Slow:   velocity = 1.8f; break;
+            case Speed.Normal: velocity = 2.0f; break;
+            case Speed.Fast:   velocity = 2.4f; break;
+        }
     }
 
     void FixedUpdate()
@@ -43,10 +55,8 @@ public class OsuBall : MonoBehaviour {
             if (ok) circle_in_image.color = Color.Lerp(circle_in_image.color, new Color(0, 1, 0, 0), Time.deltaTime * velocity * 2);
                else circle_in_image.color = Color.Lerp(circle_in_image.color, new Color(1, 0, 0, 0), Time.deltaTime * velocity * 2);
 
-            if (circle_in_image.color.a < 0.01f) Destroy(gameObject); else print(circle_in_image.color.a);
+            if (circle_in_image.color.a < 0.01f) Destroy(gameObject);
         }
-        
-        
     }
 
     public void OnClick()
@@ -63,8 +73,14 @@ public class OsuBall : MonoBehaviour {
 
     void Failed()
     {
+        BattleSystem.instance.osuFails++;
         isActive = false;
         circle_out.gameObject.SetActive(false);
+    }
+
+    void OnDisable()
+    {
+        if(isLastBall) BattleSystem.instance.EndOsu();
     }
 
 }

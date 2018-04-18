@@ -17,6 +17,8 @@ public class BattleSystem : Skills {
      *      
      */
 
+    public static BattleSystem instance { get; set; }
+
     Player player1;
     Player player2;
 
@@ -28,8 +30,13 @@ public class BattleSystem : Skills {
     public Stats myStats;
     public Stats enemyStats;
 
+    public int osuFails = 0;
+
+    bool yourTurn;
+
     void Start()
     {
+        instance = this;
         Initialize();
     }
 
@@ -77,6 +84,7 @@ public class BattleSystem : Skills {
         LeerStats();
     }
 
+    #region Engine
     public List<Equipable_Item> ObtenerListaEquipamiento(Player player)
     {
         List<Equipable_Item> lista = new List<Equipable_Item>();
@@ -189,9 +197,9 @@ public class BattleSystem : Skills {
         string final = listNumber.ToString() + randomID + "000";
         return int.Parse(final);
     }
+    #endregion
 
-
-    //BOTONES
+    #region Botones
     public void Head_BTN()
     {
         LanzarSkill(40);
@@ -211,7 +219,21 @@ public class BattleSystem : Skills {
     {
         LanzarSkill(skill_buttons.legs_activable_skill_ID);
     }
+    #endregion
 
+
+
+
+
+
+
+
+
+    public void EndOsu()
+    {
+        print("Osu resuelto. Errores: " + osuFails.ToString());
+        osuFails = 0;
+    }
 
     void LanzarSkill(int ID_skill)
     {

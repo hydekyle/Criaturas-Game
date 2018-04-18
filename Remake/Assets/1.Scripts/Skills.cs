@@ -14,7 +14,7 @@ public class Skills : MonoBehaviour{
 
             case 40: result = Skill_40(myStats); break;
         }
-        print("Habilidad " + Lenguaje.Instance.SkillNameByID(ID_skill) + " lanzada.");
+        Message.instance.NewMessage(Lenguaje.Instance.SkillNameByID(ID_skill));
         return result;
     }
 

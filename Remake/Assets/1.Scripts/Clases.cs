@@ -10,6 +10,7 @@ namespace Enums {
     public enum Stat { Strenght, Health, Skill, Luck};
     public enum Class { Assassin, Pacifist, Charming, Alpha};
     public enum Skill_Type { Attack, Spell, Buff, Heal };
+    public enum Speed { Slow, Normal, Fast};
 }
 
 public struct BodyBounds
