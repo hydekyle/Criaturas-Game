@@ -5,7 +5,7 @@ using Enums;
 
 public class Skills : MonoBehaviour{
 
-    public Skill_Result SkillResolve(int ID_skill, Stats myStats, Stats enemyStats)
+    public Skill_Result SkillResolve(int ID_skill, Stats myStats, Stats enemyStats, int fails)
     {
         Skill_Result result = new Skill_Result();
         switch (ID_skill)
@@ -15,6 +15,7 @@ public class Skills : MonoBehaviour{
             case 40: result = Skill_40(myStats); break;
         }
         Message.instance.NewMessage(Lenguaje.Instance.SkillNameByID(ID_skill));
+        result.value -= (0.1f * result.value) * fails;
         return result;
     }
 

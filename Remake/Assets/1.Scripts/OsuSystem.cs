@@ -7,6 +7,13 @@ using Enums;
 public class OsuSystem : MonoBehaviour {
 
     public GameObject osu_ball;
+    public static OsuSystem instance;
+
+    void Awake()
+    {
+        instance = this;
+    }
+
 
     void PutBall(Vector3 position, Speed speed)
     {
@@ -35,6 +42,11 @@ public class OsuSystem : MonoBehaviour {
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha3)) StartCoroutine(PatronRandomHorizontal_3());
+    }
+
+    public void Bolas()
+    {
+        StartCoroutine(PatronRandomHorizontal_3());
     }
 
     IEnumerator PatronRandomHorizontal_3()

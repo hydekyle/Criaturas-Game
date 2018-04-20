@@ -25,12 +25,14 @@ public class BattleSystem : Skills {
     public List<GiveStat> totalStats_player1 = new List<GiveStat>();
     public List<GiveStat> totalStats_player2 = new List<GiveStat>();
 
+    RectTransform rect_skills;
     public SkillsButtons skill_buttons;
 
     public Stats myStats;
     public Stats enemyStats;
 
     public int osuFails = 0;
+    int lastSkill_ID;
 
     bool yourTurn;
 
@@ -48,6 +50,10 @@ public class BattleSystem : Skills {
         Transform bodyT = habilidadesT.Find("Skill_Body");
         Transform armsT = habilidadesT.Find("Skill_Arms");
         Transform legsT = habilidadesT.Find("Skill_Legs");
+        rect_skills = transform.GetChild(0).GetChild(0).GetComponent<RectTransform>();
+        rect_skills.localPosition = rect_skills.localPosition + Vector3.down * 50;
+        rect_skills.gameObject.SetActive(true);
+
         #endregion
         #region Skill_Buttons
         skill_buttons = new SkillsButtons()
@@ -226,18 +232,40 @@ public class BattleSystem : Skills {
 
 
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.T)) StartTurn();
 
+        if (yourTurn)
+        {
+            rect_skills.localPosition = Vector3.Lerp(rect_skills.localPosition, Vector3.zero, Time.deltaTime * 5);
+        }else
+        {
+            rect_skills.localPosition = Vector3.Lerp(rect_skills.localPosition, new Vector3(0, -50, 0), Time.deltaTime * 5);
+        }
+        
+    }
 
+    void StartTurn()
+    {
+        Message.instance.NewMessage("¡Tu turno!");
+        yourTurn = true;
+    }
 
     public void EndOsu()
     {
         print("Osu resuelto. Errores: " + osuFails.ToString());
+        DoSkill(SkillResolve(lastSkill_ID, myStats, enemyStats, osuFails));
         osuFails = 0;
     }
 
     void LanzarSkill(int ID_skill)
     {
-        DoSkill(SkillResolve(ID_skill, myStats, enemyStats));
+        if (yourTurn) {
+            yourTurn = false;
+            OsuSystem.instance.Bolas();
+            lastSkill_ID = ID_skill;
+        } 
     }
 
     void DoSkill(Skill_Result result)
