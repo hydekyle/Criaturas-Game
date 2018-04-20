@@ -976,6 +976,74 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &343003404
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 343003405}
+  - component: {fileID: 343003407}
+  - component: {fileID: 343003406}
+  m_Layer: 0
+  m_Name: FadeScreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &343003405
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 343003404}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1802928300}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &343003406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 343003404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_RaycastTarget: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &343003407
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 343003404}
 --- !u!1 &346334071
 GameObject:
   m_ObjectHideFlags: 0
@@ -1585,7 +1653,7 @@ MonoBehaviour:
     body_activable_skill_ID: 0
     arms_activable_skill_ID: 0
     legs_activable_skill_ID: 0
-  osuFails: 0
+  minigameFails: 0
 --- !u!1 &468897744
 GameObject:
   m_ObjectHideFlags: 0
@@ -2025,7 +2093,7 @@ RectTransform:
   - {fileID: 356090844}
   - {fileID: 739500171}
   m_Father: {fileID: 1802928300}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4276,7 +4344,7 @@ MonoBehaviour:
     addStat:
     - stat_type: 0
       value: 100
-    skills_ID: 0d0000000c000000
+    skills_ID: 00000000
   - ID: 101
     nombre: Cabeza 2
     quality: 0
@@ -4714,7 +4782,7 @@ MonoBehaviour:
     nombre: Cuerpo 1
     quality: 0
     addStat: []
-    skills_ID: 0a0000000c000000
+    skills_ID: 00000000
   - ID: 201
     nombre: Cuerpo 2
     quality: 0
@@ -5030,7 +5098,7 @@ MonoBehaviour:
     nombre: Brazos 1
     quality: 0
     addStat: []
-    skills_ID: 0d0000000b000000
+    skills_ID: 28000000
   - ID: 301
     nombre: Brazos 2
     quality: 0
@@ -5256,7 +5324,7 @@ MonoBehaviour:
     nombre: Piernas 1
     quality: 0
     addStat: []
-    skills_ID: 0a0000000b000000
+    skills_ID: 0b000000
   - ID: 401
     nombre: Piernas 2
     quality: 0
@@ -5541,14 +5609,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 714a7c3af7f06c242b952d5c5f81a6a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  play: 
-  nest: 
-  shop: 
-  exit: 
-  health: 
-  attack: 
-  skill: 
-  luck: 
 --- !u!114 &1236433747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6633,8 +6693,9 @@ GameObject:
   - component: {fileID: 1740803556}
   - component: {fileID: 1740803555}
   - component: {fileID: 1740803558}
+  - component: {fileID: 1740803559}
   m_Layer: 0
-  m_Name: Osu_System
+  m_Name: MiniGames
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6713,7 +6774,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!114 &1740803558
 MonoBehaviour:
@@ -6727,6 +6788,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   osu_ball: {fileID: 1172824779094412, guid: 813aa006f2437bd4fa3c8e7e02c07fa0, type: 2}
+--- !u!114 &1740803559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1740803553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b2103da25d278e4a8750c833aefa234, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1749112443
 GameObject:
   m_ObjectHideFlags: 0
@@ -7070,6 +7142,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 343003405}
   - {fileID: 553637095}
   m_Father: {fileID: 399936088}
   m_RootOrder: 0

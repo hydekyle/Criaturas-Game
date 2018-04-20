@@ -73,14 +73,14 @@ public class OsuBall : MonoBehaviour {
 
     void Failed()
     {
-        BattleSystem.instance.osuFails++;
+        BattleSystem.instance.minigameFails++;
         isActive = false;
         circle_out.gameObject.SetActive(false);
     }
 
     void OnDisable()
     {
-        if(isLastBall) BattleSystem.instance.EndOsu();
+        if(isLastBall) BattleSystem.instance.EndMinigame();
     }
 
 }

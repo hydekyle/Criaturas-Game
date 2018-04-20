@@ -26,31 +26,35 @@ public class BattleSystem : Skills {
     public List<GiveStat> totalStats_player2 = new List<GiveStat>();
 
     RectTransform rect_skills;
+    Image fadeScreen;
     public SkillsButtons skill_buttons;
 
     public Stats myStats;
     public Stats enemyStats;
 
-    public int osuFails = 0;
+    public int minigameFails = 0;
     int lastSkill_ID;
 
     bool yourTurn;
+    float fadeToAphaValue = 0;
 
     void Start()
     {
         instance = this;
         Initialize();
+        StartTurn();
     }
 
     void Initialize()
     {
         #region Transforms
+        fadeScreen = transform.GetChild(0).Find("FadeScreen").GetComponent<Image>();
         Transform habilidadesT = transform.Find("Canvas").Find("[Habilidades]");
         Transform headT = habilidadesT.Find("Skill_Head");
         Transform bodyT = habilidadesT.Find("Skill_Body");
         Transform armsT = habilidadesT.Find("Skill_Arms");
         Transform legsT = habilidadesT.Find("Skill_Legs");
-        rect_skills = transform.GetChild(0).GetChild(0).GetComponent<RectTransform>();
+        rect_skills = transform.GetChild(0).GetChild(1).GetComponent<RectTransform>();
         rect_skills.localPosition = rect_skills.localPosition + Vector3.down * 50;
         rect_skills.gameObject.SetActive(true);
 
@@ -203,12 +207,18 @@ public class BattleSystem : Skills {
         string final = listNumber.ToString() + randomID + "000";
         return int.Parse(final);
     }
+
+    void FadeAlpha(float alphaValue)
+    {
+        fadeToAphaValue = alphaValue;
+    }
+
     #endregion
 
-    #region Botones
+    #region Botones_Activables
     public void Head_BTN()
     {
-        LanzarSkill(40);
+        LanzarSkill(skill_buttons.head_activable_skill_ID);
     }
 
     public void Body_BTN()
@@ -227,14 +237,9 @@ public class BattleSystem : Skills {
     }
     #endregion
 
-
-
-
-
-
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T)) StartTurn();
+        //if (Input.GetKeyDown(KeyCode.T)) StartTurn();
 
         if (yourTurn)
         {
@@ -243,27 +248,40 @@ public class BattleSystem : Skills {
         {
             rect_skills.localPosition = Vector3.Lerp(rect_skills.localPosition, new Vector3(0, -50, 0), Time.deltaTime * 5);
         }
-        
+        if(!Mathf.Approximately(fadeScreen.color.a, fadeToAphaValue))
+        {
+            fadeScreen.color = Color.Lerp(fadeScreen.color, new Color(fadeScreen.color.r, fadeScreen.color.g, fadeScreen.color.b, fadeToAphaValue), Time.deltaTime * 2);
+        }
+
     }
 
     void StartTurn()
     {
-        Message.instance.NewMessage("¡Tu turno!");
+        Message.instance.NewMessage(Lenguaje.Instance.Text_YourTurn());
         yourTurn = true;
     }
 
-    public void EndOsu()
+    public void EndMinigame()
     {
-        print("Osu resuelto. Errores: " + osuFails.ToString());
-        DoSkill(SkillResolve(lastSkill_ID, myStats, enemyStats, osuFails));
-        osuFails = 0;
+        FadeAlpha(0);
+        print("Osu resuelto. Errores: " + minigameFails.ToString());
+        DoSkill(SkillResolve(lastSkill_ID, myStats, enemyStats, minigameFails));
+        minigameFails = 0;
+        StartTurn();
     }
 
     void LanzarSkill(int ID_skill)
     {
         if (yourTurn) {
+            Message.instance.NewMessage(Lenguaje.Instance.SkillNameByID(ID_skill));
             yourTurn = false;
-            OsuSystem.instance.Bolas();
+            FadeAlpha(0.5f);
+            switch (SkillClassByID(ID_skill))
+            {
+                case Skill_Class.Assassin: OsuSystem.instance.Bolas(); break;
+                case Skill_Class.Alpha:    TapFast.instance.Iniciar(); break;
+            }
+            
             lastSkill_ID = ID_skill;
         } 
     }
@@ -281,5 +299,9 @@ public class BattleSystem : Skills {
         float newHealthValue = myStats.health_now + value;
         myStats.health_now = Mathf.Clamp(newHealthValue, 0, myStats.health_base);
     }
+
+
+
+    
 
 }

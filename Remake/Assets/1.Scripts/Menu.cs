@@ -293,11 +293,4 @@ public class Menu : MonoBehaviour {
     }
 
 
-    void SetStringsMainMenu()
-    {
-        Transform mainMenu_transform = transform.Find("MAIN_MENU");
-        mainMenu_transform.Find("play_BTN").Find("Text").GetComponent<Text>().text = Lenguaje.Instance.play;
-        mainMenu_transform.Find("nest_BTN").Find("Text").GetComponent<Text>().text = Lenguaje.Instance.nest;
-        mainMenu_transform.Find("shop_BTN").Find("Text").GetComponent<Text>().text = Lenguaje.Instance.shop;
-    }
 }

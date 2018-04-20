@@ -9,12 +9,6 @@ public class Lenguaje : MonoBehaviour {
 
     bool spanish_language;
 
-    /// TEXTOS DEL JUEGO:
-    [HideInInspector]
-    public string play, nest, shop, exit, 
-    health, attack, skill, luck;
-
-
     void Awake()
     {
         Instance = this;
@@ -42,6 +36,7 @@ public class Lenguaje : MonoBehaviour {
                 case 1  : name = "Puñetazo";        break;
                 case 2  : name = "Golpe mortal";    break;
                 case 3  : name = "Embestida";       break;
+                case 11 : name = "Golpe Testeo";    break;
                 case 40 : name = "Curación";        break;
             }
         } else {
@@ -56,6 +51,13 @@ public class Lenguaje : MonoBehaviour {
         }
         
         return name;
+    }
+
+    public string Text_YourTurn()
+    {
+        string text = "";
+        if (spanish_language) text = "¡Tu turno!"; else text = "Your turn!";
+        return text;
     }
 
 }

@@ -8,7 +8,7 @@ namespace Enums {
     public enum Equip_Position { Head, Body, Arms, Legs, Back, None };
     public enum Quality { Common, Rare, Epic, Legendary };
     public enum Stat { Strenght, Health, Skill, Luck};
-    public enum Class { Assassin, Pacifist, Charming, Alpha};
+    public enum Skill_Class { Assassin, Pacifist, Charming, Alpha};
     public enum Skill_Type { Attack, Spell, Buff, Heal };
     public enum Speed { Slow, Normal, Fast};
 }
@@ -119,7 +119,7 @@ public class Skill
     public int ID;
     public string name;
     public string description;
-    public Class s_class;
+    public Skill_Class s_class;
     public Skill_Type s_type;
 }
 
