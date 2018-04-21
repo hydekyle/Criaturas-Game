@@ -13,7 +13,12 @@ public class TapFast : MonoBehaviour {
 
     public void Iniciar()
     {
-        print("Iniciamos la verga");
+        GameOn();
+    }
+
+    void GameOn()
+    {
+        transform.Find("TapBase").gameObject.SetActive(true);
     }
 
 }

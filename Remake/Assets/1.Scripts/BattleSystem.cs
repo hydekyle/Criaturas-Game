@@ -264,7 +264,7 @@ public class BattleSystem : Skills {
     public void EndMinigame()
     {
         FadeAlpha(0);
-        print("Osu resuelto. Errores: " + minigameFails.ToString());
+        print("Errores: " + minigameFails.ToString());
         DoSkill(SkillResolve(lastSkill_ID, myStats, enemyStats, minigameFails));
         minigameFails = 0;
         StartTurn();

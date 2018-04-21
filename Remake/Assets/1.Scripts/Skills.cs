@@ -46,7 +46,7 @@ public class Skills : MonoBehaviour{
         };
     }
 
-    public Skill_Class SkillClassByID(int ID_skill)
+    public Skill_Class SkillClassByID(int ID_skill) //Solo 10 habilidades por clase.
     {
         if (ID_skill < 10) return Skill_Class.Assassin;
         else if (ID_skill < 20) return Skill_Class.Alpha;
