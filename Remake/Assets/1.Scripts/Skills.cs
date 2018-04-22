@@ -75,18 +75,10 @@ public class Skills : MonoBehaviour{
         return skill_list.Find(sk => sk.ID == ID);
     }
 
-    public Skill_Class SkillClassByID(int ID_skill) //Solo 10 habilidades por clase.
+    public Skill_Class SkillClassByID(int ID_skill)
     {
-        if (ID_skill < 20) return Skill_Class.Assassin;
-        else if (ID_skill < 40) return Skill_Class.Alpha;
-        else if (ID_skill < 60) return Skill_Class.Charming;
-        else if (ID_skill < 80) return Skill_Class.Pacifist;
-
-        return Skill_Class.Assassin;
+        return SkillByID(ID_skill).s_class;
     }
-
-
-
 
 }
 
