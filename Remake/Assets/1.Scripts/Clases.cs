@@ -114,11 +114,14 @@ public class Player
     public Criatura criatura;
 }
 
+[Serializable]
 public class Skill
 {
     public int ID;
-    public string name;
-    public string description;
+    public string name_spanish;
+    public string name_english;
+    public string description_spanish;
+    public string description_english;
     public Skill_Class s_class;
     public Skill_Type s_type;
 }

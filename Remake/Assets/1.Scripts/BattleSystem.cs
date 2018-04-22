@@ -4,7 +4,7 @@ using UnityEngine;
 using Enums;
 using UnityEngine.UI;
 
-public class BattleSystem : Skills {
+public class BattleSystem : MonoBehaviour {
 
 
 
@@ -265,7 +265,7 @@ public class BattleSystem : Skills {
     {
         FadeAlpha(0);
         print("Errores: " + minigameFails.ToString());
-        DoSkill(SkillResolve(lastSkill_ID, myStats, enemyStats, minigameFails));
+        DoSkill(Skills.instance.SkillResolve(lastSkill_ID, myStats, enemyStats, minigameFails));
         minigameFails = 0;
         StartTurn();
     }
@@ -276,7 +276,7 @@ public class BattleSystem : Skills {
             Message.instance.NewMessage(Lenguaje.Instance.SkillNameByID(ID_skill));
             yourTurn = false;
             FadeAlpha(0.5f);
-            switch (SkillClassByID(ID_skill))
+            switch (Skills.instance.SkillClassByID(ID_skill))
             {
                 case Skill_Class.Assassin: OsuSystem.instance.Bolas(); break;
                 case Skill_Class.Alpha:    TapFast.instance.Iniciar(); break;

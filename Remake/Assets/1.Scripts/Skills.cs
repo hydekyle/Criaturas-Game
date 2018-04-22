@@ -5,12 +5,36 @@ using Enums;
 
 public class Skills : MonoBehaviour{
 
+    public static Skills instance;
+
+    public List<Skill> skill_list_assassin;
+    public List<Skill> skill_list_alpha;
+    public List<Skill> skill_list_charming;
+    public List<Skill> skill_list_pacifist;
+
+    List<Skill> skill_list = new List<Skill>();
+
+    void Awake()
+    {
+        instance = this;
+        Inicialize();
+    }
+
+
+    private void Inicialize()
+    {
+        foreach (Skill s in skill_list_assassin) skill_list.Add(s);
+        foreach (Skill s in skill_list_alpha)    skill_list.Add(s);
+        foreach (Skill s in skill_list_charming) skill_list.Add(s);
+        foreach (Skill s in skill_list_pacifist) skill_list.Add(s);
+    }
+
     public Skill_Result SkillResolve(int ID_skill, Stats myStats, Stats enemyStats, int fails)
     {
         Skill_Result result = new Skill_Result();
         switch (ID_skill)
         {
-            case  0: result = Skill_0(myStats); break;
+            case  0: result = Skill_0 (myStats); break;
 
             case 11: result = Skill_11(myStats); break;
             case 40: result = Skill_40(myStats); break;
@@ -46,16 +70,22 @@ public class Skills : MonoBehaviour{
         };
     }
 
+    public Skill SkillByID(int ID)
+    {
+        return skill_list.Find(sk => sk.ID == ID);
+    }
+
     public Skill_Class SkillClassByID(int ID_skill) //Solo 10 habilidades por clase.
     {
-        if (ID_skill < 10) return Skill_Class.Assassin;
-        else if (ID_skill < 20) return Skill_Class.Alpha;
-        else if (ID_skill < 30) return Skill_Class.Charming;
-        else if (ID_skill < 40) return Skill_Class.Pacifist;
+        if (ID_skill < 20) return Skill_Class.Assassin;
+        else if (ID_skill < 40) return Skill_Class.Alpha;
+        else if (ID_skill < 60) return Skill_Class.Charming;
+        else if (ID_skill < 80) return Skill_Class.Pacifist;
 
         return Skill_Class.Assassin;
-
     }
+
+
 
 
 }

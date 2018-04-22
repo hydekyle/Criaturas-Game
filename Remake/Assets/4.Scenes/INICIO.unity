@@ -1639,6 +1639,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82e492cad4d6c944db0c1022c3570dfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skill_list_assassin: []
+  skill_list_alpha: []
+  skill_list_charming: []
+  skill_list_pacifist: []
   totalStats_player1: []
   totalStats_player2: []
   skill_buttons:
@@ -4324,6 +4328,7 @@ GameObject:
   - component: {fileID: 1236433746}
   - component: {fileID: 1236433747}
   - component: {fileID: 1236433748}
+  - component: {fileID: 1236433749}
   m_Layer: 0
   m_Name: '[GameManager]'
   m_TagString: Untagged
@@ -4787,7 +4792,7 @@ MonoBehaviour:
     nombre: Cuerpo 1
     quality: 0
     addStat: []
-    skills_ID: 00000000
+    skills_ID: 15000000
   - ID: 201
     nombre: Cuerpo 2
     quality: 0
@@ -5103,7 +5108,7 @@ MonoBehaviour:
     nombre: Brazos 1
     quality: 0
     addStat: []
-    skills_ID: 28000000
+    skills_ID: 46000000
   - ID: 301
     nombre: Brazos 2
     quality: 0
@@ -5329,7 +5334,7 @@ MonoBehaviour:
     nombre: Piernas 1
     quality: 0
     addStat: []
-    skills_ID: 0b000000
+    skills_ID: 15000000
   - ID: 401
     nombre: Piernas 2
     quality: 0
@@ -5637,6 +5642,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63882cd5c7f06e549bfa9a5dec496b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1236433749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1236433743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a56088058b8a8ef4fb0c05f1c902ec92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skill_list_assassin:
+  - ID: 0
+    name_spanish: Tortazo
+    name_english: Swipe
+    description_spanish: 
+    description_english: 
+    s_class: 0
+    s_type: 0
+  - ID: 1
+    name_spanish: "Pu\xF1o"
+    name_english: Punch
+    description_spanish: 
+    description_english: 
+    s_class: 0
+    s_type: 0
+  skill_list_alpha:
+  - ID: 21
+    name_spanish: Golpe Testeo
+    name_english: Testing Strike
+    description_spanish: 
+    description_english: 
+    s_class: 3
+    s_type: 0
+  skill_list_charming: []
+  skill_list_pacifist:
+  - ID: 70
+    name_spanish: "Curaci\xF3n"
+    name_english: Heal
+    description_spanish: 
+    description_english: 
+    s_class: 1
+    s_type: 3
 --- !u!1 &1281140857
 GameObject:
   m_ObjectHideFlags: 0

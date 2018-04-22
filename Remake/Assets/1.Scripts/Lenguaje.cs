@@ -29,26 +29,11 @@ public class Lenguaje : MonoBehaviour {
     public string SkillNameByID(int ID)
     {
         string name = "";
-        if (spanish_language){
-            switch (ID)
-            {
-                case 0  : name = "Tortazo";         break;
-                case 1  : name = "Puñetazo";        break;
-                case 2  : name = "Golpe mortal";    break;
-                case 3  : name = "Embestida";       break;
-                case 11 : name = "Golpe Testeo";    break;
-                case 40 : name = "Curación";        break;
-            }
-        } else {
-            switch (ID)
-            {
-                case 0  : name = "Swipe";       break;
-                case 1  : name = "Punch";       break;
-                case 2  : name = "Death blow";  break;
-                case 3  : name = "Charge";      break;
-                case 40 : name = "Heal";        break;
-            }
-        }
+        try
+        {
+            if (spanish_language) name = Skills.instance.SkillByID(ID).name_spanish;
+                             else name = Skills.instance.SkillByID(ID).name_english;
+        }catch { name = "Null"; }
         
         return name;
     }
