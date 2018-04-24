@@ -349,6 +349,8 @@
     <Compile Include="Assets\1.Scripts\Skills.cs" />
     <Compile Include="Assets\1.Scripts\TapFast.cs" />
     <Compile Include="Assets\1.Scripts\TapGame.cs" />
+    <Compile Include="Assets\AccuracyMoon.cs" />
+    <Compile Include="Assets\AccuracySystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Resources\BodyBounds\200.txt" />

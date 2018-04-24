@@ -67,6 +67,8 @@
      <Compile Include="Assets\1.Scripts\Skills.cs" />
      <Compile Include="Assets\1.Scripts\TapFast.cs" />
      <Compile Include="Assets\1.Scripts\TapGame.cs" />
+     <Compile Include="Assets\AccuracyMoon.cs" />
+     <Compile Include="Assets\AccuracySystem.cs" />
      <None Include="Assets\Resources\FixedScale\127.txt" />
      <None Include="Assets\Resources\FixedScale\415.txt" />
      <None Include="Assets\Resources\FixedScale\435.txt" />
