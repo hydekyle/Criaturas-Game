@@ -333,6 +333,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\1.Scripts\AccuracyMoon.cs" />
+    <Compile Include="Assets\1.Scripts\AccuracySystem.cs" />
     <Compile Include="Assets\1.Scripts\BattleSystem.cs" />
     <Compile Include="Assets\1.Scripts\CanvasBase.cs" />
     <Compile Include="Assets\1.Scripts\Clases.cs" />
@@ -349,8 +351,6 @@
     <Compile Include="Assets\1.Scripts\Skills.cs" />
     <Compile Include="Assets\1.Scripts\TapFast.cs" />
     <Compile Include="Assets\1.Scripts\TapGame.cs" />
-    <Compile Include="Assets\AccuracyMoon.cs" />
-    <Compile Include="Assets\AccuracySystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Resources\BodyBounds\200.txt" />

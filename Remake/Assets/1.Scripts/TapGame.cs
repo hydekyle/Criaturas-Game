@@ -48,7 +48,7 @@ public class TapGame : MonoBehaviour {
                 float f = 10 - (10 * Mathf.Clamp((fillBar.fillAmount - minValue / maxValue) * 2, 0f, 1f));
                 BattleSystem.instance.minigameFails = (int)f;
                 BattleSystem.instance.EndMinigame();
-                gameObject.SetActive(false);
+                transform.parent.gameObject.SetActive(false);
             }
         }
     }

@@ -280,6 +280,7 @@ public class BattleSystem : MonoBehaviour {
             {
                 case Skill_Class.Assassin: OsuSystem.instance.Bolas(); break;
                 case Skill_Class.Alpha:    TapFast.instance.Iniciar(); break;
+                case Skill_Class.Charming: AccuracySystem.instance.Iniciar(); break;
                 default: OsuSystem.instance.Bolas(); break;
             }
             
