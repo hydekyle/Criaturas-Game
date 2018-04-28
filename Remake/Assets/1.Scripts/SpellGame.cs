@@ -9,7 +9,6 @@ public class SpellGame : MonoBehaviour {
     public LayerMask hitLayer;
     float angle = 0f;
 
-    RaycastHit hit;
     Transform circle;
     RectTransform rotor;
     RectTransform firstOne;
@@ -63,7 +62,7 @@ public class SpellGame : MonoBehaviour {
             }
             yield return new WaitForEndOfFrame();
         }
-        rotor.localRotation = Quaternion.Lerp(rotor.localRotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * velocidad);
+        rotor.localRotation = Quaternion.Euler(Vector3.zero);
         SpellSystem.instance.GoPatron(colocados, circle);
         firstOne.gameObject.SetActive(false);
     }
