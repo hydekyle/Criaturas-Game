@@ -13,12 +13,14 @@ public class SpellGame : MonoBehaviour {
     RectTransform rotor;
     Transform pointer;
     RectTransform firstOne;
+    GameObject trazo;
 
     void OnEnable()
     {
         pointer = pointer ?? transform.Find("Pointer");
         circle = circle ?? transform.Find("Circle");
         rotor = rotor ?? transform.Find("Rotor").GetComponent<RectTransform>();
+        trazo = trazo ?? transform.Find("Trazo").gameObject;
         firstOne = firstOne ?? rotor.GetChild(0).GetComponent<RectTransform>();
         rotor.localRotation = Quaternion.Euler(Vector3.zero);
         angle = 0;
@@ -48,7 +50,7 @@ public class SpellGame : MonoBehaviour {
     IEnumerator Giro()
     {
         float z = 0f;
-        int nBalls = 6 + dificultad;
+        int nBalls = 5 + dificultad;
         float porcion = 360 / nBalls;
         var inicialPorcion = porcion;
         byte colocados = 0;
@@ -65,7 +67,7 @@ public class SpellGame : MonoBehaviour {
             yield return new WaitForEndOfFrame();
         }
         rotor.localRotation = Quaternion.Euler(Vector3.zero);
-        SpellSystem.instance.GoPatron(colocados, circle, pointer, dificultad);
+        SpellSystem.instance.GoPatron(colocados, circle, pointer, dificultad, trazo);
         firstOne.gameObject.SetActive(false);
     }
 
@@ -74,6 +76,11 @@ public class SpellGame : MonoBehaviour {
         for(var x = 0; x < circle.childCount; x++)
         {
             Destroy(circle.GetChild(x).gameObject);
+        }
+        Transform trazos = circle.parent.Find("Trazado");
+        for(var x = 0; x < trazos.childCount; x++)
+        {
+            Destroy(trazos.GetChild(x).gameObject);
         }
     }
 
