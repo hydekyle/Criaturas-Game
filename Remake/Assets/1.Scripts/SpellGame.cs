@@ -11,10 +11,12 @@ public class SpellGame : MonoBehaviour {
 
     Transform circle;
     RectTransform rotor;
+    Transform pointer;
     RectTransform firstOne;
 
     void OnEnable()
     {
+        pointer = pointer ?? transform.Find("Pointer");
         circle = circle ?? transform.Find("Circle");
         rotor = rotor ?? transform.Find("Rotor").GetComponent<RectTransform>();
         firstOne = firstOne ?? rotor.GetChild(0).GetComponent<RectTransform>();
@@ -63,7 +65,7 @@ public class SpellGame : MonoBehaviour {
             yield return new WaitForEndOfFrame();
         }
         rotor.localRotation = Quaternion.Euler(Vector3.zero);
-        SpellSystem.instance.GoPatron(colocados, circle);
+        SpellSystem.instance.GoPatron(colocados, circle, pointer, dificultad);
         firstOne.gameObject.SetActive(false);
     }
 

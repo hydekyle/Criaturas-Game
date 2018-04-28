@@ -24,21 +24,40 @@ public class SpellSystem : MonoBehaviour {
         eventSystem = eventSystem ?? GetComponent<EventSystem>();
     }
 
-    public void GoPatron(int n, Transform circleT)
+    public void GoPatron(int n, Transform circleT, Transform pointerT, int dificultad)
     {
-        List<int> lista = new List<int>();
         List<int> lista2 = new List<int>();
-        lista.Add(n);
         for (var x = 0; x < n - 1; x++) lista2.Add(x);
         lista2 = lista2.OrderBy(x => Random.value).ToList();
-        foreach (int i in lista2) lista.Add(i);
-        Test(circleT, lista);
+        StartCoroutine(Test(circleT, lista2, pointerT, dificultad));
     }
 
-    void Test(Transform circle, List<int> code)
+    IEnumerator Test(Transform circle, List<int> code, Transform pointer, int dificultad)
     {
-        //circle.GetChild(code[0] - 1).gameObject.SetActive(false);
+        dificultad = Mathf.Clamp(dificultad, 2, 4);
+        pointer.localPosition = circle.GetChild(code.Count).localPosition;
+        float t = 0f;
+        Vector3 posInicial = circle.GetChild(code.Count).localPosition;
+
+        for (var x = 0; x < code.Count; x++)
+        {
+            Vector3 posFinal = circle.GetChild(code.IndexOf(x)).localPosition;
+
+            while (t < 1.0f)
+            {
+                pointer.localPosition = Vector3.Lerp(posInicial, posFinal, t);
+                t += Time.deltaTime * dificultad;
+                yield return new WaitForEndOfFrame();
+            }
+            t = 0f;
+            posInicial = posFinal;
+        }
+
+        
+        
     }
+
+
 
     void Update()
     {
