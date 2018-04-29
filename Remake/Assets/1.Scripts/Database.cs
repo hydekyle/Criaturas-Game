@@ -11,17 +11,34 @@ public class Database : MonoBehaviour {
     {
         instance = this;
         CheckGameFolders();
+        StartCoroutine(NewUser());
     }
 
-    IEnumerator Start()
+    IEnumerator NewUser()
     {
-        WWW itemsData = new WWW("http://localhost/CoolGame/users.php");
-        yield return itemsData;
-        string itemsDataString = itemsData.text;
-        //print(itemsDataString);
-        Items = itemsData.text.Split(';');
-        //print(GetDataValue(Items[0], "Name:"));
+        WWWForm form = new WWWForm();
+        form.AddField("key", "Yxp5mth3LFT-[-2!");
+        form.AddField("username", "El Boss3");
+        form.AddField("head", "3");
+        form.AddField("body", "4");
+        form.AddField("arms", "5");
+        form.AddField("legs", "6");
+        form.AddField("back", "7");
+        WWW www = new WWW("http://www.evolution-battle.com/EvolutionPortable/newPlayer.php", form);
+        yield return www;
+        print(www.text);
     }
+
+
+    //IEnumerator Start()
+    //{
+    //    WWW itemsData = new WWW("http://localhost/CoolGame/users.php");
+    //    yield return itemsData;
+    //    string itemsDataString = itemsData.text;
+    //    //print(itemsDataString);
+    //    Items = itemsData.text.Split(';');
+    //    //print(GetDataValue(Items[0], "Name:"));
+    //}
 
     string GetDataValue(string data, string index)
     {
