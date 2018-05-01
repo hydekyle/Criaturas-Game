@@ -10,6 +10,7 @@ public class SpellSystem : MonoBehaviour {
     GraphicRaycaster raycaster;
     EventSystem eventSystem;
     PointerEventData pointerData;
+    Transform spellGameT;
 
     public static SpellSystem instance;
 
@@ -22,7 +23,14 @@ public class SpellSystem : MonoBehaviour {
     {
         raycaster = raycaster ?? GetComponent<GraphicRaycaster>();
         eventSystem = eventSystem ?? GetComponent<EventSystem>();
+        spellGameT = spellGameT ?? transform.Find("SpellGame");
     }
+
+    public void Iniciar()
+    {
+        spellGameT.gameObject.SetActive(true);
+    }
+
 
     public void GoPatron(int n, Transform circleT, Transform pointerT, int dificultad, GameObject trazo)
     {
@@ -38,8 +46,6 @@ public class SpellSystem : MonoBehaviour {
         pointer.localPosition = circle.GetChild(code.Count).localPosition;
         float t = 0f;
         Vector3 posInicial = circle.GetChild(code.Count).localPosition;
-
-        
 
         for (var x = 0; x < code.Count; x++)
         {

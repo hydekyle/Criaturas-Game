@@ -5,21 +5,40 @@ using System.IO;
 
 public class Database : MonoBehaviour {
 
-    public string[] Items;
+    public string[] items;
     public static Database instance { get; set; }
     void Awake()
     {
         instance = this;
         CheckGameFolders();
-        StartCoroutine(NewUser());
+        StartCoroutine(ReadUser());
+    }
+
+    IEnumerator ReadUser()
+    {
+        string name = "'El Boss6'";
+        string query = "SELECT * FROM Players WHERE username=" + name;
+        WWWForm form = new WWWForm();
+        form.AddField("query", query);
+        WWW www = new WWW("http://www.evolution-battle.com/EvolutionPortable/HydeQuery.php", form);
+        yield return www;
+        items = www.text.Split(';');
+        print(GetItemValue(items[0], "USERNAME:"));
+    }
+
+    string GetItemValue(string item, string value)
+    {
+        string data = item.Substring(item.IndexOf(value) + value.Length);
+        if (data.Contains("|")) data.Remove(data.IndexOf("|"));
+        return data;
     }
 
     IEnumerator NewUser()
     {
         WWWForm form = new WWWForm();
         form.AddField("key", "Yxp5mth3LFT-[-2!");
-        form.AddField("username", "El Boss3");
-        form.AddField("head", "3");
+        form.AddField("username", "El Boss6");
+        form.AddField("head", "99");
         form.AddField("body", "4");
         form.AddField("arms", "5");
         form.AddField("legs", "6");
