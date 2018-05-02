@@ -7,7 +7,7 @@ using Enums;
 
 public class Items : MonoBehaviour {
 
-    string texturesWebFolder = "https://www.evolution-battle.com/EvolutionPortable/Texturas";
+    //string texturesWebFolder = "https://www.evolution-battle.com/EvolutionPortable/Texturas";
 
 
     public static Items instance;
@@ -59,14 +59,20 @@ public class Items : MonoBehaviour {
 
         switch (listNumber)
         {
-            case 1: localizador = "/Headgear/Cabeza" + spriteNumber + ".png"; break;
-            case 2: localizador = "/Bodies/Cuerpo" + spriteNumber + ".png"; break;
-            case 3: localizador = "/Arms/Brazo" + spriteNumber + ".png"; break;
-            case 4: localizador = "/Legs/Piernas" + spriteNumber + ".png"; break;
-            case 5: localizador = "/Backs/Traseras" + spriteNumber + ".png"; break;
-            case 6: localizador = "/Weapons/Arma" + spriteNumber + ".png"; break;
+            case 1: localizador = "/Headgear/Cabeza" + spriteNumber; break;
+            case 2: localizador = "/Bodies/Cuerpo"   + spriteNumber; break;
+            case 3: localizador = "/Arms/Brazo"      + spriteNumber; break;
+            case 4: localizador = "/Legs/Piernas"    + spriteNumber; break;
+            case 5: localizador = "/Backs/Traseras"  + spriteNumber; break;
+            case 6: localizador = "/Weapons/Arma"    + spriteNumber; break;
         }
 
+        Texture2D texture = (Texture2D)Resources.Load("Piezas" + localizador);
+        print(texture.name);
+        Sprite mySprite = Sprite.Create(texture, new Rect(0f, 0f, texture.width, texture.height), Vector2.zero);
+        result(mySprite);
+        yield return new WaitForEndOfFrame();
+        /*  CARGAR TEXTURAS ONLINE SI NO EXISTEN (FUNCIÓN DESCARTADA)
         if (File.Exists(Application.persistentDataPath + localizador))
         {
             byte[] bytes = File.ReadAllBytes(Application.persistentDataPath + localizador);
@@ -84,8 +90,7 @@ public class Items : MonoBehaviour {
             try { File.WriteAllBytes(Application.persistentDataPath + localizador, bytes);} catch { print("Espacio en disco insuficiente"); }
             Sprite mySprite = Sprite.Create(texture, new Rect(0f, 0f, texture.width, texture.height), Vector2.zero);
             result(mySprite);
-        }
-        yield return new WaitForEndOfFrame();
+        }*/
     }
 
 

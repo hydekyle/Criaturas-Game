@@ -192,3 +192,7 @@ C:\Users\Toor\Documents\1.HYDEKYLE\GitHub\Criaturas_Remake\Remake\Temp\bin\Debug
 C:\Users\Toor\Documents\1.HYDEKYLE\GitHub\Criaturas_Remake\Remake\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 C:\Users\Toor\Documents\1.HYDEKYLE\GitHub\Criaturas_Remake\Remake\obj\Debug\Assembly-CSharp.dll
 C:\Users\Toor\Documents\1.HYDEKYLE\GitHub\Criaturas_Remake\Remake\obj\Debug\Assembly-CSharp.pdb
+C:\Users\Toor\Documents\1.HYDEKYLE\GitHub\Criaturas_Remake\Remake\Temp\bin\Debug\Google.IOSResolver_v1.2.61.0.dll
+C:\Users\Toor\Documents\1.HYDEKYLE\GitHub\Criaturas_Remake\Remake\Temp\bin\Debug\Google.JarResolver_v1.2.61.0.dll
+C:\Users\Toor\Documents\1.HYDEKYLE\GitHub\Criaturas_Remake\Remake\Temp\bin\Debug\Google.VersionHandler.dll
+C:\Users\Toor\Documents\1.HYDEKYLE\GitHub\Criaturas_Remake\Remake\Temp\bin\Debug\Google.VersionHandlerImpl_v1.2.61.0.dll

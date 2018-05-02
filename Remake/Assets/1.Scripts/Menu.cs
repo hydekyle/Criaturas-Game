@@ -18,10 +18,6 @@ public class Menu : MonoBehaviour {
         instance = this;
         visor_player1 = new Visor();
         visor_player2 = new Visor();
-    }
-
-    void Start()
-    {
         Initialize();
     }
 
@@ -29,7 +25,6 @@ public class Menu : MonoBehaviour {
     {
         visor_player1.myTransform = transform.Find("VISOR");
         visor_player2.myTransform = transform.Find("VISOR2");
-        
     }
 
     public void InitializeVisor(Visor visor, Vector3 visorPos, bool flip)
@@ -58,7 +53,7 @@ public class Menu : MonoBehaviour {
     IEnumerator Visualizar(Transform visor, Vector3 localPos, bool flip)
     {
         visor.localPosition = localPos;
-        yield return new WaitForSeconds(0.1f); // ¿?
+        yield return new WaitForEndOfFrame();
         if (flip) visor.rotation = Quaternion.Euler(0, 180, 0);
         visor.gameObject.SetActive(true);
     }
@@ -109,7 +104,6 @@ public class Menu : MonoBehaviour {
 
         loadedEquipment = e;
         ColocarPiezas(e, GetPlayerVisor(playerNumber));
-
     }
 
     void ColocarPiezas(Equipment e, Visor visor)
@@ -176,8 +170,6 @@ public class Menu : MonoBehaviour {
             visor.leg_left.rectTransform.localPosition  = Database.instance.LeerBodyBounds(e.body.ID).leg_left_POS + fixPosition;
             visor.leg_right.rectTransform.localPosition = Database.instance.LeerBodyBounds(e.body.ID).leg_right_POS + fix.customPosition_right;
             visor.leg_right.rectTransform.localRotation = Quaternion.Euler(fix.customRotation_right);
-            
-            
         }
         else
         {
@@ -187,9 +179,6 @@ public class Menu : MonoBehaviour {
             visor.leg_right.rectTransform.localPosition = Database.instance.LeerBodyBounds(e.body.ID).leg_right_POS;
             visor.leg_right.rectTransform.localRotation = Quaternion.Euler(Vector3.zero);
         }
-
-
-
     }
 
     void SaveLegsScale()
@@ -257,7 +246,8 @@ public class Menu : MonoBehaviour {
         else { visor = visor_player2; }
         return visor;
     }
-    
+
+#if UNITY_EDITOR
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.G))
@@ -272,25 +262,7 @@ public class Menu : MonoBehaviour {
         {
             SaveLegsScale();
         }
-    } //ONLY FOR EDITION PURPOSE
-
-
-    //BOTONES MENÚ
-
-    public void BTN_Play()
-    {
-        print("play");
     }
-
-    public void BTN_Nest()
-    {
-        print("nest");
-    }
-
-    public void BTN_Shop()
-    {
-        print("shop");
-    }
-
+#endif
 
 }

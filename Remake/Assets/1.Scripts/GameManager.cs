@@ -90,9 +90,10 @@ public class GameManager : MonoBehaviour {
 
     public IEnumerator MostrarJugador(Player playerP, int visorN, Vector3 visorPosition, bool flip)
     {
-        StartCoroutine(Menu.instance.VisualizarEquipamiento(playerP.criatura.equipment, visorN));
-        yield return null;
         Menu.instance.InitializeVisor(Menu.instance.GetPlayerVisor(visorN), visorPosition, flip);
+        yield return null;
+        StartCoroutine(Menu.instance.VisualizarEquipamiento(playerP.criatura.equipment, visorN));
+        
     }
 
     void Update()

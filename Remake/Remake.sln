@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2015
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Remake.CSharp", "Remake.CSharp.csproj", "{C15DC302-1D46-9759-C3B3-734A386516EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Remake.CSharp.Editor", "Remake.CSharp.Editor.csproj", "{9E271FD6-10E8-0F81-AD8E-E2408C0D671E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{C15DC302-1D46-9759-C3B3-734A386516EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C15DC302-1D46-9759-C3B3-734A386516EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C15DC302-1D46-9759-C3B3-734A386516EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E271FD6-10E8-0F81-AD8E-E2408C0D671E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E271FD6-10E8-0F81-AD8E-E2408C0D671E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E271FD6-10E8-0F81-AD8E-E2408C0D671E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E271FD6-10E8-0F81-AD8E-E2408C0D671E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
