@@ -25,7 +25,6 @@ public class SpellGame : MonoBehaviour {
         rotor.localRotation = Quaternion.Euler(Vector3.zero);
         angle = 0;
         firstOne.gameObject.SetActive(true);
-        dificultad = Mathf.Clamp(dificultad, 1, 4);
         StartCoroutine(Giro());
     }
 
@@ -51,6 +50,7 @@ public class SpellGame : MonoBehaviour {
     {
         float z = 0f;
         int nBalls = 5 + dificultad;
+        nBalls = (int)Mathf.Clamp(nBalls, 5f, 7f);
         float porcion = 360 / nBalls;
         var inicialPorcion = porcion;
         byte colocados = 0;

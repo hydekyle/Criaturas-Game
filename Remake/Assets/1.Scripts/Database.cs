@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
+
+
 public class Database : MonoBehaviour {
 
     public string[] items;
     public static Database instance { get; set; }
+    
     void Awake()
     {
         instance = this;

@@ -5,6 +5,10 @@ using UnityEngine.SocialPlatforms;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using GooglePlayGames.BasicApi.Multiplayer;
+using Firebase;
+using Firebase.Unity.Editor;
+using Firebase.Database;
+using Firebase.Auth;
 
 public class CanvasBase : MonoBehaviour {
 
@@ -17,7 +21,9 @@ public class CanvasBase : MonoBehaviour {
     static InvitationReceivedDelegate invitationDelegate;
     static MatchDelegate matchDelegate;
 
-    void Start()
+    public class objetos { public List<string> items; public string nombre; }
+
+    void Awake()
     {
         /*invitationDelegate = RecibirInvitacion;
         matchDelegate = RandomMatch;
@@ -32,13 +38,47 @@ public class CanvasBase : MonoBehaviour {
         start_menu = transform.Find("Start_Menu");
         equipment = transform.Find("Equipamiento");
         battleIA = transform.Find("BattleIA");
-        Conectarse();
+        ConectarseGooglePlay();
     }
 
-    void Conectarse()
+    void LogFirebaseTEST()
+    {
+        Message.instance.NewMessage("Intentandolo");
+        FirebaseAuth.DefaultInstance.SignInWithEmailAndPasswordAsync("hydekyle706@gmail.com", "adrian").ContinueWith((obj) =>
+        {
+            Message.instance.NewMessage("Conectado");
+            List<string> temp = new List<string>();
+            temp.Add("1111111111");
+            temp.Add("2222222222");
+
+            DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference;
+
+            objetos userInfo = new objetos() { items = temp, nombre = "Ayoze from Android" };
+            string json = JsonUtility.ToJson(userInfo);
+
+            reference.Child("Inventario").Child(Social.localUser.id).SetRawJsonValueAsync(json).ContinueWith((obj2) =>
+            {
+                if (obj2.IsCompleted)
+                {
+                    Message.instance.NewMessage("Info Db completed");
+                }
+
+            });
+        });
+
+    }
+
+    bool IsUserLogged()
+    {
+        return FirebaseAuth.DefaultInstance.CurrentUser != null;
+    }
+
+
+    void ConectarseGooglePlay()
     {
         Social.Active.Authenticate(Social.localUser, (bool success) => {
             if (success) Message.instance.NewMessage("Hola " + Social.localUser.userName); else Message.instance.NewMessage("No conectado");
+            LogFirebaseTEST();
         });
     }
 
@@ -77,10 +117,11 @@ public class CanvasBase : MonoBehaviour {
 
     public void BTN_LOGROS()
     {
-        Social.ShowAchievementsUI();
+        //Social.ShowAchievementsUI();
+        
         if (Social.localUser.authenticated)
         {
-            
+            LogFirebaseTEST();
         }
     }
 

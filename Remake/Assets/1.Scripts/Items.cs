@@ -68,7 +68,6 @@ public class Items : MonoBehaviour {
         }
 
         Texture2D texture = (Texture2D)Resources.Load("Piezas" + localizador);
-        print(texture.name);
         Sprite mySprite = Sprite.Create(texture, new Rect(0f, 0f, texture.width, texture.height), Vector2.zero);
         result(mySprite);
         yield return new WaitForEndOfFrame();
