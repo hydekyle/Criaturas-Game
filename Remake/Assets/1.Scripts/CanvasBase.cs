@@ -38,7 +38,17 @@ public class CanvasBase : MonoBehaviour {
         start_menu = transform.Find("Start_Menu");
         equipment = transform.Find("Equipamiento");
         battleIA = transform.Find("BattleIA");
+#if !UNITY_EDITOR
         ConectarseGooglePlay();
+#endif
+    }
+
+    void ConectarseGooglePlay()
+    {
+        Social.Active.Authenticate(Social.localUser, (bool success) => {
+            if (success) Message.instance.NewMessage("Hola " + Social.localUser.userName); else Message.instance.NewMessage("No conectado");
+            LogFirebaseTEST();
+        });
     }
 
     void LogFirebaseTEST()
@@ -74,13 +84,7 @@ public class CanvasBase : MonoBehaviour {
     }
 
 
-    void ConectarseGooglePlay()
-    {
-        Social.Active.Authenticate(Social.localUser, (bool success) => {
-            if (success) Message.instance.NewMessage("Hola " + Social.localUser.userName); else Message.instance.NewMessage("No conectado");
-            LogFirebaseTEST();
-        });
-    }
+    
 
     public void RandomMatch(TurnBasedMatch match, bool autoJoin)
     {

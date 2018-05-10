@@ -8,13 +8,17 @@ using System.Linq;
 public class SpellSystem : MonoBehaviour {
 
     public Sprite spr_on;
+    public Sprite spr_off;
 
     GraphicRaycaster raycaster;
     EventSystem eventSystem;
     PointerEventData pointerData;
     Transform spellGameT;
     string finalCode;
-
+    byte n = 0;
+    bool activeGame;
+    bool empezamos;
+    char lastChar;
     public static SpellSystem instance;
 
     void Awake()
@@ -27,6 +31,7 @@ public class SpellSystem : MonoBehaviour {
         raycaster = raycaster ?? GetComponent<GraphicRaycaster>();
         eventSystem = eventSystem ?? GetComponent<EventSystem>();
         spellGameT = spellGameT ?? transform.Find("SpellGame");
+        n = 0;
     }
 
     public void Iniciar()
@@ -46,10 +51,11 @@ public class SpellSystem : MonoBehaviour {
     IEnumerator Trazado(Transform circle, List<int> code, Transform pointer, int dificultad, GameObject trazo)
     {
         dificultad = Mathf.Clamp(dificultad, 2, 9);
+        pointer.gameObject.SetActive(true);
         pointer.localPosition = circle.GetChild(code.Count).localPosition;
         float t = 0f;
         Vector3 posInicial = circle.GetChild(code.Count).localPosition;
-        Encender(code.Count, circle);
+        Encender(code.Count, circle); //Enciende el primer círculo (que es el último de la lista)
         for (var x = 0; x < code.Count; x++)
         {
             Vector3 posFinal;
@@ -76,7 +82,9 @@ public class SpellSystem : MonoBehaviour {
             t = 0f;
             posInicial = posFinal;
         }
-
+        RemoverTrazado();
+        ApagarTodas();
+        activeGame = true;
     }
 
     void Encender(int n, Transform circle)
@@ -86,14 +94,39 @@ public class SpellSystem : MonoBehaviour {
             circle.Find(n.ToString()).GetComponent<Image>().sprite = spr_on;
         }catch
         {
-            print("Final del circuito");
+            print("Final del circuito?");
         }
-        
+    }
+
+    void Encender(char c, Transform circle)
+    {
+        try
+        {
+            circle.Find(c.ToString()).GetComponent<Image>().sprite = spr_on;
+        }
+        catch{}
+    }
+
+    void ApagarTodas()
+    {
+        spellGameT.Find("Pointer").gameObject.SetActive(false);
+        foreach (Transform t in spellGameT.Find("Circle"))
+        {
+            t.GetComponent<Image>().sprite = spr_off;
+        }
+    }
+
+    void RemoverTrazado()
+    {
+        foreach(Transform t in spellGameT.Find("Trazado"))
+        {
+            Destroy(t.gameObject);
+        }
     }
 
     void Update()
     {
-        if (spellGameT.gameObject.activeSelf)
+        if (activeGame)
         {
             if (Input.GetMouseButton(0))
             {
@@ -103,18 +136,73 @@ public class SpellSystem : MonoBehaviour {
                 raycaster.Raycast(pointerData, results);
                 foreach (RaycastResult hit in results)
                 {
-                    LeerPuntero(hit.gameObject.name);
+                    char newChar = hit.gameObject.name.ToCharArray()[0];
+                    if(newChar != lastChar)
+                    {
+                        LeerPuntero(newChar);
+                        lastChar = newChar;
+                    }
                 }
+            }
+            if (Input.GetMouseButtonUp(0))
+            {
+                LaArmastes();
             }
         }
     }
 
-    void LeerPuntero(string name)
+    void LaArmastes()
     {
-        if(name.Length < 2)
+        print("LA ARMASTES");
+        ApagarTodas();
+        n = 0;
+        empezamos = false;
+    }
+
+    void LeerPuntero(char c)
+    {
+        print(finalCode + "    " + c);
+        if (n < finalCode.Length)
         {
-            print(name + "    " + finalCode);
+            if (empezamos)
+            {
+                if (c == finalCode.ElementAt(n))
+                {
+                    print("yeah");
+                    Encender(c, spellGameT.Find("Circle"));
+                    n++;
+                }
+                else
+                {
+                    LaArmastes();
+                }
+                if (n == finalCode.Length)
+                {
+                    EndGame();
+                }
+            } else if (c == finalCode.Length.ToString().ToCharArray()[0])
+            {
+                print("EEEEMPEZAMOS");
+                empezamos = true;
+                Encender(c, spellGameT.Find("Circle"));
+            }
+
         }
+
+    }
+
+    void EndGame()
+    {
+        print("CONGRATULATIONS");
+        lastChar = 'a';
+        empezamos = false;
+        n = 0;
+        finalCode = "";
+        activeGame = false;
+        BattleSystem.instance.minigameFails = 0;
+        BattleSystem.instance.EndMinigame();
+        spellGameT.gameObject.SetActive(false);
+
     }
 
 }

@@ -73,14 +73,13 @@ public class SpellGame : MonoBehaviour {
 
     void OnDisable()
     {
-        for(var x = 0; x < circle.childCount; x++)
+        foreach(Transform t in transform.Find("Trazado"))
         {
-            Destroy(circle.GetChild(x).gameObject);
+            Destroy(t.gameObject);
         }
-        Transform trazos = circle.parent.Find("Trazado");
-        for(var x = 0; x < trazos.childCount; x++)
+        foreach(Transform t in transform.Find("Circle"))
         {
-            Destroy(trazos.GetChild(x).gameObject);
+            Destroy(t.gameObject);
         }
     }
 
