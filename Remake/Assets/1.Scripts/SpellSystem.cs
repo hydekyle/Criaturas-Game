@@ -20,6 +20,7 @@ public class SpellSystem : MonoBehaviour {
     bool empezamos;
     char lastChar;
     public static SpellSystem instance;
+    Transform particulasT;
 
     void Awake()
     {
@@ -134,6 +135,7 @@ public class SpellSystem : MonoBehaviour {
                 pointerData.position = Input.mousePosition;
                 List<RaycastResult> results = new List<RaycastResult>();
                 raycaster.Raycast(pointerData, results);
+                
                 foreach (RaycastResult hit in results)
                 {
                     char newChar = hit.gameObject.name.ToCharArray()[0];

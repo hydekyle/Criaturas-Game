@@ -45,4 +45,17 @@ public class Lenguaje : MonoBehaviour {
         return text;
     }
 
+    public string Text_InfoButton(bool activeStatus)
+    {
+        string text = "";
+        if (activeStatus)
+        {
+            if (spanish_language) text = "Cerrar info"; else text = "Close info";
+        }else
+        {
+            if (spanish_language) text = "Abrir info"; else text = "Open info";
+        }
+        return text;
+    }
+
 }

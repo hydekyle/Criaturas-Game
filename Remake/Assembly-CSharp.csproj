@@ -695,6 +695,9 @@
  <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
  <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/2015/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
  </Reference>
+ <Reference Include="Firebase.Editor">
+ <HintPath>C:/Users/Toor/Documents/1.HYDEKYLE/GitHub/Criaturas_Remake/Remake/Assets/Firebase/Editor/Firebase.Editor.dll</HintPath>
+ </Reference>
  <Reference Include="Firebase.Analytics">
  <HintPath>C:/Users/Toor/Documents/1.HYDEKYLE/GitHub/Criaturas_Remake/Remake/Assets/Firebase/Plugins/Firebase.Analytics.dll</HintPath>
  </Reference>
@@ -728,8 +731,17 @@
  <Reference Include="Unity.Tasks">
  <HintPath>C:/Users/Toor/Documents/1.HYDEKYLE/GitHub/Criaturas_Remake/Remake/Assets/Parse/Plugins/Unity.Tasks.dll</HintPath>
  </Reference>
+ <Reference Include="Google.IOSResolver_v1.2.64.0">
+ <HintPath>C:/Users/Toor/Documents/1.HYDEKYLE/GitHub/Criaturas_Remake/Remake/Assets/PlayServicesResolver/Editor/Google.IOSResolver_v1.2.64.0.dll</HintPath>
+ </Reference>
+ <Reference Include="Google.JarResolver_v1.2.64.0">
+ <HintPath>C:/Users/Toor/Documents/1.HYDEKYLE/GitHub/Criaturas_Remake/Remake/Assets/PlayServicesResolver/Editor/Google.JarResolver_v1.2.64.0.dll</HintPath>
+ </Reference>
  <Reference Include="Google.VersionHandler">
  <HintPath>C:/Users/Toor/Documents/1.HYDEKYLE/GitHub/Criaturas_Remake/Remake/Assets/PlayServicesResolver/Editor/Google.VersionHandler.dll</HintPath>
+ </Reference>
+ <Reference Include="Google.VersionHandlerImpl_v1.2.64.0">
+ <HintPath>C:/Users/Toor/Documents/1.HYDEKYLE/GitHub/Criaturas_Remake/Remake/Assets/PlayServicesResolver/Editor/Google.VersionHandlerImpl_v1.2.64.0.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Advertisements">
  <HintPath>C:/ProgramData/Unity/cache/packages/packages.unity.com/com.unity.ads@0.0.18/UnityEngine.Advertisements.dll</HintPath>

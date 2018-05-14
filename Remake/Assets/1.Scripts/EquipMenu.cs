@@ -228,4 +228,11 @@ public class EquipMenu : MonoBehaviour {
         }
     }
 
+    public void BTN_EQUIP_INFO()
+    {
+        GameObject info_window = transform.Find("Info").gameObject;
+        info_window.SetActive(info_window.activeSelf ? false : true);
+        //transform.Find("Open_Info").Find("Text").GetComponent<Text>().text = Lenguaje.Instance.Text_InfoButton(info_window.activeSelf);
+    }
+
 }

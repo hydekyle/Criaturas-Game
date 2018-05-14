@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour {
                 ID = 0
             }
         };
-        StartCoroutine(MostrarJugador(player, 1, new Vector3(120, 40, -1), false));
+        StartCoroutine(MostrarJugador(player, 1, new Vector3(10, 66, -1), false));
     }
 
     public IEnumerator MostrarJugador(Player playerP, int visorN, Vector3 visorPosition, bool flip)
@@ -94,31 +94,6 @@ public class GameManager : MonoBehaviour {
         yield return null;
         StartCoroutine(Menu.instance.VisualizarEquipamiento(playerP.criatura.equipment, visorN));
         
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            AdelanteHeadgear();
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            AdelanteBody();
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            AdelanteArms();
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            AdelanteLegs();
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            AdelanteBack();
-        }
-
     }
 
     void AdelanteHeadgear()

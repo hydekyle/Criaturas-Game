@@ -82,8 +82,6 @@ public class CanvasBase : MonoBehaviour {
     {
         return FirebaseAuth.DefaultInstance.CurrentUser != null;
     }
-
-
     
 
     public void RandomMatch(TurnBasedMatch match, bool autoJoin)
@@ -135,4 +133,5 @@ public class CanvasBase : MonoBehaviour {
         equipment.gameObject.SetActive(false);
         start_menu.gameObject.SetActive(true);
     }
+
 }

@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Enums;
 using UnityEngine.UI;
+using GooglePlayGames;
+using GooglePlayGames.BasicApi;
+using GooglePlayGames.BasicApi.Multiplayer;
+using UnityEngine.SocialPlatforms;
 
-public class BattleSystem : MonoBehaviour {
+public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
 
 
 
@@ -86,7 +90,7 @@ public class BattleSystem : MonoBehaviour {
         #endregion
         player1 = GameManager.instance.player;
         player2 = ConstruirIA();
-        
+
 
         StartCoroutine(GameManager.instance.MostrarJugador(player2, 2, new Vector3(120, 40, 0), false)); //Visualizar oponente
         Menu.instance.SetVisorPosition(1, new Vector3(-120, 40, -1), true); //Recolocar jugador 1
@@ -155,11 +159,11 @@ public class BattleSystem : MonoBehaviour {
             skill_buttons.body_button.myText.text = Lenguaje.Instance.SkillNameByID(skill_buttons.body_activable_skill_ID);
             skill_buttons.arms_button.myText.text = Lenguaje.Instance.SkillNameByID(skill_buttons.arms_activable_skill_ID);
             skill_buttons.legs_button.myText.text = Lenguaje.Instance.SkillNameByID(skill_buttons.legs_activable_skill_ID);
-        }catch
+        } catch
         {
             print("Falta setear habilidades");
         }
-        
+
     }  //Realizar al cambiar de turno
 
     Player ConstruirIA()
@@ -213,6 +217,49 @@ public class BattleSystem : MonoBehaviour {
         fadeToAphaValue = alphaValue;
     }
 
+    public void EndMinigame()
+    {
+        FadeAlpha(0);
+        print("Errores: " + minigameFails.ToString());
+        DoSkill(Skills.instance.SkillResolve(lastSkill_ID, myStats, enemyStats, minigameFails));
+        minigameFails = 0;
+        StartTurn();
+    }
+
+    void LanzarSkill(int ID_skill)
+    {
+        if (yourTurn)
+        {
+            Message.instance.NewMessage(Lenguaje.Instance.SkillNameByID(ID_skill));
+            yourTurn = false;
+            FadeAlpha(0.5f);
+            switch (Skills.instance.SkillClassByID(ID_skill))
+            {
+                case Skill_Class.Assassin: OsuSystem.instance.Bolas(); break;
+                case Skill_Class.Alpha: TapFast.instance.Iniciar(); break;
+                case Skill_Class.Charming: AccuracySystem.instance.Iniciar(); break;
+                case Skill_Class.Pacifist: SpellSystem.instance.Iniciar(); break;
+                default: OsuSystem.instance.Bolas(); break;
+            }
+
+            lastSkill_ID = ID_skill;
+        }
+    }
+
+    void DoSkill(Skill_Result result)
+    {
+        switch (result.s_type)
+        {
+            case Skill_Type.Heal: ApplyHeal(result.value); break;
+        }
+    }
+
+    void ApplyHeal(float value)
+    {
+        float newHealthValue = myStats.health_now + value;
+        myStats.health_now = Mathf.Clamp(newHealthValue, 0, myStats.health_base);
+    }
+
     #endregion
 
     #region Botones_Activables
@@ -244,11 +291,11 @@ public class BattleSystem : MonoBehaviour {
         if (yourTurn)
         {
             rect_skills.localPosition = Vector3.Lerp(rect_skills.localPosition, Vector3.zero, Time.deltaTime * 5);
-        }else
+        } else
         {
-            rect_skills.localPosition = Vector3.Lerp(rect_skills.localPosition, new Vector3(0, -50, 0), Time.deltaTime * 5);
+            rect_skills.localPosition = Vector3.Lerp(rect_skills.localPosition, new Vector3(0, -100, 0), Time.deltaTime * 5);
         }
-        if(!Mathf.Approximately(fadeScreen.color.a, fadeToAphaValue))
+        if (!Mathf.Approximately(fadeScreen.color.a, fadeToAphaValue))
         {
             fadeScreen.color = Color.Lerp(fadeScreen.color, new Color(fadeScreen.color.r, fadeScreen.color.g, fadeScreen.color.b, fadeToAphaValue), Time.deltaTime * 2);
         }
@@ -259,52 +306,54 @@ public class BattleSystem : MonoBehaviour {
     {
         Message.instance.NewMessage(Lenguaje.Instance.Text_YourTurn());
         yourTurn = true;
+        TestOnline();
     }
-
-    public void EndMinigame()
-    {
-        FadeAlpha(0);
-        print("Errores: " + minigameFails.ToString());
-        DoSkill(Skills.instance.SkillResolve(lastSkill_ID, myStats, enemyStats, minigameFails));
-        minigameFails = 0;
-        StartTurn();
-    }
-
-    void LanzarSkill(int ID_skill)
-    {
-        if (yourTurn) {
-            Message.instance.NewMessage(Lenguaje.Instance.SkillNameByID(ID_skill));
-            yourTurn = false;
-            FadeAlpha(0.5f);
-            switch (Skills.instance.SkillClassByID(ID_skill))
-            {
-                case Skill_Class.Assassin: OsuSystem.instance.Bolas(); break;
-                case Skill_Class.Alpha:    TapFast.instance.Iniciar(); break;
-                case Skill_Class.Charming: AccuracySystem.instance.Iniciar(); break;
-                case Skill_Class.Pacifist: SpellSystem.instance.Iniciar(); break;
-                default: OsuSystem.instance.Bolas(); break;
-            }
-            
-            lastSkill_ID = ID_skill;
-        } 
-    }
-
-    void DoSkill(Skill_Result result)
-    {
-        switch (result.s_type)
-        {
-            case Skill_Type.Heal: ApplyHeal(result.value); break;
-        }
-    }
-
-    void ApplyHeal(float value)
-    {
-        float newHealthValue = myStats.health_now + value;
-        myStats.health_now = Mathf.Clamp(newHealthValue, 0, myStats.health_base);
-    }
-
-
 
     
+
+    #region GOOGLE_PLAY_ONLINE
+    void TestOnline()
+    {
+        PlayGamesPlatform.Instance.RealTime.CreateQuickGame(1, 1, 0, this);
+        PlayGamesPlatform.Instance.RealTime.ShowWaitingRoomUI();
+    }
+
+    public void OnRoomConnected(bool success)
+    {
+        Message.instance.NewMessage("Room conectada");
+    }
+
+    public void OnRoomSetupProgress(float f)
+    {
+        Message.instance.NewMessage(f.ToString());
+    }
+
+    public void OnLeftRoom()
+    {
+
+    }
+
+    public void OnParticipantLeft(Participant p)
+    {
+
+    }
+
+    public void OnPeersConnected(string[] s)
+    {
+
+    }
+
+    public void OnPeersDisconnected(string[] s)
+    {
+
+    }
+
+    public void OnRealTimeMessageReceived(bool isReliable, string sender, byte[] byteArray)
+    {
+
+    }
+    #endregion
+
+
 
 }
