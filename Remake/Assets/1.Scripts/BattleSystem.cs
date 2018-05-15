@@ -330,12 +330,12 @@ public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
 
     public void OnLeftRoom()
     {
-
+        Message.instance.NewMessage("Abandono");
     }
 
     public void OnParticipantLeft(Participant p)
     {
-
+        Message.instance.NewMessage(p.DisplayName + " se ha ido");
     }
 
     public void OnPeersConnected(string[] s)
