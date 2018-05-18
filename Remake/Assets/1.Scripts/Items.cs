@@ -130,7 +130,7 @@ public class Items : MonoBehaviour {
     {
         GiveStat mejora = new GiveStat()
         {
-            stat_type = Stat.Skill,
+            stat_type = Stat.Dextery,
             value = value
         };
         return mejora;

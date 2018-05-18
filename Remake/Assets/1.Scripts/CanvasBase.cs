@@ -47,7 +47,7 @@ public class CanvasBase : MonoBehaviour {
     {
         Social.Active.Authenticate(Social.localUser, (bool success) => {
             if (success) Message.instance.NewMessage("Hola " + Social.localUser.userName); else Message.instance.NewMessage("No conectado");
-            LogFirebaseTEST();
+            //LogFirebaseTEST();
         });
     }
 

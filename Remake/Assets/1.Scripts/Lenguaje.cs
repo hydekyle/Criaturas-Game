@@ -58,4 +58,11 @@ public class Lenguaje : MonoBehaviour {
         return text;
     }
 
+    public string Text_HabilidadFallada()
+    {
+        string text = "";
+        if (spanish_language) text = "La habilidad ha fallado"; else text = "The skill has failed";
+        return text;
+    }
+
 }

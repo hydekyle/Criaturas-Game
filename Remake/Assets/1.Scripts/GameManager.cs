@@ -33,7 +33,12 @@ public class GameManager : MonoBehaviour {
                 criatura = new Criatura()
                 {
                     nombre = "Hyde Criatura",
+                    attack_att = 10,
+                    defense_att = 10,
+                    luck_att = 10,
+                    skill_att = 10,
                     equipment = new Equipment()
+                    
                     {
                         head = Items.instance.ItemByID(e.head.ID),
                         body = Items.instance.ItemByID(e.body.ID),
@@ -41,6 +46,8 @@ public class GameManager : MonoBehaviour {
                         legs = Items.instance.ItemByID(e.legs.ID),
                         back = Items.instance.ItemByID(e.back.ID)
                     }
+                    
+                   
                 }
             };
         }

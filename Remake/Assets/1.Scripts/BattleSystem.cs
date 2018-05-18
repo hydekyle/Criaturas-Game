@@ -37,7 +37,8 @@ public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
     public Stats enemyStats;
 
     public int minigameFails = 0;
-    int lastSkill_ID;
+    public int lastSkill_ID;
+    public int lastSkillOponent_ID;
 
     bool yourTurn;
     float fadeToAphaValue = 0;
@@ -144,6 +145,10 @@ public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
             health_base = 1000,
             skill_now = 10
         };
+        enemyStats = new Stats()
+        {
+            dizziness = 4
+        };
     }
 
     public void UpdateSkillButtons()
@@ -217,15 +222,6 @@ public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
         fadeToAphaValue = alphaValue;
     }
 
-    public void EndMinigame()
-    {
-        FadeAlpha(0);
-        print("Errores: " + minigameFails.ToString());
-        DoSkill(Skills.instance.SkillResolve(lastSkill_ID, myStats, enemyStats, minigameFails));
-        minigameFails = 0;
-        StartTurn();
-    }
-
     void LanzarSkill(int ID_skill)
     {
         if (yourTurn)
@@ -246,18 +242,33 @@ public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
         }
     }
 
+    public void EndMinigame()
+    {
+        FadeAlpha(0);
+        print("Errores: " + minigameFails.ToString());
+        Skill_Result result = Skills.instance.SkillResolve(lastSkill_ID, myStats, enemyStats, minigameFails); //RESOLVER SKILL
+        print(result);
+        minigameFails = 0;
+        StartTurn();
+    }
+
     void DoSkill(Skill_Result result)
     {
         switch (result.s_type)
         {
-            case Skill_Type.Heal: ApplyHeal(result.value); break;
+            case Skill_Type.Heal: ApplyHeal((int)result.value); break;
         }
     }
 
-    void ApplyHeal(float value)
+    void ApplyHeal(int value)
     {
-        float newHealthValue = myStats.health_now + value;
+        int newHealthValue = myStats.health_now + value;
         myStats.health_now = Mathf.Clamp(newHealthValue, 0, myStats.health_base);
+    }
+
+    public Player YourEnemy()
+    {
+        return player2;
     }
 
     #endregion
@@ -306,26 +317,50 @@ public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
     {
         Message.instance.NewMessage(Lenguaje.Instance.Text_YourTurn());
         yourTurn = true;
-        TestOnline();
+        if(Application.platform == RuntimePlatform.Android)
+        {
+            TestOnline();
+        }
+        
     }
-
-    
 
     #region GOOGLE_PLAY_ONLINE
     void TestOnline()
     {
-        PlayGamesPlatform.Instance.RealTime.CreateQuickGame(1, 1, 0, this);
+        PlayGamesPlatform.Instance.RealTime.CreateWithInvitationScreen(1, 1, 0, this);
         PlayGamesPlatform.Instance.RealTime.ShowWaitingRoomUI();
+        
+    }
+
+
+
+    public void GO_MATCHMAKING()
+    {
+        PlayGamesPlatform.Instance.RealTime.CreateQuickGame(1, 1, 0, this);
+    }
+
+    public void CheckInvitations()
+    {
+        PlayGamesPlatform.Instance.RealTime.GetAllInvitations((listener) => {
+            Message.instance.NewMessage("Tienes " + listener.Length + " invitaciones");
+        });
     }
 
     public void OnRoomConnected(bool success)
     {
-        Message.instance.NewMessage("Room conectada");
+        if (success)
+        {
+            string info = "Mirame y dime";
+            byte[] data = System.Text.Encoding.Default.GetBytes(info);
+            PlayGamesPlatform.Instance.RealTime.SendMessageToAll(true, data);
+        }
+        List<Participant> listaPersonas = PlayGamesPlatform.Instance.RealTime.GetConnectedParticipants();
+        Message.instance.NewMessage("Room conectada: " + success.ToString() + "  "+ listaPersonas.Count);
     }
 
     public void OnRoomSetupProgress(float f)
     {
-        Message.instance.NewMessage(f.ToString());
+        Message.instance.NewMessage("F: " + f);   
     }
 
     public void OnLeftRoom()
@@ -340,17 +375,17 @@ public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
 
     public void OnPeersConnected(string[] s)
     {
-
+        Message.instance.NewMessage(s.Length.ToString());
     }
 
     public void OnPeersDisconnected(string[] s)
     {
-
+        Message.instance.NewMessage(s.Length.ToString());
     }
 
     public void OnRealTimeMessageReceived(bool isReliable, string sender, byte[] byteArray)
     {
-
+        Message.instance.NewMessage("MENSAJE RECIBIDO");
     }
     #endregion
 

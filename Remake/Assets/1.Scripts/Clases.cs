@@ -7,10 +7,12 @@ using UnityEngine.UI;
 namespace Enums {
     public enum Equip_Position { Head, Body, Arms, Legs, Back, None };
     public enum Quality { Common, Rare, Epic, Legendary };
-    public enum Stat { Strenght, Health, Skill, Luck};
+    public enum Stat { Strenght, Health, Dextery, Luck};
     public enum Skill_Class { Assassin, Pacifist, Charming, Alpha};
     public enum Skill_Type { Attack, Spell, Buff, Heal };
     public enum Speed { Slow, Normal, Fast};
+    public enum Buffs { Attack, Dextery, Luck, Shield, Barrier}
+    public enum Debuffs { Attack, Dextery, Bleed, Poison, Dizziness, Confusion};
 }
 
 public struct BodyBounds
@@ -104,6 +106,10 @@ public class Criatura
     public string nombre;
     public Equipment equipment;
     public MySkylls skills;
+    public int attack_att;
+    public int defense_att;
+    public int skill_att;
+    public int luck_att;
 }
 
 [SerializeField]
@@ -112,6 +118,7 @@ public class Player
     public string ID;
     public string nombre;
     public Criatura criatura;
+    public PlayerStatus status;
 }
 
 [Serializable]
@@ -129,36 +136,78 @@ public class Skill
 public class Skill_Result : Skill
 {
     public float value;
+    public int bleed;
+    public int poison;
+    public int dizziness;
+    public int confusion;
+    public int myself_bleed;
+    public int myself_damage;
+    public int buff_attack;
+    public int buff_skill;
+    public int buff_luck;
+    public int buff_shield;
+    public int buff_barrier;
+    public float recoverHP;
+    public int cleans;
+    public int breakBarriers;
 }
 
 public class DataTurn
 {
-    byte turn_number;
-    int used_skill;
-    int power_skill;
-    Skill_Type s_type;
+    public byte turn_number;
+    public int used_skill;
+    public int power_skill;
+    public byte minigame_fails;
+}
+
+public class PlayerStatus
+{
+    int vida;
+    List<Buff> lista_buff;
+    List<DeBuff> lista_debuff;
+}
+
+public class Buff
+{
+    Buff type;
+    byte value;
+}
+
+public class DeBuff
+{
+    Debuffs type;
+    byte value;
 }
 
 public class Stats
 {
-    public float damage_base;
-    public float health_base;
-    public float skill_base;
-    public float luck_base;
+    public int damage_base;
+    public int health_base;
+    public int skill_base;
+    public int luck_base;
 
-    public float damage_now;
-    public float health_now;
-    public float skill_now;
-    public float luck_now;
+    public int damage_now;
+    public int health_now;
+    public int skill_now;
+    public int luck_now;
+
+    public int bleed;
+    public int dizziness;
+    public int confusion;
+    public int poison;
+
+    public int shield;
+    public int barrier;
+
+    public int buff_damage;
+    public int buff_defense;
+    public int buff_luck;
+    public int buff_skill;
 
     public List<int> buffs_ID;
     public List<int> debuffs_ID;
 }
 
-public struct Osu_Ball
-{
-    
-}
 
 
 
