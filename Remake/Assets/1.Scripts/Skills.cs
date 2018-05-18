@@ -283,12 +283,10 @@ public class Skills : MonoBehaviour{
    
     Skill_Result Skill_209(Stats stats, Stats enemyStats, int fails) //Devastar
     {
-        float dmg = (stats.damage_now * 0.15f) * 150 - (fails * 7);
-        int breaking = Random.Range(1, 4);
+        float dmg = (stats.damage_now * 0.15f) * 150 + (enemyStats.barrier + enemyStats.shield) * 10 - (fails * 7);
         return new Skill_Result()
         {
-            breakBarriers = breaking,
-            value = Mathf.Clamp(dmg, 30, 300)
+            value = Mathf.Clamp(dmg, 30, 500)
         };
     }
 
@@ -549,7 +547,7 @@ public class Skills : MonoBehaviour{
         {
             return new Skill_Result()
             {
-                buff_attack = enemyStats.buff_damage,
+                buff_attack = enemyStats.buff_attack,
                 buff_skill = enemyStats.buff_skill,
                 buff_luck = enemyStats.buff_luck,
                 buff_shield = enemyStats.shield,

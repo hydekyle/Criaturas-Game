@@ -118,7 +118,7 @@ public class Player
     public string ID;
     public string nombre;
     public Criatura criatura;
-    public PlayerStatus status;
+    public Stats status;
 }
 
 [Serializable]
@@ -149,7 +149,6 @@ public class Skill_Result : Skill
     public int buff_barrier;
     public float recoverHP;
     public int cleans;
-    public int breakBarriers;
 }
 
 public class DataTurn
@@ -158,25 +157,6 @@ public class DataTurn
     public int used_skill;
     public int power_skill;
     public byte minigame_fails;
-}
-
-public class PlayerStatus
-{
-    int vida;
-    List<Buff> lista_buff;
-    List<DeBuff> lista_debuff;
-}
-
-public class Buff
-{
-    Buff type;
-    byte value;
-}
-
-public class DeBuff
-{
-    Debuffs type;
-    byte value;
 }
 
 public class Stats
@@ -199,13 +179,12 @@ public class Stats
     public int shield;
     public int barrier;
 
-    public int buff_damage;
-    public int buff_defense;
-    public int buff_luck;
+    public int buff_attack;
     public int buff_skill;
+    public int buff_luck;
+    public int buff_shield;
+    public int buff_barrier;
 
-    public List<int> buffs_ID;
-    public List<int> debuffs_ID;
 }
 
 

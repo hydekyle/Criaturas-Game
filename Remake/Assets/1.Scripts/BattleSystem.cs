@@ -10,17 +10,6 @@ using UnityEngine.SocialPlatforms;
 
 public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
 
-
-
-    /* 
-     * Comienza pelea. Se cargan estadísticas y se decide quién comienza.
-     * Comienza turno. (Check condiciones pre-turno: efectos aplicados, cargar nuevas habilidades, +1 de maná, check habilidades usables).
-     * 
-     * 
-     * 
-     *      
-     */
-
     public static BattleSystem instance { get; set; }
 
     Player player1;
@@ -32,9 +21,7 @@ public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
     RectTransform rect_skills;
     Image fadeScreen;
     public SkillsButtons skill_buttons;
-
-    public Stats myStats;
-    public Stats enemyStats;
+    Text textoMyHP, textoEnemyHP;
 
     public int minigameFails = 0;
     public int lastSkill_ID;
@@ -54,6 +41,8 @@ public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
     {
         #region Transforms
         fadeScreen = transform.GetChild(0).Find("FadeScreen").GetComponent<Image>();
+        textoMyHP = transform.GetChild(0).Find("MyHP").GetComponent<Text>();
+        textoEnemyHP = transform.GetChild(0).Find("EnemyHP").GetComponent<Text>();
         Transform habilidadesT = transform.Find("Canvas").Find("[Habilidades]");
         Transform headT = habilidadesT.Find("Skill_Head");
         Transform bodyT = habilidadesT.Find("Skill_Body");
@@ -140,14 +129,16 @@ public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
         foreach (int sID in player2.criatura.equipment.arms.skills_ID) { player2.criatura.skills.arms.Add(sID); }
         foreach (int sID in player2.criatura.equipment.legs.skills_ID) { player2.criatura.skills.legs.Add(sID); }
         UpdateSkillButtons();
-        myStats = new Stats()
+        player1.status = new Stats()
         {
             health_base = 1000,
-            skill_now = 10
+            skill_base = 10
         };
-        enemyStats = new Stats()
+        player2.status = new Stats()
         {
-            dizziness = 4
+            dizziness = 4,
+            health_base = 999,
+            health_now = 999,
         };
     }
 
@@ -246,24 +237,49 @@ public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
     {
         FadeAlpha(0);
         print("Errores: " + minigameFails.ToString());
-        Skill_Result result = Skills.instance.SkillResolve(lastSkill_ID, myStats, enemyStats, minigameFails); //RESOLVER SKILL
-        print(result);
+        Skill_Result result = Skills.instance.SkillResolve(lastSkill_ID, MySelf().status, YourEnemy().status, minigameFails); //RESOLVER SKILL
+        ApplyResult(result);
         minigameFails = 0;
         StartTurn();
     }
 
-    void DoSkill(Skill_Result result)
+    void ApplyResult(Skill_Result result)
     {
-        switch (result.s_type)
+        Player myself = MySelf();
+        Player enemigo = YourEnemy();
+        enemigo.status.health_now -= (int)result.value;
+        enemigo.status.bleed = result.bleed;
+        enemigo.status.dizziness = result.dizziness;
+        enemigo.status.poison = result.poison;
+        enemigo.status.confusion = result.confusion;
+        myself.status.buff_attack = result.buff_attack;
+        myself.status.buff_skill = result.buff_skill;
+        myself.status.buff_luck = result.buff_luck;
+        myself.status.buff_shield = result.buff_shield;
+        myself.status.buff_barrier = result.buff_barrier;
+        myself.status.bleed = result.myself_bleed;
+        myself.status.health_now -= result.myself_damage;
+        
+        for (var x = 0; x < result.cleans; x++)
         {
-            case Skill_Type.Heal: ApplyHeal((int)result.value); break;
+            switch(Random.Range(0, 4))
+            {
+                case 0: myself.status.bleed--; break;
+                case 1: myself.status.dizziness--; break;
+                case 2: myself.status.poison--; break;
+                case 3: myself.status.confusion--; break;
+            }
         }
+
+        textoEnemyHP.text = enemigo.status.health_now.ToString();
+        print(enemigo.status.bleed);
+
+
     }
 
-    void ApplyHeal(int value)
+    public Player MySelf()
     {
-        int newHealthValue = myStats.health_now + value;
-        myStats.health_now = Mathf.Clamp(newHealthValue, 0, myStats.health_base);
+        return player1;
     }
 
     public Player YourEnemy()
