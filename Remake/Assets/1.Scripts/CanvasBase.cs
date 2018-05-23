@@ -16,31 +16,30 @@ public class CanvasBase : MonoBehaviour {
     Transform equipment;
     Transform battleIA;
 
-    bool GP_isConnected;
-    Invitation invi;
-    static InvitationReceivedDelegate invitationDelegate;
-    static MatchDelegate matchDelegate;
+    EquipMenu equip_menu;
+
+    public static CanvasBase instance;
 
     public class objetos { public List<string> items; public string nombre; }
 
     void Awake()
     {
-        /*invitationDelegate = RecibirInvitacion;
-        matchDelegate = RandomMatch;
+        instance = this;
         PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder()
-        .EnableSavedGames()
-        .WithInvitationDelegate(invitationDelegate)
-        .WithMatchDelegate(matchDelegate)
-        .RequestServerAuthCode(false)
-        .Build();
-        PlayGamesPlatform.InitializeInstance(config);*/
+            .WithInvitationDelegate(OnGotInvitation)
+            .Build();
+
+        PlayGamesPlatform.InitializeInstance(config);
         PlayGamesPlatform.Activate();
+    }
+
+    void Start()
+    {
         start_menu = transform.Find("Start_Menu");
         equipment = transform.Find("Equipamiento");
         battleIA = transform.Find("BattleIA");
-#if !UNITY_EDITOR
+        equip_menu = equipment.GetComponent<EquipMenu>();
         ConectarseGooglePlay();
-#endif
     }
 
     void ConectarseGooglePlay()
@@ -49,6 +48,20 @@ public class CanvasBase : MonoBehaviour {
             if (success) Message.instance.NewMessage("Hola " + Social.localUser.userName); else Message.instance.NewMessage("No conectado");
             //LogFirebaseTEST();
         });
+    }
+
+    void OnGotInvitation(Invitation invitation, bool autoAccept){
+        BattleSystem.instance.InvitationReceived(invitation);
+    }
+
+    public void BackToMenu()
+    {
+        start_menu.gameObject.SetActive(true);
+    }
+
+    public void ShowItemInfo(string id)
+    {
+        StartCoroutine(equip_menu.ViewItemInfo(id));
     }
 
     void LogFirebaseTEST()

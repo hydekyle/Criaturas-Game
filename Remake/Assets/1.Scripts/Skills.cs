@@ -20,13 +20,27 @@ public class Skills : MonoBehaviour{
         Inicialize();
     }
 
-
     private void Inicialize()
     {
         foreach (Skill s in skill_list_assassin) skill_list.Add(s);
         foreach (Skill s in skill_list_alpha)    skill_list.Add(s);
         foreach (Skill s in skill_list_charming) skill_list.Add(s);
         foreach (Skill s in skill_list_pacifist) skill_list.Add(s);
+    }
+
+    public Skill GetSkillByID(string id)
+    {
+        Skill skillBuscada = new Skill();
+        int lista = int.Parse(id.Substring(0, 1));
+        int n = int.Parse(id.Substring(1, 2));
+        switch (lista)
+        {
+            case 1: skillBuscada = skill_list_assassin[n - 1]; break;
+            case 2: skillBuscada = skill_list_alpha[n - 1]; break;
+            case 3: skillBuscada = skill_list_charming[n - 1]; break;
+            case 4: skillBuscada = skill_list_pacifist[n - 1]; break;
+        }
+        return skillBuscada;
     }
 
     public Skill_Result SkillResolve(int ID_skill, Stats myStats, Stats enemyStats, int fails)
@@ -77,8 +91,6 @@ public class Skills : MonoBehaviour{
             case 408: result = Skill_408(myStats, enemyStats, fails); break;
             case 409: result = Skill_409(myStats, enemyStats, fails); break;
             case 410: result = Skill_410(myStats, enemyStats, fails); break;
-
-
 
         }
         result.value -= (0.1f * result.value) * fails;

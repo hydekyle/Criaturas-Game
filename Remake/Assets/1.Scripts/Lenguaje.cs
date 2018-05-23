@@ -7,7 +7,7 @@ public class Lenguaje : MonoBehaviour {
     [HideInInspector]
     public static Lenguaje Instance;
 
-    bool spanish_language;
+    public bool spanish_language;
 
     void Awake()
     {
@@ -62,6 +62,31 @@ public class Lenguaje : MonoBehaviour {
     {
         string text = "";
         if (spanish_language) text = "La habilidad ha fallado"; else text = "The skill has failed";
+        return text;
+    }
+
+    public string Text_RarityID(int id)
+    {
+        string text = "";
+        if (spanish_language)
+        {
+            switch (id)
+            {
+                case 1: text = "Común"; break;
+                case 2: text = "Raro"; break;
+                case 3: text = "Épico"; break;
+                case 4: text = "Legendario"; break;
+            }
+        }else
+        {
+            switch (id)
+            {
+                case 1: text = "Common"; break;
+                case 2: text = "Rare"; break;
+                case 3: text = "Epic"; break;
+                case 4: text = "Legendary"; break;
+            }
+        }
         return text;
     }
 

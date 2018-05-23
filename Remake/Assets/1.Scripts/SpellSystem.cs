@@ -156,9 +156,7 @@ public class SpellSystem : MonoBehaviour {
     void LaArmastes()
     {
         print("LA ARMASTES");
-        ApagarTodas();
-        n = 0;
-        empezamos = false;
+        EndGame(3);
     }
 
     void LeerPuntero(char c)
@@ -180,7 +178,7 @@ public class SpellSystem : MonoBehaviour {
                 }
                 if (n == finalCode.Length)
                 {
-                    EndGame();
+                    EndGame(0);
                 }
             } else if (c == finalCode.Length.ToString().ToCharArray()[0])
             {
@@ -193,7 +191,7 @@ public class SpellSystem : MonoBehaviour {
 
     }
 
-    void EndGame()
+    void EndGame(byte fails)
     {
         print("CONGRATULATIONS");
         lastChar = 'a';

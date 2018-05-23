@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-using System;
 using Enums;
 
 public class Items : MonoBehaviour {
@@ -51,7 +50,7 @@ public class Items : MonoBehaviour {
     }
 
 
-    public IEnumerator ItemSpriteByID(int id, Action<Sprite> result)
+    public IEnumerator ItemSpriteByID(int id, System.Action<Sprite> result)
     {
         int listNumber = int.Parse(id.ToString().Substring(0, 1));
         string spriteNumber = int.Parse(id.ToString().Substring(1, 2)).ToString();
@@ -91,6 +90,70 @@ public class Items : MonoBehaviour {
             result(mySprite);
         }*/
     }
+
+    void GetRandomItemID()
+    {
+        Equipable_Item newItem = new Equipable_Item();
+        switch(Random.Range(1, 5)) //Equip Position
+        {
+            case 1: newItem = headgear_list[Random.Range(0, headgear_list.Count - 1)]; break;
+            case 2: newItem = bodies_list[Random.Range(0, bodies_list.Count - 1)]; break;
+            case 3: newItem = arms_list[Random.Range(0, arms_list.Count - 1)]; break;
+            case 4: newItem = legs_list[Random.Range(0, legs_list.Count - 1)]; break;
+        }
+        int random = Random.Range(0, 101);
+        int rarity = 1;
+        if      (random >= 95) rarity = 4;
+        else if (random >= 85) rarity = 3;
+        else if (random >= 60) rarity = 2;
+        int fuerza = 1;
+        int vida = 1;
+        int skill = 1;
+        int luck = 1;
+        for (var x = 0; x < 5; x++)
+        {
+            switch (Random.Range(1, 5))
+            {
+                case 1: fuerza++; break;
+                case 2: vida++; break;
+                case 3: skill++; break;
+                case 4: luck++; break;
+            }
+        }
+        int skill1ID = GetRandomSkillID();
+        int skill2ID = GetRandomSkillID();
+        if (skill1ID == skill2ID) if(int.Parse(skill2ID.ToString().Substring(1, 2)) == 1) skill2ID++; else skill2ID--; //Evitar duplicado skills
+
+        newItem.ID_string = newItem.ID.ToString() + rarity.ToString() + vida.ToString() + fuerza.ToString() + 
+                                 skill.ToString() + luck.ToString() +skill1ID.ToString() + skill2ID.ToString();
+
+        CanvasBase.instance.ShowItemInfo(newItem.ID_string);
+    }
+
+    int GetRandomSkillID()
+    {
+        int skill1ID = 0;
+        int skillList = Random.Range(1, 5);
+        switch (skillList)
+        {
+            case 1: skill1ID = Skills.instance.skill_list_assassin[Random.Range(0, Skills.instance.skill_list_assassin.Count - 1)].ID; break;
+            case 2: skill1ID = Skills.instance.skill_list_alpha[Random.Range(0, Skills.instance.skill_list_alpha.Count - 1)].ID; break;
+            case 3: skill1ID = Skills.instance.skill_list_charming[Random.Range(0, Skills.instance.skill_list_charming.Count - 1)].ID; break;
+            case 4: skill1ID = Skills.instance.skill_list_pacifist[Random.Range(0, Skills.instance.skill_list_pacifist.Count - 1)].ID; break;
+        }
+        return skill1ID;
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            GetRandomItemID();
+        }
+    }
+
+
+
 
 
     //MEJORAS

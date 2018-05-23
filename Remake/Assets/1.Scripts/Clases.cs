@@ -94,6 +94,7 @@ public class SkillButton
 public struct Equipable_Item
 {
     public int ID;
+    public string ID_string;
     public string nombre;
     public Quality quality;
     public List<GiveStat> addStat;
@@ -125,6 +126,7 @@ public class Player
 public class Skill
 {
     public int ID;
+    public string ID_string;
     public string name_spanish;
     public string name_english;
     public string description_spanish;

@@ -22,6 +22,19 @@ public class EquipMenu : MonoBehaviour {
     Vector3 pos_tic_equip = new Vector3(15, -11, 0);
     List<int> equip_list_id = new List<int>();
 
+    //Item Info Menu:
+    Image retrato;
+    Text rarity_text;
+    Text rarity_shadow;
+    Text skill1_name;
+    Text skill1_Description;
+    Text skill2_name;
+    Text skill2_description;
+    Text value_life;
+    Text value_attack;
+    Text value_skill;
+    Text value_luck;
+
     void Start()
     {
         Inicialize();
@@ -29,6 +42,19 @@ public class EquipMenu : MonoBehaviour {
 
     void Inicialize()
     {
+        Transform infoT = transform.Find("Info");
+        retrato = infoT.Find("Retrato").GetComponent<Image>();
+        skill1_name = infoT.Find("Skill1").Find("Name").GetComponent<Text>();
+        skill1_Description = infoT.Find("Skill1").Find("Description").GetComponent<Text>();
+        skill2_name = infoT.Find("Skill2").Find("Name").GetComponent<Text>();
+        skill2_description = infoT.Find("Skill2").Find("Description").GetComponent<Text>();
+        rarity_text = infoT.Find("Rarity_Color").GetComponent<Text>();
+        rarity_shadow = infoT.Find("Rarity_Shadow").GetComponent<Text>();
+        value_life = infoT.Find("Value_Life").GetComponent<Text>();
+        value_attack = infoT.Find("Value_Attack").GetComponent<Text>();
+        value_skill = infoT.Find("Value_Skill").GetComponent<Text>();
+        value_luck = infoT.Find("Value_Luck").GetComponent<Text>();
+
         Transform inventario = transform.Find("Panel_Inventario").Find("Inventario");
         inventarioT = inventario.Find("Botones_Items");
         btn_back = inventario.Find("Arrow_Left").GetComponent<Button>();
@@ -47,6 +73,64 @@ public class EquipMenu : MonoBehaviour {
         }
         StartCoroutine(Visualizar(Equip_Position.Head, 0));
     }
+
+    public IEnumerator ViewItemInfo()
+    {
+        Sprite itemSprite = null;
+        int itemID = 0;
+        switch (currentEquipView)
+        {
+            case Equip_Position.Head: itemID = GameManager.instance.player.criatura.equipment.head.ID; break;
+            case Equip_Position.Body: itemID = GameManager.instance.player.criatura.equipment.body.ID; break;
+            case Equip_Position.Arms: itemID = GameManager.instance.player.criatura.equipment.arms.ID; break;
+            case Equip_Position.Legs: itemID = GameManager.instance.player.criatura.equipment.legs.ID; break;
+        }
+        yield return Items.instance.ItemSpriteByID(itemID, result => itemSprite = result);
+        print(itemID);
+        retrato.sprite = itemSprite;
+    }
+
+    public IEnumerator ViewItemInfo(string id)
+    {
+        Sprite itemSprite = null;
+        int itemID = int.Parse(id.Substring(0, 3));
+        int rarity = int.Parse(id.Substring(3, 1));
+        int health = int.Parse(id.Substring(4, 1));
+        int attack = int.Parse(id.Substring(5, 1));
+        int skill  = int.Parse(id.Substring(6, 1));
+        int luck   = int.Parse(id.Substring(7, 1));
+        Skill skill1 = Skills.instance.GetSkillByID(id.Substring(8, 3));
+        Skill skill2 = Skills.instance.GetSkillByID(id.Substring(11, 3));
+        yield return Items.instance.ItemSpriteByID(itemID, result => itemSprite = result);
+        string textRarity = Lenguaje.Instance.Text_RarityID(rarity);
+        rarity_text.text = textRarity;
+        rarity_shadow.text = textRarity;
+        rarity_text.color = ColorByQuality(rarity);
+        retrato.sprite = itemSprite;
+
+        value_attack.text = (health * rarity).ToString();
+        value_life.text = (attack * rarity).ToString();
+        value_skill.text = (skill * rarity).ToString();
+        value_luck.text = (luck * rarity).ToString();
+
+        if (Lenguaje.Instance.spanish_language)
+        {
+            skill1_name.text = skill1.name_spanish;
+            skill1_Description.text = skill1.description_spanish;
+
+            skill2_name.text = skill2.name_spanish;
+            skill2_description.text = skill2.description_spanish;
+        }else
+        {
+            skill1_name.text = skill1.name_english;
+            skill1_Description.text = skill1.description_english;
+
+            skill2_name.text = skill2.name_english;
+            skill2_description.text = skill2.description_english;
+        }
+        
+    }
+
 
     List<Equipable_Item> SortListByQuality(List<Equipable_Item> list)
     {
@@ -78,9 +162,22 @@ public class EquipMenu : MonoBehaviour {
         switch (q)
         {
             case Quality.Legendary: color = Color.yellow; break;
-            case Quality.Epic: color = Color.blue; break;
+            case Quality.Epic: color = new Color(255f, 0f, 255f); break;
             case Quality.Rare: color = Color.green; break;
             case Quality.Common: color = Color.white; break;
+        }
+        return color;
+    }
+
+    Color ColorByQuality(int i)
+    {
+        Color color = new Color();
+        switch (i)
+        {
+            case 4: color = Color.yellow; break;
+            case 3: color = new Color(255f, 0f, 255f); break;
+            case 2: color = Color.green; break;
+            case 1: color = Color.white; break;
         }
         return color;
     }
@@ -140,16 +237,8 @@ public class EquipMenu : MonoBehaviour {
                 break;
             }  
         }
-
         if (storage_ID[inventarioT.childCount - 1] > 0) btn_forw.interactable = true; else btn_forw.interactable = false;
-    }
-
-    void MostrarEquipo(Equip_Position equipList)
-    {
-        switch (equipList)
-        {
-            case Equip_Position.Head: print("head"); break;
-        }
+        StartCoroutine(ViewItemInfo());
     }
 
     void Colocar_Tic_New(int id)
@@ -209,6 +298,7 @@ public class EquipMenu : MonoBehaviour {
             {
                 EquiparItem(storage_ID[id]);
                 StartCoroutine(Menu.instance.VisualizarEquipamiento(GameManager.instance.player.criatura.equipment, 1));
+                StartCoroutine(ViewItemInfo());
                 Colocar_Tic_Equip(id);
             }
         }catch { print("Oops"); }

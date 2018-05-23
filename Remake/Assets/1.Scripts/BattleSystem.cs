@@ -7,6 +7,7 @@ using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using GooglePlayGames.BasicApi.Multiplayer;
 using UnityEngine.SocialPlatforms;
+using UnityEngine.SceneManagement;
 
 public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
 
@@ -273,8 +274,6 @@ public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
 
         textoEnemyHP.text = enemigo.status.health_now.ToString();
         print(enemigo.status.bleed);
-
-
     }
 
     public Player MySelf()
@@ -335,20 +334,29 @@ public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
         yourTurn = true;
         if(Application.platform == RuntimePlatform.Android)
         {
-            TestOnline();
+            //TestOnline();
         }
         
     }
 
+    public void Go_back()
+    {
+        gameObject.SetActive(false);
+        SceneManager.LoadScene(0);
+    }
+
     #region GOOGLE_PLAY_ONLINE
-    void TestOnline()
+    public void TestOnline()
     {
         PlayGamesPlatform.Instance.RealTime.CreateWithInvitationScreen(1, 1, 0, this);
         PlayGamesPlatform.Instance.RealTime.ShowWaitingRoomUI();
-        
     }
 
-
+    public void InvitationReceived(Invitation invitation)
+    {
+        Message.instance.NewMessage("HAS RECIBIDO ALGO");
+        PlayGamesPlatform.Instance.RealTime.AcceptInvitation(invitation.InvitationId, this);
+    }
 
     public void GO_MATCHMAKING()
     {
@@ -401,7 +409,9 @@ public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
 
     public void OnRealTimeMessageReceived(bool isReliable, string sender, byte[] byteArray)
     {
-        Message.instance.NewMessage("MENSAJE RECIBIDO");
+        string mensj = System.Convert.ToBase64String(byteArray);
+        Message.instance.NewMessage("MENSAJE RECIBIDO: "+mensj);
+        
     }
     #endregion
 
