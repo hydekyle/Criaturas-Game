@@ -91,7 +91,7 @@ public class Items : MonoBehaviour {
         }*/
     }
 
-    void GetRandomItemID()
+    public string GetRandomItemID()
     {
         Equipable_Item newItem = new Equipable_Item();
         switch(Random.Range(1, 5)) //Equip Position
@@ -128,6 +128,7 @@ public class Items : MonoBehaviour {
                                  skill.ToString() + luck.ToString() +skill1ID.ToString() + skill2ID.ToString();
 
         CanvasBase.instance.ShowItemInfo(newItem.ID_string);
+        return newItem.ID_string;
     }
 
     int GetRandomSkillID()

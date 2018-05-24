@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour {
     public static GameManager instance;
     public Player player;
 
+    [SerializeField]
+    public UserDB usuario;
+
     void Awake()
     {
         instance = this;
@@ -149,5 +152,8 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-
+    public void ErrorGeneral()
+    {
+        Debug.LogError("Ha ocurrido un error grave");
+    }
 }

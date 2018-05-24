@@ -24,6 +24,7 @@
 
 public static class GPGSIds
 {
+        public const string event_coins = "CgkIwfeB9KMQEAIQAw"; // <GPGSID>
         public const string achievement_welcome_to_evolution = "CgkIwfeB9KMQEAIQAQ"; // <GPGSID>
 
 }

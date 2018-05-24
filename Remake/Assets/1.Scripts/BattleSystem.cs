@@ -349,7 +349,6 @@ public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
     public void TestOnline()
     {
         PlayGamesPlatform.Instance.RealTime.CreateWithInvitationScreen(1, 1, 0, this);
-        PlayGamesPlatform.Instance.RealTime.ShowWaitingRoomUI();
     }
 
     public void InvitationReceived(Invitation invitation)
@@ -361,6 +360,7 @@ public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
     public void GO_MATCHMAKING()
     {
         PlayGamesPlatform.Instance.RealTime.CreateQuickGame(1, 1, 0, this);
+        //PlayGamesPlatform.Instance.RealTime.AcceptFromInbox(this);
     }
 
     public void CheckInvitations()
@@ -374,17 +374,23 @@ public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
     {
         if (success)
         {
+            Message.instance.NewMessage("CONECTADO A ROOM");
             string info = "Mirame y dime";
             byte[] data = System.Text.Encoding.Default.GetBytes(info);
             PlayGamesPlatform.Instance.RealTime.SendMessageToAll(true, data);
+            List<Participant> listaPersonas = PlayGamesPlatform.Instance.RealTime.GetConnectedParticipants();
+            Message.instance.NewMessage("Room conectada: " + listaPersonas.Count);
         }
-        List<Participant> listaPersonas = PlayGamesPlatform.Instance.RealTime.GetConnectedParticipants();
-        Message.instance.NewMessage("Room conectada: " + success.ToString() + "  "+ listaPersonas.Count);
+        else
+        {
+            Message.instance.NewMessage("Room es " + PlayGamesPlatform.Instance.RealTime.IsRoomConnected().ToString());
+        }
+        
     }
 
-    public void OnRoomSetupProgress(float f)
+    public void OnRoomSetupProgress(float percent)
     {
-        Message.instance.NewMessage("F: " + f);   
+        Message.instance.NewMessage("F: " + percent.ToString());
     }
 
     public void OnLeftRoom()
@@ -399,12 +405,12 @@ public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
 
     public void OnPeersConnected(string[] s)
     {
-        Message.instance.NewMessage(s.Length.ToString());
+        Message.instance.NewMessage("Peer: " + s.Length.ToString());
     }
 
     public void OnPeersDisconnected(string[] s)
     {
-        Message.instance.NewMessage(s.Length.ToString());
+        Message.instance.NewMessage("Peer fuera");
     }
 
     public void OnRealTimeMessageReceived(bool isReliable, string sender, byte[] byteArray)

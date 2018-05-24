@@ -123,6 +123,25 @@ public class Player
 }
 
 [Serializable]
+public class UserDB
+{
+    public string username;
+    public int gold;
+    public int chests;
+    public int victorias;
+    public int derrotas;
+}
+
+public class objetos {
+    public List<string> items;
+    public string username;
+    public int gold;
+    public int chests;
+    public int victorias;
+    public int derrotas;
+}
+
+[Serializable]
 public class Skill
 {
     public int ID;
