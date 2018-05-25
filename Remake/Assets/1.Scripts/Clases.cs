@@ -95,10 +95,7 @@ public struct Equipable_Item
 {
     public int ID;
     public string ID_string;
-    public string nombre;
     public Quality quality;
-    public List<GiveStat> addStat;
-    public List<int> skills_ID;
 }
 
 [SerializeField]
@@ -125,7 +122,6 @@ public class Player
 [Serializable]
 public class UserDB
 {
-    public string username;
     public int gold;
     public int chests;
     public int victorias;
@@ -134,11 +130,7 @@ public class UserDB
 
 public class objetos {
     public List<string> items;
-    public string username;
-    public int gold;
-    public int chests;
-    public int victorias;
-    public int derrotas;
+    public UserDB data;
 }
 
 [Serializable]

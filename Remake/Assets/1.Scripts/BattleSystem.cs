@@ -103,43 +103,43 @@ public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
 
     public void LeerStats() //Lee stats, y habilidades de los jugadores
     {
-        List<Equipable_Item> equipamiento_list = ObtenerListaEquipamiento(player1);
-        foreach (Equipable_Item e in equipamiento_list)
-        {
-            for (var x = 0; x < e.addStat.Count; x++)
-            {
-                totalStats_player1.Add(e.addStat[x]);
-            }
-        }
-        equipamiento_list = ObtenerListaEquipamiento(player2);
-        foreach (Equipable_Item e in equipamiento_list)
-        {
-            for (var x = 0; x < e.addStat.Count; x++)
-            {
-                totalStats_player2.Add(e.addStat[x]);
-            }
-        }
         player1.criatura.skills = new MySkylls();
-        foreach (int sID in player1.criatura.equipment.head.skills_ID) { player1.criatura.skills.head.Add(sID); }
-        foreach (int sID in player1.criatura.equipment.body.skills_ID) { player1.criatura.skills.body.Add(sID); }
-        foreach (int sID in player1.criatura.equipment.arms.skills_ID) { player1.criatura.skills.arms.Add(sID); }
-        foreach (int sID in player1.criatura.equipment.legs.skills_ID) { player1.criatura.skills.legs.Add(sID); }
+        player1.criatura.skills.head.Add(int.Parse(player1.criatura.equipment.head.ID_string.Substring(8, 3)));
+        player1.criatura.skills.head.Add(int.Parse(player1.criatura.equipment.head.ID_string.Substring(11, 3)));
+
+        player1.criatura.skills.body.Add(int.Parse(player1.criatura.equipment.body.ID_string.Substring(8, 3)));
+        player1.criatura.skills.body.Add(int.Parse(player1.criatura.equipment.body.ID_string.Substring(11, 3)));
+
+        player1.criatura.skills.arms.Add(int.Parse(player1.criatura.equipment.arms.ID_string.Substring(8, 3)));
+        player1.criatura.skills.arms.Add(int.Parse(player1.criatura.equipment.arms.ID_string.Substring(11, 3)));
+
+        player1.criatura.skills.legs.Add(int.Parse(player1.criatura.equipment.legs.ID_string.Substring(8, 3)));
+        player1.criatura.skills.legs.Add(int.Parse(player1.criatura.equipment.legs.ID_string.Substring(11, 3)));
+
         player2.criatura.skills = new MySkylls();
-        foreach (int sID in player2.criatura.equipment.head.skills_ID) { player2.criatura.skills.head.Add(sID); }
-        foreach (int sID in player2.criatura.equipment.body.skills_ID) { player2.criatura.skills.body.Add(sID); }
-        foreach (int sID in player2.criatura.equipment.arms.skills_ID) { player2.criatura.skills.arms.Add(sID); }
-        foreach (int sID in player2.criatura.equipment.legs.skills_ID) { player2.criatura.skills.legs.Add(sID); }
+        player2.criatura.skills.head.Add(int.Parse(player2.criatura.equipment.head.ID_string.Substring(8, 3)));
+        player2.criatura.skills.head.Add(int.Parse(player2.criatura.equipment.head.ID_string.Substring(11, 3)));
+
+        player2.criatura.skills.body.Add(int.Parse(player2.criatura.equipment.body.ID_string.Substring(8, 3)));
+        player2.criatura.skills.body.Add(int.Parse(player2.criatura.equipment.body.ID_string.Substring(11, 3)));
+
+        player2.criatura.skills.arms.Add(int.Parse(player2.criatura.equipment.arms.ID_string.Substring(8, 3)));
+        player2.criatura.skills.arms.Add(int.Parse(player2.criatura.equipment.arms.ID_string.Substring(11, 3)));
+
+        player2.criatura.skills.legs.Add(int.Parse(player2.criatura.equipment.legs.ID_string.Substring(8, 3)));
+        player2.criatura.skills.legs.Add(int.Parse(player2.criatura.equipment.legs.ID_string.Substring(11, 3)));
+
         UpdateSkillButtons();
         player1.status = new Stats()
         {
-            health_base = 1000,
+            health_base = 100,
             skill_base = 10
         };
         player2.status = new Stats()
         {
             dizziness = 4,
-            health_base = 999,
-            health_now = 999,
+            health_base = 100,
+            health_now = 100,
         };
     }
 
@@ -174,11 +174,10 @@ public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
                 nombre = "Jesus Christ",
                 equipment = new Equipment()
                 {
-                    head = Items.instance.ItemByID(GetRandomItemID(1)),
-                    body = Items.instance.ItemByID(GetRandomItemID(2)),
-                    arms = Items.instance.ItemByID(GetRandomItemID(3)),
-                    legs = Items.instance.ItemByID(GetRandomItemID(4)),
-                    back = Items.instance.ItemByID(GetRandomItemID(5))
+                    head = Items.instance.ItemByID(Items.instance.GetRandomItemID(1)),
+                    body = Items.instance.ItemByID(Items.instance.GetRandomItemID(2)),
+                    arms = Items.instance.ItemByID(Items.instance.GetRandomItemID(3)),
+                    legs = Items.instance.ItemByID(Items.instance.GetRandomItemID(4))
                 }
             }
         };
@@ -191,22 +190,6 @@ public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
 
         };
         return e;
-    }
-
-    int GetRandomItemID(int listNumber)
-    {
-        string randomID = "";
-        switch (listNumber)
-        {
-            case 1: randomID = Random.Range(0, Items.instance.headgear_list.Count).ToString(); break;
-            case 2: randomID = Random.Range(0, Items.instance.bodies_list.Count).ToString(); break;
-            case 3: randomID = Random.Range(0, Items.instance.arms_list.Count).ToString(); break;
-            case 4: randomID = Random.Range(0, Items.instance.legs_list.Count).ToString(); break;
-            case 5: randomID = Random.Range(0, Items.instance.backs_list.Count).ToString(); break;
-        }
-        if (randomID.ToString().Length < 2) randomID = "0" + randomID;
-        string final = listNumber.ToString() + randomID + "000";
-        return int.Parse(final);
     }
 
     void FadeAlpha(float alphaValue)
@@ -330,13 +313,9 @@ public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
 
     void StartTurn()
     {
+        UpdateSkillButtons();
         Message.instance.NewMessage(Lenguaje.Instance.Text_YourTurn());
         yourTurn = true;
-        if(Application.platform == RuntimePlatform.Android)
-        {
-            //TestOnline();
-        }
-        
     }
 
     public void Go_back()

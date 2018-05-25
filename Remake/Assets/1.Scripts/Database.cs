@@ -45,14 +45,14 @@ public class Database : MonoBehaviour {
 
     public Equipment ObtenerEquipSetting()
     {
-        Equipment e = new Equipment();
-        e = JsonUtility.FromJson<Equipment>(File.ReadAllText(Application.persistentDataPath + "/Equip_Setting.txt"));
+        Equipment e = new Equipment() {
+            head = Items.instance.ItemByID(Items.instance.GetRandomItemID(1)),
+            body = Items.instance.ItemByID(Items.instance.GetRandomItemID(2)),
+            arms = Items.instance.ItemByID(Items.instance.GetRandomItemID(3)),
+            legs = Items.instance.ItemByID(Items.instance.GetRandomItemID(4))
+        };
         return e;
     }
 
-    void OnApplicationQuit()
-    {
-        GuardarEquipSetting(GameManager.instance.player.criatura.equipment);
-    }
 #endregion
 }

@@ -28,7 +28,6 @@ public class CanvasBase : MonoBehaviour {
     void Awake()
     {
         instance = this;
-        
     }
 
     void Start()
@@ -40,7 +39,15 @@ public class CanvasBase : MonoBehaviour {
         goldText = transform.Find("UI").Find("Money").Find("Text").GetComponent<Text>();
         equip_menu = equipment.GetComponent<EquipMenu>();
 
-        ConectarseGooglePlay();
+        if(Application.platform == RuntimePlatform.Android)
+        {
+            ConectarseGooglePlay();
+        }
+        else
+        {
+            LogFirebaseTEST();
+        }
+        
 
     }
 
@@ -65,7 +72,31 @@ public class CanvasBase : MonoBehaviour {
 
     void UpdateGoldView()
     {
-        goldText.text = FirebaseDatabase.DefaultInstance.RootReference.Child("Inventario").Child(Social.localUser.userName).Child("dataUser").Child("username").Key;
+        FirebaseDatabase.DefaultInstance.RootReference.Child("Inventario").Child(Social.localUser.userName).Child("data").Child("gold").GetValueAsync()
+            .ContinueWith(task => {
+                if (task.IsCompleted)
+                {
+                    DataSnapshot snap = task.Result;
+                    goldText.text = snap.Value.ToString();
+                }
+            });
+    }
+
+    void GetYourItems()
+    {
+        DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference.Child("Inventario").Child(Social.localUser.userName).Child("items");
+
+        reference.GetValueAsync().ContinueWith(task => {
+            if (task.IsCompleted)
+            {
+                string jsonData = task.Result.GetRawJsonValue();
+                string[] items = jsonData.Replace('"', ' ').Replace('[',' ').Replace(']',' ').Replace(" ", string.Empty).Split(',');
+                foreach(string s in items)
+                {
+                    Items.instance.StoreItem(s);
+                }
+            }
+        });
     }
 
     public void BackToMenu()
@@ -88,31 +119,37 @@ public class CanvasBase : MonoBehaviour {
             temp.Add(Items.instance.GetRandomItemID());
             temp.Add(Items.instance.GetRandomItemID());
             temp.Add(Items.instance.GetRandomItemID());
+            temp.Add(Items.instance.GetRandomItemID());
+            temp.Add(Items.instance.GetRandomItemID());
+            temp.Add(Items.instance.GetRandomItemID());
+            temp.Add(Items.instance.GetRandomItemID());
+            temp.Add(Items.instance.GetRandomItemID());
+            temp.Add(Items.instance.GetRandomItemID());
 
             DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference;
             UserDB userData = new UserDB()
             {
-                username = Social.localUser.userName,
                 chests = 3,
-                gold = 666,
+                gold = 777,
                 victorias = 0,
                 derrotas = 0
             };
-            objetos userInfo = new objetos() { items = temp, username = userData.username, gold = userData.gold, chests = userData.chests };
+            objetos userInfo = new objetos() { items = temp, data = userData };
             string json = JsonUtility.ToJson(userInfo);
 
             reference.Child("Inventario").Child(Social.localUser.userName).SetRawJsonValueAsync(json).ContinueWith((obj2) =>
             {
                 if (obj2.IsCompleted)
                 {
-                    Message.instance.NewMessage("Info Db completed");
-                    UpdateGoldView();
+                    LogSuccessful();
                 }
 
             });
         });
 
     }
+
+    
 
     bool IsUserLogged()
     {
@@ -131,13 +168,16 @@ public class CanvasBase : MonoBehaviour {
 #if UNITY_EDITOR
         battleIA.gameObject.SetActive(!battleIA.gameObject.activeSelf);
         start_menu.gameObject.SetActive(false);
+        transform.Find("UI").gameObject.SetActive(false);
 #endif
 
         if (Social.localUser.authenticated)
         {
             battleIA.gameObject.SetActive(!battleIA.gameObject.activeSelf);
             start_menu.gameObject.SetActive(false);
-        }else
+            transform.Find("UI").gameObject.SetActive(false);
+        }
+        else
         {
             Message.instance.NewMessage("No hay conexión");
         }
@@ -164,6 +204,15 @@ public class CanvasBase : MonoBehaviour {
         Database.instance.GuardarEquipSetting(GameManager.instance.player.criatura.equipment);
         equipment.gameObject.SetActive(false);
         start_menu.gameObject.SetActive(true);
+    }
+
+    void LogSuccessful()
+    {
+        Message.instance.NewMessage("Info Db completed");
+        GameManager.instance.ConstruirJugador();
+        transform.Find("Loading").gameObject.SetActive(false);
+        UpdateGoldView();
+        GetYourItems();
     }
 
 }

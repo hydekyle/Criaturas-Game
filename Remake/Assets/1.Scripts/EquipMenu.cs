@@ -10,7 +10,7 @@ public class EquipMenu : MonoBehaviour {
     Transform inventarioT;
     Image[] item_image;
     Image[] rarity_image;
-    int[] storage_ID;
+    string[] storage_ID;
     Equip_Position currentEquipView = Equip_Position.None;
     int currentPage = 0;
     Button btn_back;
@@ -61,7 +61,7 @@ public class EquipMenu : MonoBehaviour {
         btn_forw = inventario.Find("Arrow_Right").GetComponent<Button>();
         tic_new = inventario.Find("Tic_New").GetComponent<RectTransform>();
         tic_equip = inventario.Find("Tic_Equip").GetComponent<RectTransform>();
-        storage_ID = new int[inventarioT.childCount];
+        storage_ID = new string[inventarioT.childCount];
         item_image = new Image[inventarioT.childCount];
         rarity_image = new Image[inventarioT.childCount];
         for (var x = 0; x < inventarioT.childCount; x++)
@@ -71,7 +71,7 @@ public class EquipMenu : MonoBehaviour {
             item_image[x] = t.Find("Image").GetComponent<Image>();
             t.gameObject.name = x.ToString();
         }
-        StartCoroutine(Visualizar(Equip_Position.Head, 0));
+        BTN_HEAD();
     }
 
     public IEnumerator ViewItemInfo()
@@ -194,8 +194,8 @@ public class EquipMenu : MonoBehaviour {
         if (pagNumber == 0) btn_back.interactable = false; else btn_back.interactable = true;
         int totalSlots = inventarioT.childCount;
         int y = 0 + (totalSlots * pagNumber); //ITERATOR
-        int equipedID = 0;
-        storage_ID = new int[totalSlots];
+        string equipedID = "";
+        storage_ID = new string[totalSlots];
         Equip_Position lastView = currentEquipView;
         currentEquipView = equipList;
         currentPage = pagNumber;
@@ -209,24 +209,24 @@ public class EquipMenu : MonoBehaviour {
         {
             switch (equipList)
             {
-                case Equip_Position.Head: actualList = SortListByQuality(Items.instance.headgear_list); equipedID = GameManager.instance.player.criatura.equipment.head.ID; break;
-                case Equip_Position.Body: actualList = SortListByQuality(Items.instance.bodies_list); equipedID = GameManager.instance.player.criatura.equipment.body.ID; break;
-                case Equip_Position.Arms: actualList = SortListByQuality(Items.instance.arms_list); equipedID = GameManager.instance.player.criatura.equipment.arms.ID; break;
-                case Equip_Position.Legs: actualList = SortListByQuality(Items.instance.legs_list); equipedID = GameManager.instance.player.criatura.equipment.legs.ID; break;
+                case Equip_Position.Head: actualList = SortListByQuality(Items.instance.inventory_headgear); break;
+                case Equip_Position.Body: actualList = SortListByQuality(Items.instance.inventory_bodies); break;
+                case Equip_Position.Arms: actualList = SortListByQuality(Items.instance.inventory_arms);  break;
+                case Equip_Position.Legs: actualList = SortListByQuality(Items.instance.inventory_legs);  break;
             }
         }
         switch (equipList) //Lee ID equipado según lista.
         {
-            case Equip_Position.Head: equipedID = GameManager.instance.player.criatura.equipment.head.ID; break;
-            case Equip_Position.Body: equipedID = GameManager.instance.player.criatura.equipment.body.ID; break;
-            case Equip_Position.Arms: equipedID = GameManager.instance.player.criatura.equipment.arms.ID; break;
-            case Equip_Position.Legs: equipedID = GameManager.instance.player.criatura.equipment.legs.ID; break;
+            case Equip_Position.Head: equipedID = GameManager.instance.player.criatura.equipment.head.ID_string; break;
+            case Equip_Position.Body: equipedID = GameManager.instance.player.criatura.equipment.body.ID_string; break;
+            case Equip_Position.Arms: equipedID = GameManager.instance.player.criatura.equipment.arms.ID_string; break;
+            case Equip_Position.Legs: equipedID = GameManager.instance.player.criatura.equipment.legs.ID_string; break;
         }
         for (var x = 0; x < totalSlots; x++) //Por cada slot de equipamiento.
         {
             if(y < actualList.Count) //Lee elementos y si no hay acaba el bucle
             {
-                storage_ID[x] = actualList[y].ID;
+                storage_ID[x] = actualList[y].ID_string;
                 rarity_image[x].color = ColorByQuality(actualList[y].quality);
                 yield return Items.instance.ItemSpriteByID(actualList[y].ID, result => item_image[x].sprite = result);
                 if (storage_ID[x] == equipedID) Colocar_Tic_Equip(x);
@@ -237,7 +237,7 @@ public class EquipMenu : MonoBehaviour {
                 break;
             }  
         }
-        if (storage_ID[inventarioT.childCount - 1] > 0) btn_forw.interactable = true; else btn_forw.interactable = false;
+        //if (storage_ID[inventarioT.childCount - 1].Length > 0) btn_forw.interactable = true; else btn_forw.interactable = false;
         StartCoroutine(ViewItemInfo());
     }
 
@@ -256,21 +256,25 @@ public class EquipMenu : MonoBehaviour {
     public void BTN_HEAD()
     {
         StartCoroutine(Visualizar(Equip_Position.Head, 0));
+        CanvasBase.instance.ShowItemInfo(GameManager.instance.player.criatura.equipment.head.ID_string);
     }
 
     public void BTN_BODY()
     {
         StartCoroutine(Visualizar(Equip_Position.Body, 0));
+        CanvasBase.instance.ShowItemInfo(GameManager.instance.player.criatura.equipment.body.ID_string);
     }
 
     public void BTN_ARMS()
     {
         StartCoroutine(Visualizar(Equip_Position.Arms, 0));
+        CanvasBase.instance.ShowItemInfo(GameManager.instance.player.criatura.equipment.arms.ID_string);
     }
 
     public void BTN_LEGS()
     {
         StartCoroutine(Visualizar(Equip_Position.Legs, 0));
+        CanvasBase.instance.ShowItemInfo(GameManager.instance.player.criatura.equipment.legs.ID_string);
     }
 
     public void BTN_BACK()
@@ -284,7 +288,7 @@ public class EquipMenu : MonoBehaviour {
         try
         {
             StopCoroutine("Visualizar");
-            if (storage_ID[inventarioT.childCount - 1] > 0) StartCoroutine(Visualizar(currentEquipView, ++currentPage));
+            if (storage_ID[inventarioT.childCount - 1].Length > 0) StartCoroutine(Visualizar(currentEquipView, ++currentPage));
         }catch { print("Oops"); }
         
     }
@@ -294,7 +298,7 @@ public class EquipMenu : MonoBehaviour {
         try
         {
             int id = int.Parse(EventSystem.current.currentSelectedGameObject.name);
-            if (storage_ID[id] > 0)
+            if (storage_ID[id].Length > 0)
             {
                 EquiparItem(storage_ID[id]);
                 StartCoroutine(Menu.instance.VisualizarEquipamiento(GameManager.instance.player.criatura.equipment, 1));
@@ -306,8 +310,9 @@ public class EquipMenu : MonoBehaviour {
     }
 
 
-    void EquiparItem(int id)
+    void EquiparItem(string id)
     {
+        CanvasBase.instance.ShowItemInfo(id);
         int list = int.Parse(id.ToString().Substring(0, 1));
         switch (list)
         {

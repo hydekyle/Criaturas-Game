@@ -56,6 +56,7 @@
      <Compile Include="Assets\1.Scripts\BattleSystem.cs" />
      <Compile Include="Assets\1.Scripts\CanvasBase.cs" />
      <Compile Include="Assets\1.Scripts\Clases.cs" />
+     <Compile Include="Assets\1.Scripts\Cofres_System.cs" />
      <Compile Include="Assets\1.Scripts\Database.cs" />
      <Compile Include="Assets\1.Scripts\EquipMenu.cs" />
      <Compile Include="Assets\1.Scripts\GameManager.cs" />

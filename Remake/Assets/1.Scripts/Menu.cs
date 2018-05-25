@@ -97,10 +97,6 @@ public class Menu : MonoBehaviour {
         {
             yield return StartCoroutine(SendImage(e.legs.ID, GetPlayerVisor(playerNumber)));
         }
-        if (loadedEquipment.back.ID != e.back.ID || playerNumber == 2)
-        {
-            yield return StartCoroutine(SendImage(e.back.ID, GetPlayerVisor(playerNumber)));
-        }
 
         loadedEquipment = e;
         ColocarPiezas(e, GetPlayerVisor(playerNumber));

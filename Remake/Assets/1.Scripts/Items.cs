@@ -18,16 +18,37 @@ public class Items : MonoBehaviour {
     public List<Equipable_Item> backs_list;
     public List<Equipable_Item> weapons_list;
 
+    public List<Equipable_Item> inventory_headgear;
+    public List<Equipable_Item> inventory_bodies;
+    public List<Equipable_Item> inventory_arms;
+    public List<Equipable_Item> inventory_legs;
+
+
     void Awake()
     {
         instance = this;
     }
 
-    public Equipable_Item ItemByID(int bigID)
+    public void StoreItem(string bigID)
     {
+        int list = int.Parse(bigID.Substring(0, 1));
+        switch (list)
+        {
+            case 1: inventory_headgear.Add(ItemByID(bigID)); break;
+            case 2: inventory_bodies.Add(ItemByID(bigID)); break;
+            case 3: inventory_arms.Add(ItemByID(bigID)); break;
+            case 4: inventory_legs.Add(ItemByID(bigID)); break;
+        }
+    }
+
+    public Equipable_Item ItemByID(string bigID)
+    {
+        print(bigID);
         Equipable_Item item = new Equipable_Item();
-        int listID = int.Parse(bigID.ToString().Substring(0, 1));
-        int basicID = int.Parse(bigID.ToString().Substring(0, 3));
+        int listID = int.Parse(bigID.Substring(0, 1));
+        int basicID = int.Parse(bigID.Substring(0, 3));
+        int rarity = int.Parse(bigID.Substring(3, 1));
+        print("Rarity " + rarity);
         try                                                                         //BUSCAR OBJETO EN LA LISTA CORRESPONDIENTE
         {
             switch (listID)
@@ -40,12 +61,15 @@ public class Items : MonoBehaviour {
                 case 6: item = weapons_list.Find(e => e.ID == basicID); break;
             }
         } catch { print("¡¡Item no encontrado!!"); }
-        try                                                                         //AÑADIR PARÁMETROS ALEATORIOS DEL OBJETO
+        switch (rarity)
         {
-            int randomStats = int.Parse(bigID.ToString().Substring(3, 6));
-            if (randomStats > 0) item.addStat.Add(MejoraAleatoria(randomStats));
-        } catch { }
-        
+            case 1: item.quality = Quality.Common; break;
+            case 2: item.quality = Quality.Rare; break;
+            case 3: item.quality = Quality.Epic; break;
+            case 4: item.quality = Quality.Legendary; break;
+        }
+        item.ID = basicID;
+        item.ID_string = bigID;
         return item;
     }
 
@@ -127,7 +151,48 @@ public class Items : MonoBehaviour {
         newItem.ID_string = newItem.ID.ToString() + rarity.ToString() + vida.ToString() + fuerza.ToString() + 
                                  skill.ToString() + luck.ToString() +skill1ID.ToString() + skill2ID.ToString();
 
-        CanvasBase.instance.ShowItemInfo(newItem.ID_string);
+        //CanvasBase.instance.ShowItemInfo(newItem.ID_string);
+        return newItem.ID_string;
+    }
+
+    public string GetRandomItemID(int nLista)
+    {
+        Equipable_Item newItem = new Equipable_Item();
+        int lista = Mathf.Clamp(nLista, 1, 5);
+        switch (lista) //Equip Position
+        {
+            case 1: newItem = headgear_list[Random.Range(0, headgear_list.Count - 1)]; break;
+            case 2: newItem = bodies_list[Random.Range(0, bodies_list.Count - 1)]; break;
+            case 3: newItem = arms_list[Random.Range(0, arms_list.Count - 1)]; break;
+            case 4: newItem = legs_list[Random.Range(0, legs_list.Count - 1)]; break;
+        }
+        int random = Random.Range(0, 101);
+        int rarity = 1;
+        if (random >= 95) rarity = 4;
+        else if (random >= 85) rarity = 3;
+        else if (random >= 60) rarity = 2;
+        int fuerza = 1;
+        int vida = 1;
+        int skill = 1;
+        int luck = 1;
+        for (var x = 0; x < 5; x++)
+        {
+            switch (Random.Range(1, 5))
+            {
+                case 1: fuerza++; break;
+                case 2: vida++; break;
+                case 3: skill++; break;
+                case 4: luck++; break;
+            }
+        }
+        int skill1ID = GetRandomSkillID();
+        int skill2ID = GetRandomSkillID();
+        if (skill1ID == skill2ID) if (int.Parse(skill2ID.ToString().Substring(1, 2)) == 1) skill2ID++; else skill2ID--; //Evitar duplicado skills
+
+        newItem.ID_string = newItem.ID.ToString() + rarity.ToString() + vida.ToString() + fuerza.ToString() +
+                                 skill.ToString() + luck.ToString() + skill1ID.ToString() + skill2ID.ToString();
+
+        //CanvasBase.instance.ShowItemInfo(newItem.ID_string);
         return newItem.ID_string;
     }
 
