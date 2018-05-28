@@ -29,6 +29,14 @@ public class Items : MonoBehaviour {
         instance = this;
     }
 
+    public void StoreClear()
+    {
+        inventory_headgear = new List<Equipable_Item>();
+        inventory_bodies = new List<Equipable_Item>();
+        inventory_arms = new List<Equipable_Item>();
+        inventory_legs = new List<Equipable_Item>();
+    }
+
     public void StoreItem(string bigID)
     {
         int list = int.Parse(bigID.Substring(0, 1));
@@ -41,14 +49,22 @@ public class Items : MonoBehaviour {
         }
     }
 
+    public List<string> GetYourItems()
+    {
+        List<string> objetos = new List<string>();
+        foreach (Equipable_Item e in inventory_headgear) objetos.Add(e.ID_string);
+        foreach (Equipable_Item e in inventory_bodies) objetos.Add(e.ID_string);
+        foreach (Equipable_Item e in inventory_arms) objetos.Add(e.ID_string);
+        foreach (Equipable_Item e in inventory_legs) objetos.Add(e.ID_string);
+        return objetos;
+    }
+
     public Equipable_Item ItemByID(string bigID)
     {
-        print(bigID);
         Equipable_Item item = new Equipable_Item();
         int listID = int.Parse(bigID.Substring(0, 1));
         int basicID = int.Parse(bigID.Substring(0, 3));
         int rarity = int.Parse(bigID.Substring(3, 1));
-        print("Rarity " + rarity);
         try                                                                         //BUSCAR OBJETO EN LA LISTA CORRESPONDIENTE
         {
             switch (listID)
@@ -142,6 +158,7 @@ public class Items : MonoBehaviour {
                 case 2: vida++; break;
                 case 3: skill++; break;
                 case 4: luck++; break;
+                default: luck++; break;
             }
         }
         int skill1ID = GetRandomSkillID();
@@ -151,7 +168,6 @@ public class Items : MonoBehaviour {
         newItem.ID_string = newItem.ID.ToString() + rarity.ToString() + vida.ToString() + fuerza.ToString() + 
                                  skill.ToString() + luck.ToString() +skill1ID.ToString() + skill2ID.ToString();
 
-        //CanvasBase.instance.ShowItemInfo(newItem.ID_string);
         return newItem.ID_string;
     }
 

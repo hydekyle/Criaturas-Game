@@ -36,7 +36,7 @@ public class CanvasBase : MonoBehaviour {
         equipment = transform.Find("Equipamiento");
         battleIA = transform.Find("BattleIA");
         treasures = transform.Find("Treasures");
-        goldText = transform.Find("UI").Find("Money").Find("Text").GetComponent<Text>();
+        goldText = transform.Find("Treasures").Find("Cofres").Find("Money").Find("Text").GetComponent<Text>();
         equip_menu = equipment.GetComponent<EquipMenu>();
 
         if(Application.platform == RuntimePlatform.Android)
@@ -70,7 +70,7 @@ public class CanvasBase : MonoBehaviour {
         
     }
 
-    void UpdateGoldView()
+    public void UpdateGoldView()
     {
         FirebaseDatabase.DefaultInstance.RootReference.Child("Inventario").Child(Social.localUser.userName).Child("data").Child("gold").GetValueAsync()
             .ContinueWith(task => {
@@ -82,21 +82,9 @@ public class CanvasBase : MonoBehaviour {
             });
     }
 
-    void GetYourItems()
+    public void UpdateGoldViewNoDB(string value)
     {
-        DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference.Child("Inventario").Child(Social.localUser.userName).Child("items");
-
-        reference.GetValueAsync().ContinueWith(task => {
-            if (task.IsCompleted)
-            {
-                string jsonData = task.Result.GetRawJsonValue();
-                string[] items = jsonData.Replace('"', ' ').Replace('[',' ').Replace(']',' ').Replace(" ", string.Empty).Split(',');
-                foreach(string s in items)
-                {
-                    Items.instance.StoreItem(s);
-                }
-            }
-        });
+        goldText.text = value;
     }
 
     public void BackToMenu()
@@ -149,20 +137,11 @@ public class CanvasBase : MonoBehaviour {
 
     }
 
-    
-
     bool IsUserLogged()
     {
         return FirebaseAuth.DefaultInstance.CurrentUser != null;
     }
     
-
-    public void BTN_EQUIP()
-    {
-        equipment.gameObject.SetActive(true);
-        start_menu.gameObject.SetActive(false);
-    }
-
 	public void BTN_VERSUS()
     {
 #if UNITY_EDITOR
@@ -206,13 +185,37 @@ public class CanvasBase : MonoBehaviour {
         start_menu.gameObject.SetActive(true);
     }
 
+    public void BTN_EQUIP()
+    {
+        equipment.gameObject.SetActive(true);
+        start_menu.gameObject.SetActive(false);
+    }
+
+
     void LogSuccessful()
     {
         Message.instance.NewMessage("Info Db completed");
         GameManager.instance.ConstruirJugador();
         transform.Find("Loading").gameObject.SetActive(false);
         UpdateGoldView();
-        GetYourItems();
+        LoadYourItems();
+    }
+
+    public void LoadYourItems()
+    {
+        DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference.Child("Inventario").Child(Social.localUser.userName).Child("items");
+        reference.GetValueAsync().ContinueWith(task => {
+            if (task.IsCompleted)
+            {
+                string jsonData = task.Result.GetRawJsonValue();
+                string[] items = jsonData.Replace('"', ' ').Replace('[', ' ').Replace(']', ' ').Replace(" ", string.Empty).Split(',');
+                Items.instance.StoreClear();
+                foreach (string s in items)
+                {
+                    Items.instance.StoreItem(s);
+                }
+            }
+        });
     }
 
 }

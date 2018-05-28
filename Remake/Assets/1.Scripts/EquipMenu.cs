@@ -35,7 +35,7 @@ public class EquipMenu : MonoBehaviour {
     Text value_skill;
     Text value_luck;
 
-    void Start()
+    void Awake()
     {
         Inicialize();
     }
@@ -71,6 +71,11 @@ public class EquipMenu : MonoBehaviour {
             item_image[x] = t.Find("Image").GetComponent<Image>();
             t.gameObject.name = x.ToString();
         }
+    }
+
+    void OnEnable()
+    {
+        currentEquipView = Equip_Position.None;
         BTN_HEAD();
     }
 
@@ -108,10 +113,15 @@ public class EquipMenu : MonoBehaviour {
         rarity_text.color = ColorByQuality(rarity);
         retrato.sprite = itemSprite;
 
-        value_attack.text = (health * rarity).ToString();
-        value_life.text = (attack * rarity).ToString();
-        value_skill.text = (skill * rarity).ToString();
-        value_luck.text = (luck * rarity).ToString();
+        attack *= rarity;
+        health *= rarity;
+        skill *= rarity;
+        luck *= rarity;
+
+        value_attack.text = attack.ToString();
+        value_life.text = health.ToString();
+        value_skill.text = skill.ToString();
+        value_luck.text = luck.ToString();
 
         if (Lenguaje.Instance.spanish_language)
         {
