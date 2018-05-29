@@ -182,11 +182,7 @@ public class Items : MonoBehaviour {
             case 3: newItem = arms_list[Random.Range(0, arms_list.Count - 1)]; break;
             case 4: newItem = legs_list[Random.Range(0, legs_list.Count - 1)]; break;
         }
-        int random = Random.Range(0, 101);
         int rarity = 1;
-        if (random >= 95) rarity = 4;
-        else if (random >= 85) rarity = 3;
-        else if (random >= 60) rarity = 2;
         int fuerza = 1;
         int vida = 1;
         int skill = 1;

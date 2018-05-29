@@ -10,6 +10,7 @@ using Firebase;
 using Firebase.Unity.Editor;
 using Firebase.Database;
 using Firebase.Auth;
+using UnityEngine.SceneManagement;
 
 public class CanvasBase : MonoBehaviour {
 
@@ -99,40 +100,22 @@ public class CanvasBase : MonoBehaviour {
 
     void LogFirebaseTEST()
     {
-        Message.instance.NewMessage("Intentandolo");
         FirebaseAuth.DefaultInstance.SignInWithEmailAndPasswordAsync("hydekyle706@gmail.com", "adrian").ContinueWith((obj) =>
         {
-            Message.instance.NewMessage("Conectado");
-            List<string> temp = new List<string>();
-            temp.Add(Items.instance.GetRandomItemID());
-            temp.Add(Items.instance.GetRandomItemID());
-            temp.Add(Items.instance.GetRandomItemID());
-            temp.Add(Items.instance.GetRandomItemID());
-            temp.Add(Items.instance.GetRandomItemID());
-            temp.Add(Items.instance.GetRandomItemID());
-            temp.Add(Items.instance.GetRandomItemID());
-            temp.Add(Items.instance.GetRandomItemID());
-            temp.Add(Items.instance.GetRandomItemID());
-
             DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference;
-            UserDB userData = new UserDB()
-            {
-                chests = 3,
-                gold = 777,
-                victorias = 0,
-                derrotas = 0
-            };
-            objetos userInfo = new objetos() { items = temp, data = userData };
-            string json = JsonUtility.ToJson(userInfo);
 
-            reference.Child("Inventario").Child(Social.localUser.userName).SetRawJsonValueAsync(json).ContinueWith((obj2) =>
-            {
-                if (obj2.IsCompleted)
+            reference.Child("Inventario").Child(Social.localUser.userName).GetValueAsync().ContinueWith(task => {
+                if (!task.Result.Exists) //Si es la primera vez que juegas
+                {
+                    start_menu.gameObject.SetActive(false);
+                    transform.Find("Loading").gameObject.SetActive(false);
+                    SceneManager.LoadScene(1);
+                }else
                 {
                     LogSuccessful();
                 }
-
             });
+
         });
 
     }
@@ -194,8 +177,7 @@ public class CanvasBase : MonoBehaviour {
 
     void LogSuccessful()
     {
-        Message.instance.NewMessage("Info Db completed");
-        GameManager.instance.ConstruirJugador();
+        Database.instance.ObtenerEquipSetting();
         transform.Find("Loading").gameObject.SetActive(false);
         UpdateGoldView();
         LoadYourItems();

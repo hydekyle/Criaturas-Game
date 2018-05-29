@@ -59,7 +59,7 @@ public class Cofres_System : MonoBehaviour {
                 {
                     DataSnapshot snap = task.Result;
                     gold = int.Parse(snap.Value.ToString());
-                    if(gold > 100)
+                    if(gold >= 100)
                     {
                         FirebaseDatabase.DefaultInstance.RootReference.Child("Inventario").Child(Social.localUser.userName).Child("data").Child("gold")
                         .SetValueAsync(gold - 100);

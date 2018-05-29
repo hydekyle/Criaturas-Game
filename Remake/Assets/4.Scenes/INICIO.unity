@@ -857,7 +857,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 88, y: -99.625}
-  m_SizeDelta: {x: 32, y: 34.649994}
+  m_SizeDelta: {x: 45, y: 34.649994}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &213787409
 MonoBehaviour:
@@ -5337,7 +5337,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: -12, y: -99.625}
-  m_SizeDelta: {x: 32, y: 34.649994}
+  m_SizeDelta: {x: 45, y: 34.649994}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &908721125
 MonoBehaviour:
@@ -7854,11 +7854,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63882cd5c7f06e549bfa9a5dec496b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  usuario:
-    gold: 0
-    chests: 0
-    victorias: 0
-    derrotas: 0
 --- !u!114 &1236433749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9364,7 +9359,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: -62, y: -99.625}
-  m_SizeDelta: {x: 32, y: 34.649994}
+  m_SizeDelta: {x: 45, y: 34.649994}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1508727076
 MonoBehaviour:
@@ -12435,7 +12430,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 38, y: -99.625}
-  m_SizeDelta: {x: 32, y: 34.649994}
+  m_SizeDelta: {x: 45, y: 34.649994}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2046737050
 MonoBehaviour:

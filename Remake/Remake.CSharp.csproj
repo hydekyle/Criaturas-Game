@@ -390,6 +390,7 @@
     <Compile Include="Assets\1.Scripts\Database.cs" />
     <Compile Include="Assets\1.Scripts\EquipMenu.cs" />
     <Compile Include="Assets\1.Scripts\GameManager.cs" />
+    <Compile Include="Assets\1.Scripts\Huevo.cs" />
     <Compile Include="Assets\1.Scripts\Items.cs" />
     <Compile Include="Assets\1.Scripts\Lenguaje.cs" />
     <Compile Include="Assets\1.Scripts\Menu.cs" />

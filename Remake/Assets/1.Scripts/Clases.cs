@@ -134,6 +134,15 @@ public class objetos {
 }
 
 [Serializable]
+public class EquipDB
+{
+    public string head;
+    public string body;
+    public string arms;
+    public string legs;
+}
+
+[Serializable]
 public class Skill
 {
     public int ID;

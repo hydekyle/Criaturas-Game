@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/4.Scenes/INICIO.unity
     guid: 848f3a1c38c0fee4da311f9a47f10ce0
+  - enabled: 1
+    path: Assets/4.Scenes/FirstGame.unity
+    guid: ace2709f21ab25b468ce25bb4a82d715
   m_configObjects: {}
