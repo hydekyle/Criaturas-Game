@@ -9,27 +9,40 @@ using GooglePlayGames.BasicApi.Multiplayer;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.SceneManagement;
 
-public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
+public class BattleSystem : MonoBehaviour {
 
     public static BattleSystem instance { get; set; }
 
     Player player1;
     Player player2;
 
+    public Sprite sphere_alpha, sphere_assassin, sphere_pacifist, sphere_charming, sphere_null;
+
     public List<GiveStat> totalStats_player1 = new List<GiveStat>();
     public List<GiveStat> totalStats_player2 = new List<GiveStat>();
 
     RectTransform rect_skills;
     Image fadeScreen;
+    [HideInInspector]
     public SkillsButtons skill_buttons;
+    int selectedButton = 0;
     Text textoMyHP, textoEnemyHP;
 
+    [HideInInspector]
     public int minigameFails = 0;
+    [HideInInspector]
     public int lastSkill_ID;
+    [HideInInspector]
     public int lastSkillOponent_ID;
 
     bool yourTurn;
     float fadeToAphaValue = 0;
+
+    public int yMax = 50;
+    public int yMin = -50;
+
+    Transform headT, bodyT, armsT, legsT;
+
 
     void Start()
     {
@@ -45,10 +58,10 @@ public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
         textoMyHP = transform.GetChild(0).Find("MyHP").GetComponent<Text>();
         textoEnemyHP = transform.GetChild(0).Find("EnemyHP").GetComponent<Text>();
         Transform habilidadesT = transform.Find("Canvas").Find("[Habilidades]");
-        Transform headT = habilidadesT.Find("Skill_Head");
-        Transform bodyT = habilidadesT.Find("Skill_Body");
-        Transform armsT = habilidadesT.Find("Skill_Arms");
-        Transform legsT = habilidadesT.Find("Skill_Legs");
+        headT = habilidadesT.Find("Skill_Head");
+        bodyT = habilidadesT.Find("Skill_Body");
+        armsT = habilidadesT.Find("Skill_Arms");
+        legsT = habilidadesT.Find("Skill_Legs");
         rect_skills = transform.GetChild(0).GetChild(1).GetComponent<RectTransform>();
         rect_skills.localPosition = rect_skills.localPosition + Vector3.down * 50;
         rect_skills.gameObject.SetActive(true);
@@ -60,28 +73,35 @@ public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
             head_button = new SkillButton()
             {
                 myImage = headT.GetComponent<Image>(),
-                myText = headT.GetChild(0).GetComponent<Text>()
+                myText = headT.Find("Text").GetComponent<Text>(),
+                orb = headT.Find("Orb").GetComponent<Image>(),
+                descriptionText = headT.Find("Description").GetComponent<Text>()
             },
             body_button = new SkillButton()
             {
                 myImage = bodyT.GetComponent<Image>(),
-                myText = bodyT.GetChild(0).GetComponent<Text>()
+                myText = bodyT.Find("Text").GetComponent<Text>(),
+                orb = bodyT.Find("Orb").GetComponent<Image>(),
+                descriptionText = bodyT.Find("Description").GetComponent<Text>()
             },
             arms_button = new SkillButton()
             {
                 myImage = armsT.GetComponent<Image>(),
-                myText = armsT.GetChild(0).GetComponent<Text>()
+                myText = armsT.Find("Text").GetComponent<Text>(),
+                orb = armsT.Find("Orb").GetComponent<Image>(),
+                descriptionText = armsT.Find("Description").GetComponent<Text>()
             },
             legs_button = new SkillButton()
             {
                 myImage = legsT.GetComponent<Image>(),
-                myText = legsT.GetChild(0).GetComponent<Text>()
+                myText = legsT.Find("Text").GetComponent<Text>(),
+                orb = legsT.Find("Orb").GetComponent<Image>(),
+                descriptionText = legsT.Find("Description").GetComponent<Text>()
             }
         };
         #endregion
         player1 = GameManager.instance.player;
         player2 = ConstruirIA();
-
 
         StartCoroutine(GameManager.instance.MostrarJugador(player2, 2, new Vector3(120, 40, 0), false)); //Visualizar oponente
         Menu.instance.SetVisorPosition(1, new Vector3(-120, 40, -1), true); //Recolocar jugador 1
@@ -90,6 +110,9 @@ public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
     }
 
     #region Engine
+
+
+
     public List<Equipable_Item> ObtenerListaEquipamiento(Player player)
     {
         List<Equipable_Item> lista = new List<Equipable_Item>();
@@ -143,6 +166,19 @@ public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
         };
     }
 
+    private Sprite SphereBySkillID(int ID)
+    {
+        Sprite sprite = null;
+        switch (Skills.instance.SkillByID(ID).s_class)
+        {
+            case Skill_Class.Alpha: sprite = sphere_alpha; break;
+            case Skill_Class.Assassin: sprite = sphere_assassin; break;
+            case Skill_Class.Charming: sprite = sphere_charming; break;
+            case Skill_Class.Pacifist: sprite = sphere_pacifist; break;
+        }
+        return sprite;
+    }
+
     public void UpdateSkillButtons()
     {
         try
@@ -153,9 +189,22 @@ public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
             skill_buttons.legs_activable_skill_ID = player1.criatura.skills.legs[Random.Range(0, player1.criatura.skills.legs.Count)];
 
             skill_buttons.head_button.myText.text = Lenguaje.Instance.SkillNameByID(skill_buttons.head_activable_skill_ID);
+            skill_buttons.head_button.descriptionText.text = Lenguaje.Instance.SkillDescriptionByID(skill_buttons.head_activable_skill_ID);
+            skill_buttons.head_button.orb.sprite = SphereBySkillID(skill_buttons.head_activable_skill_ID);
+
             skill_buttons.body_button.myText.text = Lenguaje.Instance.SkillNameByID(skill_buttons.body_activable_skill_ID);
+            skill_buttons.body_button.descriptionText.text = Lenguaje.Instance.SkillDescriptionByID(skill_buttons.body_activable_skill_ID);
+            skill_buttons.body_button.orb.sprite = SphereBySkillID(skill_buttons.body_activable_skill_ID);
+
             skill_buttons.arms_button.myText.text = Lenguaje.Instance.SkillNameByID(skill_buttons.arms_activable_skill_ID);
+            skill_buttons.arms_button.descriptionText.text = Lenguaje.Instance.SkillDescriptionByID(skill_buttons.arms_activable_skill_ID);
+            skill_buttons.arms_button.orb.sprite = SphereBySkillID(skill_buttons.arms_activable_skill_ID);
+
             skill_buttons.legs_button.myText.text = Lenguaje.Instance.SkillNameByID(skill_buttons.legs_activable_skill_ID);
+            skill_buttons.legs_button.descriptionText.text = Lenguaje.Instance.SkillDescriptionByID(skill_buttons.legs_activable_skill_ID);
+            skill_buttons.legs_button.orb.sprite = SphereBySkillID(skill_buttons.legs_activable_skill_ID);
+
+
         } catch
         {
             print("Falta setear habilidades");
@@ -274,33 +323,69 @@ public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
     #region Botones_Activables
     public void Head_BTN()
     {
-        LanzarSkill(skill_buttons.head_activable_skill_ID);
+        OnButtonClick(1);
     }
 
     public void Body_BTN()
     {
-        LanzarSkill(skill_buttons.body_activable_skill_ID);
+        OnButtonClick(2);
     }
 
     public void Arms_BTN()
     {
-        LanzarSkill(skill_buttons.arms_activable_skill_ID);
+        OnButtonClick(3);
     }
 
     public void Legs_BTN()
     {
-        LanzarSkill(skill_buttons.legs_activable_skill_ID);
+        OnButtonClick(4);
     }
     #endregion
 
+    private void OnButtonClick(int n)
+    {
+        if(n == selectedButton)
+        {
+            switch (n)
+            {
+                case 1: LanzarSkill(skill_buttons.head_activable_skill_ID); break;
+                case 2: LanzarSkill(skill_buttons.body_activable_skill_ID); break;
+                case 3: LanzarSkill(skill_buttons.arms_activable_skill_ID); break;
+                case 4: LanzarSkill(skill_buttons.legs_activable_skill_ID); break;
+            }
+            selectedButton = 0;
+        }else
+        {
+            selectedButton = n;
+        }
+    }
+
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.T)) StartTurn();
+        
+        if(selectedButton == 1) headT.localPosition = Vector3.Lerp(headT.localPosition, new Vector3(headT.localPosition.x, yMax, 0), Time.deltaTime * 10);
+        else headT.localPosition = Vector3.Lerp(headT.localPosition, new Vector3(headT.localPosition.x, yMin, 0), Time.deltaTime * 10);
 
+        if (selectedButton == 2) bodyT.localPosition = Vector3.Lerp(bodyT.localPosition, new Vector3(bodyT.localPosition.x, yMax, 0), Time.deltaTime * 10);
+        else bodyT.localPosition = Vector3.Lerp(bodyT.localPosition, new Vector3(bodyT.localPosition.x, yMin, 0), Time.deltaTime * 10);
+
+        if (selectedButton == 3) armsT.localPosition = Vector3.Lerp(armsT.localPosition, new Vector3(armsT.localPosition.x, yMax, 0), Time.deltaTime * 10);
+        else armsT.localPosition = Vector3.Lerp(armsT.localPosition, new Vector3(armsT.localPosition.x, yMin, 0), Time.deltaTime * 10);
+
+        if (selectedButton == 4) legsT.localPosition = Vector3.Lerp(legsT.localPosition, new Vector3(legsT.localPosition.x, yMax, 0), Time.deltaTime * 10);
+        else legsT.localPosition = Vector3.Lerp(legsT.localPosition, new Vector3(legsT.localPosition.x, yMin, 0), Time.deltaTime * 10);
+
+        RectPositions();
+
+    }
+
+    void RectPositions()
+    {
         if (yourTurn)
         {
             rect_skills.localPosition = Vector3.Lerp(rect_skills.localPosition, Vector3.zero, Time.deltaTime * 5);
-        } else
+        }
+        else
         {
             rect_skills.localPosition = Vector3.Lerp(rect_skills.localPosition, new Vector3(0, -100, 0), Time.deltaTime * 5);
         }
@@ -308,7 +393,6 @@ public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
         {
             fadeScreen.color = Color.Lerp(fadeScreen.color, new Color(fadeScreen.color.r, fadeScreen.color.g, fadeScreen.color.b, fadeToAphaValue), Time.deltaTime * 2);
         }
-
     }
 
     void StartTurn()
@@ -320,85 +404,9 @@ public class BattleSystem : MonoBehaviour, RealTimeMultiplayerListener {
 
     public void Go_back()
     {
-        gameObject.SetActive(false);
+        Destroy(GameManager.instance.gameObject);
         SceneManager.LoadScene(0);
     }
-
-    #region GOOGLE_PLAY_ONLINE
-    public void TestOnline()
-    {
-        PlayGamesPlatform.Instance.RealTime.CreateWithInvitationScreen(1, 1, 0, this);
-    }
-
-    public void InvitationReceived(Invitation invitation)
-    {
-        Message.instance.NewMessage("HAS RECIBIDO ALGO");
-        PlayGamesPlatform.Instance.RealTime.AcceptInvitation(invitation.InvitationId, this);
-    }
-
-    public void GO_MATCHMAKING()
-    {
-        PlayGamesPlatform.Instance.RealTime.CreateQuickGame(1, 1, 0, this);
-        //PlayGamesPlatform.Instance.RealTime.AcceptFromInbox(this);
-    }
-
-    public void CheckInvitations()
-    {
-        PlayGamesPlatform.Instance.RealTime.GetAllInvitations((listener) => {
-            Message.instance.NewMessage("Tienes " + listener.Length + " invitaciones");
-        });
-    }
-
-    public void OnRoomConnected(bool success)
-    {
-        if (success)
-        {
-            Message.instance.NewMessage("CONECTADO A ROOM");
-            string info = "Mirame y dime";
-            byte[] data = System.Text.Encoding.Default.GetBytes(info);
-            PlayGamesPlatform.Instance.RealTime.SendMessageToAll(true, data);
-            List<Participant> listaPersonas = PlayGamesPlatform.Instance.RealTime.GetConnectedParticipants();
-            Message.instance.NewMessage("Room conectada: " + listaPersonas.Count);
-        }
-        else
-        {
-            Message.instance.NewMessage("Room es " + PlayGamesPlatform.Instance.RealTime.IsRoomConnected().ToString());
-        }
-        
-    }
-
-    public void OnRoomSetupProgress(float percent)
-    {
-        Message.instance.NewMessage("F: " + percent.ToString());
-    }
-
-    public void OnLeftRoom()
-    {
-        Message.instance.NewMessage("Abandono");
-    }
-
-    public void OnParticipantLeft(Participant p)
-    {
-        Message.instance.NewMessage(p.DisplayName + " se ha ido");
-    }
-
-    public void OnPeersConnected(string[] s)
-    {
-        Message.instance.NewMessage("Peer: " + s.Length.ToString());
-    }
-
-    public void OnPeersDisconnected(string[] s)
-    {
-        Message.instance.NewMessage("Peer fuera");
-    }
-
-    public void OnRealTimeMessageReceived(bool isReliable, string sender, byte[] byteArray)
-    {
-        string mensj = System.Convert.ToBase64String(byteArray);
-        Message.instance.NewMessage("MENSAJE RECIBIDO: "+mensj);
-        
-    }
-    #endregion
 
 
 

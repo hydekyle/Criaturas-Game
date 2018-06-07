@@ -11,6 +11,7 @@ public class Menu : MonoBehaviour {
     public Equipment loadedEquipment = new Equipment();
     Visor visor_player1;
     Visor visor_player2;
+    public bool inicialized;
     
 
     void Awake()
@@ -80,6 +81,7 @@ public class Menu : MonoBehaviour {
 
     public IEnumerator VisualizarEquipamiento(Equipment e, int playerNumber)
     {
+        if (playerNumber == 1 && !inicialized) inicialized = true;
         //Actuar solo si el equipamiento ha cambiado. Para el jugador 2 se muestra sin checkear.
         if (loadedEquipment.body.ID != e.body.ID || playerNumber == 2)
         {

@@ -75,6 +75,7 @@ public class EquipMenu : MonoBehaviour {
 
     void OnEnable()
     {
+        CanvasBase.instance.CheckFirebaseLogin();
         currentEquipView = Equip_Position.None;
         BTN_HEAD();
     }
@@ -93,6 +94,7 @@ public class EquipMenu : MonoBehaviour {
         yield return Items.instance.ItemSpriteByID(itemID, result => itemSprite = result);
         print(itemID);
         retrato.sprite = itemSprite;
+        retrato.preserveAspect = true;
     }
 
     public IEnumerator ViewItemInfo(string id)
@@ -238,7 +240,10 @@ public class EquipMenu : MonoBehaviour {
             {
                 storage_ID[x] = actualList[y].ID_string;
                 rarity_image[x].color = ColorByQuality(actualList[y].quality);
-                yield return Items.instance.ItemSpriteByID(actualList[y].ID, result => item_image[x].sprite = result);
+                yield return Items.instance.ItemSpriteByID(actualList[y].ID, result => {
+                    item_image[x].sprite = result;
+                    item_image[x].preserveAspect = true;
+                    });
                 if (storage_ID[x] == equipedID) Colocar_Tic_Equip(x);
                 y++;
             }else
@@ -247,7 +252,7 @@ public class EquipMenu : MonoBehaviour {
                 break;
             }  
         }
-        //if (storage_ID[inventarioT.childCount - 1].Length > 0) btn_forw.interactable = true; else btn_forw.interactable = false;
+        if (storage_ID[inventarioT.childCount - 1].Length > 0) btn_forw.interactable = true; else btn_forw.interactable = false;
         StartCoroutine(ViewItemInfo());
     }
 
@@ -337,7 +342,6 @@ public class EquipMenu : MonoBehaviour {
     {
         GameObject info_window = transform.Find("Info").gameObject;
         info_window.SetActive(info_window.activeSelf ? false : true);
-        //transform.Find("Open_Info").Find("Text").GetComponent<Text>().text = Lenguaje.Instance.Text_InfoButton(info_window.activeSelf);
     }
 
 }

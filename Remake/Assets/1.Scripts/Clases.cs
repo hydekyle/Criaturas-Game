@@ -13,6 +13,7 @@ namespace Enums {
     public enum Speed { Slow, Normal, Fast};
     public enum Buffs { Attack, Dextery, Luck, Shield, Barrier}
     public enum Debuffs { Attack, Dextery, Bleed, Poison, Dizziness, Confusion};
+    public enum Evolution { Level1, Level2, Level3}
 }
 
 public struct BodyBounds
@@ -88,6 +89,8 @@ public class SkillButton
 {
     public Image myImage;
     public Text myText;
+    public Text descriptionText;
+    public Image orb;
 }
 
 [Serializable]
@@ -123,6 +126,7 @@ public class Player
 public class UserDB
 {
     public int gold;
+    public int gold_VIP;
     public int chests;
     public int victorias;
     public int derrotas;
@@ -131,6 +135,7 @@ public class UserDB
 public class objetos {
     public List<string> items;
     public UserDB data;
+    public EquipDB equipamiento;
 }
 
 [Serializable]
@@ -208,7 +213,6 @@ public class Stats
     public int buff_barrier;
 
 }
-
 
 
 

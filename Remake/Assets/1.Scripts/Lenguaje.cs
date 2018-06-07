@@ -29,13 +29,17 @@ public class Lenguaje : MonoBehaviour {
     public string SkillNameByID(int ID)
     {
         string name = "";
-        try
-        {
-            if (spanish_language) name = Skills.instance.SkillByID(ID).name_spanish;
-                             else name = Skills.instance.SkillByID(ID).name_english;
-        }catch { name = "Null"; }
-        
+        if (spanish_language) name = Skills.instance.SkillByID(ID).name_spanish;
+        else name = Skills.instance.SkillByID(ID).name_english;
         return name;
+    }
+
+    public string SkillDescriptionByID(int ID)
+    {
+        string description = "";
+        if (spanish_language) description = Skills.instance.SkillByID(ID).description_spanish;
+        else description = Skills.instance.SkillByID(ID).description_english;
+        return description;
     }
 
     public string Text_YourTurn()

@@ -6,9 +6,6 @@ using Enums;
 
 public class Items : MonoBehaviour {
 
-    //string texturesWebFolder = "https://www.evolution-battle.com/EvolutionPortable/Texturas";
-
-
     public static Items instance;
     [SerializeField]
     public List<Equipable_Item> headgear_list;
@@ -171,16 +168,79 @@ public class Items : MonoBehaviour {
         return newItem.ID_string;
     }
 
+    public string GetRandomItemID(Evolution evo)
+    {
+        Equipable_Item newItem = new Equipable_Item();
+        if (evo == Evolution.Level1)
+        {
+            switch (Random.Range(1, 5)) //Equip Position
+            {
+                case 1: newItem = headgear_list[Random.Range(0, (headgear_list.Count - 1) / 3)]; break;
+                case 2: newItem = bodies_list[Random.Range(0, (bodies_list.Count - 1) / 3)]; break;
+                case 3: newItem = arms_list[Random.Range(0, (arms_list.Count - 1)) / 3]; break;
+                case 4: newItem = legs_list[Random.Range(0, (legs_list.Count - 1)) / 3]; break;
+            }
+        }
+        else if(evo == Evolution.Level2)
+        {
+            switch (Random.Range(1, 5)) //Equip Position
+            {
+                case 1: newItem = headgear_list[Random.Range((headgear_list.Count - 1) / 3, ((headgear_list.Count - 1) / 3) * 2)]; break;
+                case 2: newItem = bodies_list[Random.Range((bodies_list.Count - 1) / 3, ((bodies_list.Count - 1) / 3) * 2)]; break;
+                case 3: newItem = arms_list[Random.Range((arms_list.Count - 1) / 3, ((arms_list.Count - 1)) / 3) * 2]; break;
+                case 4: newItem = legs_list[Random.Range((legs_list.Count - 1) / 3, ((legs_list.Count - 1) / 3) * 2)]; break;
+            }
+        }else
+        {
+            switch (Random.Range(1, 5)) //Equip Position
+            {
+                case 1: newItem = headgear_list[Random.Range(((headgear_list.Count - 1) / 3) * 2, headgear_list.Count - 1)]; break;
+                case 2: newItem = bodies_list[Random.Range(((bodies_list.Count - 1) / 3) * 2, bodies_list.Count - 1)]; break;
+                case 3: newItem = arms_list[Random.Range(((arms_list.Count - 1) / 3) * 2, arms_list.Count - 1)]; break;
+                case 4: newItem = legs_list[Random.Range(((legs_list.Count - 1) / 3) * 2, legs_list.Count - 1)]; break;
+            }
+        }
+        
+        int random = Random.Range(0, 101);
+        int rarity = 1;
+        if (random >= 95) rarity = 4;
+        else if (random >= 85) rarity = 3;
+        else if (random >= 60) rarity = 2;
+        int fuerza = 1;
+        int vida = 1;
+        int skill = 1;
+        int luck = 1;
+        for (var x = 0; x < 5; x++)
+        {
+            switch (Random.Range(1, 5))
+            {
+                case 1: fuerza++; break;
+                case 2: vida++; break;
+                case 3: skill++; break;
+                case 4: luck++; break;
+                default: luck++; break;
+            }
+        }
+        int skill1ID = GetRandomSkillID();
+        int skill2ID = GetRandomSkillID();
+        if (skill1ID == skill2ID) if (int.Parse(skill2ID.ToString().Substring(1, 2)) == 1) skill2ID++; else skill2ID--; //Evitar duplicado skills
+
+        newItem.ID_string = newItem.ID.ToString() + rarity.ToString() + vida.ToString() + fuerza.ToString() +
+                                 skill.ToString() + luck.ToString() + skill1ID.ToString() + skill2ID.ToString();
+
+        return newItem.ID_string;
+    }
+
     public string GetRandomItemID(int nLista)
     {
         Equipable_Item newItem = new Equipable_Item();
         int lista = Mathf.Clamp(nLista, 1, 5);
         switch (lista) //Equip Position
         {
-            case 1: newItem = headgear_list[Random.Range(0, headgear_list.Count - 1)]; break;
-            case 2: newItem = bodies_list[Random.Range(0, bodies_list.Count - 1)]; break;
-            case 3: newItem = arms_list[Random.Range(0, arms_list.Count - 1)]; break;
-            case 4: newItem = legs_list[Random.Range(0, legs_list.Count - 1)]; break;
+            case 1: newItem = headgear_list[Random.Range(0, (headgear_list.Count - 1) / 3)]; break;
+            case 2: newItem = bodies_list[Random.Range(0, (bodies_list.Count - 1) / 3)]; break;
+            case 3: newItem = arms_list[Random.Range(0, (arms_list.Count - 1) / 3)]; break;
+            case 4: newItem = legs_list[Random.Range(0, (legs_list.Count - 1) / 3)]; break;
         }
         int rarity = 1;
         int fuerza = 1;
@@ -224,10 +284,19 @@ public class Items : MonoBehaviour {
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            CanvasBase.instance.ShowItemInfo(GetRandomItemID(Evolution.Level1));
+        }
         if (Input.GetKeyDown(KeyCode.N))
         {
-            GetRandomItemID();
+            CanvasBase.instance.ShowItemInfo(GetRandomItemID(Evolution.Level2));
         }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            CanvasBase.instance.ShowItemInfo(GetRandomItemID(Evolution.Level3));
+        }
+
     }
 
 

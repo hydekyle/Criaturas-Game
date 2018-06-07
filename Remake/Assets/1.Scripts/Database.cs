@@ -47,7 +47,7 @@ public class Database : MonoBehaviour {
             legs = equipment.legs.ID_string
         };
         string json = JsonUtility.ToJson(equip);
-        FirebaseDatabase.DefaultInstance.RootReference.Child("Equipamiento").Child(Social.localUser.userName).SetRawJsonValueAsync(json);
+        FirebaseDatabase.DefaultInstance.RootReference.Child("Inventario").Child(Social.localUser.id).Child("equipamiento").SetRawJsonValueAsync(json);
     }
 
 
@@ -56,7 +56,7 @@ public class Database : MonoBehaviour {
     {
         Equipment e = new Equipment();
         EquipDB equip = new EquipDB();
-        FirebaseDatabase.DefaultInstance.RootReference.Child("Equipamiento").Child(Social.localUser.userName).GetValueAsync().ContinueWith(task => {
+        FirebaseDatabase.DefaultInstance.RootReference.Child("Inventario").Child(Social.localUser.id).Child("equipamiento").GetValueAsync().ContinueWith(task => {
             if (task.IsCompleted)
             {
                 equip = JsonUtility.FromJson<EquipDB>(task.Result.GetRawJsonValue());
@@ -107,7 +107,10 @@ public class Database : MonoBehaviour {
                     }
                 };
                 GameManager.instance.player = player;
-                StartCoroutine(GameManager.instance.MostrarJugador(player, 1, new Vector3(10, 66, -1), false));
+                if(!Menu.instance.inicialized) //Visor iniciado
+                {
+                    StartCoroutine(GameManager.instance.MostrarJugador(player, 1, new Vector3(8, 35, -1), false));
+                }
             }
         });
         return e;
