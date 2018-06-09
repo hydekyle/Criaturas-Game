@@ -59,7 +59,8 @@ public class Cofres_System : MonoBehaviour {
 
     public void COMPRAR_COFRE()
     {
-        transform.Find("Cofres").Find("Buy_Chest").GetComponent<Button>().interactable = false;
+        Button cofre = transform.Find("Buy_Chest").GetComponent<Button>();
+        cofre.interactable = false;
         int gold;
         FirebaseDatabase.DefaultInstance.RootReference.Child("Inventario").Child(Social.localUser.id).Child("data").Child("gold").GetValueAsync()
             .ContinueWith(task => {
@@ -75,8 +76,8 @@ public class Cofres_System : MonoBehaviour {
                     }else
                     {
                         Message.instance.NewMessage("Necesitas más gemas");
-                        transform.Find("Cofres").Find("Buy_Chest").GetComponent<Button>().interactable = true;
                     }
+                    cofre.interactable = true;
                 }
 
             });   
