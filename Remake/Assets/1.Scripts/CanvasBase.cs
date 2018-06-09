@@ -27,6 +27,8 @@ public class CanvasBase : MonoBehaviour {
     Camera camara;
     bool camMovementEnabled = true;
 
+    GameObject sub_menu_play;
+
     public class CameraPos {
         public Vector3 leftPos = new Vector3(-34, 0, -500);
         public Vector3 midPos = new Vector3(0, 0, -500);
@@ -47,6 +49,7 @@ public class CanvasBase : MonoBehaviour {
 
     void Start()
     {
+        sub_menu_play = transform.Find("Start_Menu").Find("SubPanel_Versus").gameObject;
         start_menu = transform.Find("Start_Menu");
         equipment = transform.Find("Equipamiento");
         battleIA = transform.Find("BattleIA");
@@ -122,17 +125,6 @@ public class CanvasBase : MonoBehaviour {
         StartCoroutine(equip_menu.ViewItemInfo(id));
     }
 
-
-    public void CheckFirebaseLogin()
-    {
-        FirebaseUser fireUser = FirebaseAuth.GetAuth(FirebaseApp.DefaultInstance).CurrentUser;
-        if(fireUser == null)
-        {
-            LogFirebaseTEST();
-        }
-    }
-
-
     void LogFirebaseTEST()
     {
         string username = Social.localUser.id + "@evolution.com";
@@ -187,8 +179,8 @@ public class CanvasBase : MonoBehaviour {
     {
         return FirebaseAuth.DefaultInstance.CurrentUser != null;
     }
-    
-	public void BTN_VERSUS()
+
+    public void GoBattle()
     {
 #if UNITY_EDITOR
         battleIA.gameObject.SetActive(!battleIA.gameObject.activeSelf);
@@ -204,6 +196,12 @@ public class CanvasBase : MonoBehaviour {
         {
             Message.instance.NewMessage("No hay conexión");
         }
+    }
+
+    public void BTN_VERSUS()
+    {
+        //GoBattle();
+        sub_menu_play.SetActive(!sub_menu_play.activeSelf);
     }
 
     public void BTN_LOGROS()
@@ -244,13 +242,38 @@ public class CanvasBase : MonoBehaviour {
         camVectorPoint = camPosition.midPos;
     }
 
-
-    void LogSuccessful()
+    private void TryRelog(object sender, EventArgs e)
     {
-        Database.instance.ObtenerEquipSetting();
-        transform.Find("Loading").gameObject.SetActive(false);
-        UpdateGoldView();
-        LoadYourItems();
+        FirebaseUser fireUser = FirebaseAuth.GetAuth(FirebaseApp.DefaultInstance).CurrentUser;
+        if (fireUser == null)
+        {
+            print("TRYING TO RECONECT DB");
+            LogFirebaseTEST();
+        }
+    }
+
+    public void CreateWaitingRoom()
+    {
+
+        FirebaseDatabase.DefaultInstance.RootReference.Child("Private Rooms").GetValueAsync().ContinueWith(task => { //Leer cuantas salas hay
+            if (task.IsCompleted)
+            {
+                WaitingRoom room = new WaitingRoom()
+                {
+                    ID = "" + task.Result.ChildrenCount,
+                    owner = Social.localUser.userName,
+                    guest = "",
+                    status = "waiting"
+                };
+                FirebaseDatabase.DefaultInstance.RootReference.Child("Private Rooms").Child(room.ID).SetRawJsonValueAsync(JsonUtility.ToJson(room)).ContinueWith(task2 =>
+                {
+                    if (task2.IsCompleted)
+                    {
+                        print("Completo");
+                    }
+                });
+            }
+        });
     }
 
     public void LoadYourItems()
@@ -268,6 +291,16 @@ public class CanvasBase : MonoBehaviour {
                 }
             }
         });
+    }
+
+    void LogSuccessful()
+    {
+        Database.instance.ObtenerEquipSetting();
+        transform.Find("Loading").gameObject.SetActive(false);
+        UpdateGoldView();
+        LoadYourItems();
+        //CreateWaitingRoom();
+        FirebaseAuth.DefaultInstance.StateChanged += TryRelog;
     }
 
 }

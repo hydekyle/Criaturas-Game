@@ -39,6 +39,7 @@ public class Huevo : MonoBehaviour {
         UserDB userData = new UserDB()
         {
             chests = 0,
+            chests_VIP = 0,
             gold = 800,
             gold_VIP = 100,
             victorias = 0,
@@ -75,7 +76,6 @@ public class Huevo : MonoBehaviour {
 
             if (obj2.IsFaulted)
             {
-                CanvasBase.instance.CheckFirebaseLogin();
                 transform.Find("Huevo").GetComponent<Button>().interactable = true;
             }
         });

@@ -10,7 +10,6 @@ public class Cofres_System : MonoBehaviour {
 
     void OnEnable()
     {
-        CanvasBase.instance.CheckFirebaseLogin();
         Transform chest = transform.Find("Chest");
         chest.GetComponent<Animator>().Play("Chest_Caer");
         resplandor = chest.Find("Resplandor");
@@ -79,7 +78,6 @@ public class Cofres_System : MonoBehaviour {
                         transform.Find("Cofres").Find("Buy_Chest").GetComponent<Button>().interactable = true;
                     }
                 }
-                if (task.IsFaulted) CanvasBase.instance.CheckFirebaseLogin();
 
             });   
     }
@@ -99,7 +97,6 @@ public class Cofres_System : MonoBehaviour {
                     CanvasBase.instance.UpdateGoldViewNoDB(goldNow.ToString());
                     transform.Find("Cofres").Find("Buy_Chest").GetComponent<Button>().interactable = true;
                 }
-                if(task.IsFaulted) CanvasBase.instance.CheckFirebaseLogin();
             });
     }
 
@@ -139,7 +136,6 @@ public class Cofres_System : MonoBehaviour {
                 }
                 
             }
-            if (task.IsFaulted) CanvasBase.instance.CheckFirebaseLogin();
 
         });
         

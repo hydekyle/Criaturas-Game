@@ -381,6 +381,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\_Subpanel.cs" />
     <Compile Include="Assets\1.Scripts\AccuracyMoon.cs" />
     <Compile Include="Assets\1.Scripts\AccuracySystem.cs" />
     <Compile Include="Assets\1.Scripts\BattleSystem.cs" />

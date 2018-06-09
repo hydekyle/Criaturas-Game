@@ -16,6 +16,14 @@ namespace Enums {
     public enum Evolution { Level1, Level2, Level3}
 }
 
+public class WaitingRoom
+{
+    public string ID;
+    public string owner;
+    public string guest;
+    public string status;
+}
+
 public struct BodyBounds
 {
     public Vector3 head_POS;
@@ -128,6 +136,7 @@ public class UserDB
     public int gold;
     public int gold_VIP;
     public int chests;
+    public int chests_VIP;
     public int victorias;
     public int derrotas;
 }

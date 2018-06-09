@@ -75,7 +75,6 @@ public class EquipMenu : MonoBehaviour {
 
     void OnEnable()
     {
-        CanvasBase.instance.CheckFirebaseLogin();
         currentEquipView = Equip_Position.None;
         BTN_HEAD();
     }
