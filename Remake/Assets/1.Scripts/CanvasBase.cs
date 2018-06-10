@@ -15,6 +15,15 @@ using System;
 
 public class CanvasBase : MonoBehaviour {
 
+    public class CameraPos
+    {
+        public Vector3 leftPos = new Vector3(-56, 0, -500);
+        public Vector3 midPos = new Vector3(0, 0, -500);
+        public Vector3 rightPos = new Vector3(138, 0, -500);
+    }
+
+    StatsWindow stats_window = new StatsWindow();
+
     Transform start_menu;
     Transform equipment;
     Transform battleIA;
@@ -29,11 +38,7 @@ public class CanvasBase : MonoBehaviour {
 
     GameObject sub_menu_play;
 
-    public class CameraPos {
-        public Vector3 leftPos = new Vector3(-34, 0, -500);
-        public Vector3 midPos = new Vector3(0, 0, -500);
-        public Vector3 rightPos = new Vector3(138, 0, -500);
-    }
+    
 
     CameraPos camPosition = new CameraPos();
     Vector3 camVectorPoint;
@@ -49,14 +54,7 @@ public class CanvasBase : MonoBehaviour {
 
     void Start()
     {
-        sub_menu_play = transform.Find("Start_Menu").Find("SubPanel_Versus").gameObject;
-        start_menu = transform.Find("Start_Menu");
-        equipment = transform.Find("Equipamiento");
-        battleIA = transform.Find("BattleIA");
-        treasures = transform.Find("Treasures");
-        goldText = transform.Find("Treasures").Find("Cofres").Find("Money").Find("Text").GetComponent<Text>();
-        gold_VIP = transform.Find("Treasures").Find("Cofres").Find("Money_VIP").Find("Text").GetComponent<Text>();
-        equip_menu = equipment.GetComponent<EquipMenu>();
+        Inicialize();
 
         if(Application.platform == RuntimePlatform.Android)
         {
@@ -66,8 +64,44 @@ public class CanvasBase : MonoBehaviour {
         {
             LogFirebaseTEST();
         }
-        
 
+    }
+
+    void Inicialize()
+    {
+        sub_menu_play = transform.Find("Start_Menu").Find("SubPanel_Versus").gameObject;
+        start_menu = transform.Find("Start_Menu");
+        equipment = transform.Find("Equipamiento");
+        battleIA = transform.Find("BattleIA");
+        treasures = transform.Find("Treasures");
+        goldText = transform.Find("Treasures").Find("Cofres").Find("Money").Find("Text").GetComponent<Text>();
+        gold_VIP = transform.Find("Treasures").Find("Cofres").Find("Money_VIP").Find("Text").GetComponent<Text>();
+        equip_menu = equipment.GetComponent<EquipMenu>();
+
+        Transform statsT = transform.Find("Equipamiento").Find("STATS");
+        stats_window.alpha = statsT.Find("Value_Alpha").GetComponent<Text>();
+        stats_window.assassin = statsT.Find("Value_Assassin").GetComponent<Text>();
+        stats_window.charming = statsT.Find("Value_Charming").GetComponent<Text>();
+        stats_window.pacifist = statsT.Find("Value_Pacifist").GetComponent<Text>();
+
+        stats_window.health = statsT.Find("Value_Life").GetComponent<Text>();
+        stats_window.strenght = statsT.Find("Value_Attack").GetComponent<Text>();
+        stats_window.skill = statsT.Find("Value_Skill").GetComponent<Text>();
+        stats_window.luck = statsT.Find("Value_Luck").GetComponent<Text>();
+    }
+
+    public void StatsRefresh()
+    {
+        BaseStats totalStats = Items.instance.CalcularTotalBasePoints();
+        stats_window.assassin.text = totalStats.assassin.ToString();
+        stats_window.alpha.text = totalStats.alpha.ToString();
+        stats_window.charming.text = totalStats.charming.ToString();
+        stats_window.pacifist.text = totalStats.pacifist.ToString();
+
+        stats_window.strenght.text = totalStats.strenght.ToString();
+        stats_window.health.text = totalStats.health.ToString();
+        stats_window.skill.text = totalStats.skill.ToString();
+        stats_window.luck.text = totalStats.luck.ToString();
     }
 
     void Update()

@@ -100,6 +100,7 @@ public class Menu : MonoBehaviour {
             yield return StartCoroutine(SendImage(e.legs.ID, GetPlayerVisor(playerNumber)));
         }
 
+        CanvasBase.instance.StatsRefresh();
         loadedEquipment = e;
         ColocarPiezas(e, GetPlayerVisor(playerNumber));
     }

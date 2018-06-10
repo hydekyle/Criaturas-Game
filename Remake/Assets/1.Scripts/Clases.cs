@@ -16,6 +16,24 @@ namespace Enums {
     public enum Evolution { Level1, Level2, Level3}
 }
 
+public class Item
+{
+    public int ID, rarity, attack, health, skill, luck;
+    public Skill skill_1, skill_2, skill_3;
+}
+
+public class BaseStats
+{
+    public int alpha = 0, assassin = 0, pacifist = 0, charming = 0;
+    public int strenght = 0, health = 0, skill = 0, luck = 0;
+}
+
+public class StatsWindow
+{
+    public Text strenght, health, skill, luck,
+        alpha, assassin, pacifist, charming;
+}
+
 public class WaitingRoom
 {
     public string ID;

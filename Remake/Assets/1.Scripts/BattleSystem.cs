@@ -16,8 +16,6 @@ public class BattleSystem : MonoBehaviour {
     Player player1;
     Player player2;
 
-    public Sprite sphere_alpha, sphere_assassin, sphere_pacifist, sphere_charming, sphere_null;
-
     public List<GiveStat> totalStats_player1 = new List<GiveStat>();
     public List<GiveStat> totalStats_player2 = new List<GiveStat>();
 
@@ -166,18 +164,7 @@ public class BattleSystem : MonoBehaviour {
         };
     }
 
-    private Sprite SphereBySkillID(int ID)
-    {
-        Sprite sprite = null;
-        switch (Skills.instance.SkillByID(ID).s_class)
-        {
-            case Skill_Class.Alpha: sprite = sphere_alpha; break;
-            case Skill_Class.Assassin: sprite = sphere_assassin; break;
-            case Skill_Class.Charming: sprite = sphere_charming; break;
-            case Skill_Class.Pacifist: sprite = sphere_pacifist; break;
-        }
-        return sprite;
-    }
+    
 
     public void UpdateSkillButtons()
     {
@@ -190,19 +177,19 @@ public class BattleSystem : MonoBehaviour {
 
             skill_buttons.head_button.myText.text = Lenguaje.Instance.SkillNameByID(skill_buttons.head_activable_skill_ID);
             skill_buttons.head_button.descriptionText.text = Lenguaje.Instance.SkillDescriptionByID(skill_buttons.head_activable_skill_ID);
-            skill_buttons.head_button.orb.sprite = SphereBySkillID(skill_buttons.head_activable_skill_ID);
+            skill_buttons.head_button.orb.sprite = Items.instance.SphereBySkillID(skill_buttons.head_activable_skill_ID);
 
             skill_buttons.body_button.myText.text = Lenguaje.Instance.SkillNameByID(skill_buttons.body_activable_skill_ID);
             skill_buttons.body_button.descriptionText.text = Lenguaje.Instance.SkillDescriptionByID(skill_buttons.body_activable_skill_ID);
-            skill_buttons.body_button.orb.sprite = SphereBySkillID(skill_buttons.body_activable_skill_ID);
+            skill_buttons.body_button.orb.sprite = Items.instance.SphereBySkillID(skill_buttons.body_activable_skill_ID);
 
             skill_buttons.arms_button.myText.text = Lenguaje.Instance.SkillNameByID(skill_buttons.arms_activable_skill_ID);
             skill_buttons.arms_button.descriptionText.text = Lenguaje.Instance.SkillDescriptionByID(skill_buttons.arms_activable_skill_ID);
-            skill_buttons.arms_button.orb.sprite = SphereBySkillID(skill_buttons.arms_activable_skill_ID);
+            skill_buttons.arms_button.orb.sprite = Items.instance.SphereBySkillID(skill_buttons.arms_activable_skill_ID);
 
             skill_buttons.legs_button.myText.text = Lenguaje.Instance.SkillNameByID(skill_buttons.legs_activable_skill_ID);
             skill_buttons.legs_button.descriptionText.text = Lenguaje.Instance.SkillDescriptionByID(skill_buttons.legs_activable_skill_ID);
-            skill_buttons.legs_button.orb.sprite = SphereBySkillID(skill_buttons.legs_activable_skill_ID);
+            skill_buttons.legs_button.orb.sprite = Items.instance.SphereBySkillID(skill_buttons.legs_activable_skill_ID);
 
 
         } catch

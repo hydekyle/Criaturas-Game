@@ -27,9 +27,11 @@ public class EquipMenu : MonoBehaviour {
     Text rarity_text;
     Text rarity_shadow;
     Text skill1_name;
-    Text skill1_Description;
+    Image skill1_orb;
     Text skill2_name;
-    Text skill2_description;
+    Image skill2_orb;
+    Text skill3_name;
+    Image skill3_orb;
     Text value_life;
     Text value_attack;
     Text value_skill;
@@ -45,9 +47,11 @@ public class EquipMenu : MonoBehaviour {
         Transform infoT = transform.Find("Info");
         retrato = infoT.Find("Retrato").GetComponent<Image>();
         skill1_name = infoT.Find("Skill1").Find("Name").GetComponent<Text>();
-        skill1_Description = infoT.Find("Skill1").Find("Description").GetComponent<Text>();
+        skill1_orb = infoT.Find("Skill1").Find("Orbe").GetComponent<Image>();
         skill2_name = infoT.Find("Skill2").Find("Name").GetComponent<Text>();
-        skill2_description = infoT.Find("Skill2").Find("Description").GetComponent<Text>();
+        skill2_orb = infoT.Find("Skill2").Find("Orbe").GetComponent<Image>();
+        skill3_name = infoT.Find("Skill3").Find("Name").GetComponent<Text>();
+        skill3_orb = infoT.Find("Skill3").Find("Orbe").GetComponent<Image>();
         rarity_text = infoT.Find("Rarity_Color").GetComponent<Text>();
         rarity_shadow = infoT.Find("Rarity_Shadow").GetComponent<Text>();
         value_life = infoT.Find("Value_Life").GetComponent<Text>();
@@ -98,50 +102,39 @@ public class EquipMenu : MonoBehaviour {
 
     public IEnumerator ViewItemInfo(string id)
     {
+        Item item = Items.instance.GetItem(id);
+
         Sprite itemSprite = null;
-        int itemID = int.Parse(id.Substring(0, 3));
-        int rarity = int.Parse(id.Substring(3, 1));
-        int health = int.Parse(id.Substring(4, 1));
-        int attack = int.Parse(id.Substring(5, 1));
-        int skill  = int.Parse(id.Substring(6, 1));
-        int luck   = int.Parse(id.Substring(7, 1));
-        Skill skill1 = Skills.instance.GetSkillByID(id.Substring(8, 3));
-        Skill skill2 = Skills.instance.GetSkillByID(id.Substring(11, 3));
-        yield return Items.instance.ItemSpriteByID(itemID, result => itemSprite = result);
-        string textRarity = Lenguaje.Instance.Text_RarityID(rarity);
+        yield return Items.instance.ItemSpriteByID(item.ID, result => itemSprite = result);
+        string textRarity = Lenguaje.Instance.Text_RarityID(item.rarity);
         rarity_text.text = textRarity;
         rarity_shadow.text = textRarity;
-        rarity_text.color = ColorByQuality(rarity);
+        rarity_text.color = ColorByQuality(item.rarity);
         retrato.sprite = itemSprite;
 
-        attack *= rarity;
-        health *= rarity;
-        skill *= rarity;
-        luck *= rarity;
+        value_attack.text = item.attack.ToString();
+        value_life.text = item.health.ToString();
+        value_skill.text = item.skill.ToString();
+        value_luck.text = item.luck.ToString();
 
-        value_attack.text = attack.ToString();
-        value_life.text = health.ToString();
-        value_skill.text = skill.ToString();
-        value_luck.text = luck.ToString();
+        skill1_orb.sprite = Items.instance.SphereBySkillID(item.skill_1.ID);
+        skill2_orb.sprite = Items.instance.SphereBySkillID(item.skill_2.ID);
+        skill3_orb.sprite = Items.instance.SphereBySkillID(item.skill_3.ID);
 
         if (Lenguaje.Instance.spanish_language)
         {
-            skill1_name.text = skill1.name_spanish;
-            skill1_Description.text = skill1.description_spanish;
-
-            skill2_name.text = skill2.name_spanish;
-            skill2_description.text = skill2.description_spanish;
-        }else
-        {
-            skill1_name.text = skill1.name_english;
-            skill1_Description.text = skill1.description_english;
-
-            skill2_name.text = skill2.name_english;
-            skill2_description.text = skill2.description_english;
+            skill1_name.text = item.skill_1.name_spanish;
+            skill2_name.text = item.skill_2.name_spanish;
+            skill3_name.text = item.skill_3.name_spanish;
         }
-        
-    }
+        else
+        {
+            skill1_name.text = item.skill_1.name_english;
+            skill2_name.text = item.skill_2.name_english;
+            skill3_name.text = item.skill_3.name_english;
+        }
 
+    }
 
     List<Equipable_Item> SortListByQuality(List<Equipable_Item> list)
     {
@@ -317,6 +310,7 @@ public class EquipMenu : MonoBehaviour {
                 EquiparItem(storage_ID[id]);
                 StartCoroutine(Menu.instance.VisualizarEquipamiento(GameManager.instance.player.criatura.equipment, 1));
                 StartCoroutine(ViewItemInfo());
+                CanvasBase.instance.StatsRefresh();
                 Colocar_Tic_Equip(id);
             }
         }catch { print("Oops"); }

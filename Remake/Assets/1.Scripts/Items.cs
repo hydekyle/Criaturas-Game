@@ -7,6 +7,10 @@ using Enums;
 public class Items : MonoBehaviour {
 
     public static Items instance;
+
+    //Sprites Esferas
+    public Sprite sphere_alpha, sphere_assassin, sphere_pacifist, sphere_charming, sphere_null;
+
     [SerializeField]
     public List<Equipable_Item> headgear_list;
     public List<Equipable_Item> bodies_list;
@@ -24,6 +28,56 @@ public class Items : MonoBehaviour {
     void Awake()
     {
         instance = this;
+    }
+
+    public Sprite SphereBySkillID(int ID)
+    {
+        Sprite sprite = null;
+        switch (Skills.instance.SkillByID(ID).s_class)
+        {
+            case Skill_Class.Alpha: sprite = sphere_alpha; break;
+            case Skill_Class.Assassin: sprite = sphere_assassin; break;
+            case Skill_Class.Charming: sprite = sphere_charming; break;
+            case Skill_Class.Pacifist: sprite = sphere_pacifist; break;
+        }
+        return sprite;
+    }
+
+    public BaseStats CalcularTotalBasePoints()
+    {
+        BaseStats puntos = new BaseStats();
+
+        List<Item> items = new List<Item>();
+        items.Add(GetItem(GameManager.instance.player.criatura.equipment.head.ID_string));
+        items.Add(GetItem(GameManager.instance.player.criatura.equipment.body.ID_string));
+        items.Add(GetItem(GameManager.instance.player.criatura.equipment.arms.ID_string));
+        items.Add(GetItem(GameManager.instance.player.criatura.equipment.legs.ID_string));
+
+        foreach (Item item in items)
+        {
+            puntos.strenght += item.attack;
+            puntos.health += item.health;
+            puntos.skill += item.skill;
+            puntos.luck += item.luck;
+            List<int> listaSkills = new List<int>();
+            listaSkills.Add(int.Parse(item.skill_1.ID.ToString().Substring(0, 1)));
+            listaSkills.Add(int.Parse(item.skill_2.ID.ToString().Substring(0, 1)));
+            listaSkills.Add(int.Parse(item.skill_3.ID.ToString().Substring(0, 1)));
+
+            foreach(int i in listaSkills)
+            {
+                switch (i)
+                {
+                    case 1: puntos.assassin++; break;
+                    case 2: puntos.alpha++; break;
+                    case 3: puntos.charming++; break;
+                    case 4: puntos.pacifist++; break;
+                }
+            }
+
+        }
+
+        return puntos;
     }
 
     public void StoreClear()
@@ -158,14 +212,32 @@ public class Items : MonoBehaviour {
                 default: luck++; break;
             }
         }
-        int skill1ID = GetRandomSkillID();
-        int skill2ID = GetRandomSkillID();
-        if (skill1ID == skill2ID) if(int.Parse(skill2ID.ToString().Substring(1, 2)) == 1) skill2ID++; else skill2ID--; //Evitar duplicado skills
+
+        string skills = GenerateNewSkills();
 
         newItem.ID_string = newItem.ID.ToString() + rarity.ToString() + vida.ToString() + fuerza.ToString() + 
-                                 skill.ToString() + luck.ToString() +skill1ID.ToString() + skill2ID.ToString();
+                                 skill.ToString() + luck.ToString() + skills;
 
         return newItem.ID_string;
+    }
+
+    private string GenerateNewSkills()
+    {
+        string skills = "";
+
+        int skill1ID;
+        int skill2ID;
+        int skill3ID;
+        do
+        {
+            skill1ID = GetRandomSkillID();
+            skill2ID = GetRandomSkillID();
+            skill3ID = GetRandomSkillID();
+        } while (skill1ID == skill2ID || skill1ID == skill3ID || skill2ID == skill3ID);
+
+        skills = skill1ID.ToString() + skill2ID.ToString() + skill3ID.ToString();
+
+        return skills;
     }
 
     public string GetRandomItemID(Evolution evo)
@@ -221,15 +293,35 @@ public class Items : MonoBehaviour {
                 default: luck++; break;
             }
         }
-        int skill1ID = GetRandomSkillID();
-        int skill2ID = GetRandomSkillID();
-        if (skill1ID == skill2ID) if (int.Parse(skill2ID.ToString().Substring(1, 2)) == 1) skill2ID++; else skill2ID--; //Evitar duplicado skills
+
+        string skills = GenerateNewSkills();
 
         newItem.ID_string = newItem.ID.ToString() + rarity.ToString() + vida.ToString() + fuerza.ToString() +
-                                 skill.ToString() + luck.ToString() + skill1ID.ToString() + skill2ID.ToString();
+                                 skill.ToString() + luck.ToString() + skills;
 
         return newItem.ID_string;
     }
+
+    public Item GetItem(string id)
+    {
+        Item item = new Item() {
+            ID = int.Parse(id.Substring(0, 3)),
+            rarity = int.Parse(id.Substring(3, 1)),
+            health = int.Parse(id.Substring(4, 1)),
+            attack = int.Parse(id.Substring(5, 1)),
+            skill = int.Parse(id.Substring(6, 1)),
+            luck = int.Parse(id.Substring(7, 1)),
+            skill_1 = Skills.instance.GetSkillByID(id.Substring(8, 3)),
+            skill_2 = Skills.instance.GetSkillByID(id.Substring(11, 3)),
+            skill_3 = Skills.instance.GetSkillByID(id.Substring(14, 3))
+        };
+        item.attack *= item.rarity;
+        item.health *= item.rarity;
+        item.skill *= item.rarity;
+        item.luck *= item.rarity;
+        return item;
+    }
+
 
     public string GetRandomItemID(int nLista)
     {
@@ -257,12 +349,11 @@ public class Items : MonoBehaviour {
                 case 4: luck++; break;
             }
         }
-        int skill1ID = GetRandomSkillID();
-        int skill2ID = GetRandomSkillID();
-        if (skill1ID == skill2ID) if (int.Parse(skill2ID.ToString().Substring(1, 2)) == 1) skill2ID++; else skill2ID--; //Evitar duplicado skills
+
+        string skills = GenerateNewSkills();
 
         newItem.ID_string = newItem.ID.ToString() + rarity.ToString() + vida.ToString() + fuerza.ToString() +
-                                 skill.ToString() + luck.ToString() + skill1ID.ToString() + skill2ID.ToString();
+                                 skill.ToString() + luck.ToString() + skills;
 
         //CanvasBase.instance.ShowItemInfo(newItem.ID_string);
         return newItem.ID_string;
