@@ -4,6 +4,8 @@ using UnityEngine;
 using Firebase.Database;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using GooglePlayGames;
+using GooglePlayGames.BasicApi;
 
 public class Huevo : MonoBehaviour {
 
@@ -27,8 +29,6 @@ public class Huevo : MonoBehaviour {
             arms = Items.instance.ItemByID(rArms),
             legs = Items.instance.ItemByID(rLegs)
         };
-
-        
 
         List<string> itemList = new List<string>();
         itemList.Add(rHeadgear);
@@ -63,22 +63,40 @@ public class Huevo : MonoBehaviour {
         string jsonObjetos = JsonUtility.ToJson(userInfo);
         string jsonEquip = JsonUtility.ToJson(equip);
 
-        reference.Child("Inventario").Child(Social.localUser.id).SetRawJsonValueAsync(jsonObjetos).ContinueWith((obj2) =>
+        if(Social.localUser.id != null)
         {
-            if (obj2.IsCompleted)
+            reference.Child("Inventario").Child(Social.localUser.id).SetRawJsonValueAsync(jsonObjetos).ContinueWith((obj2) =>
             {
-                transform.Find("Huevo").gameObject.SetActive(false);
-                Menu.instance.InitializeVisor(Menu.instance.GetPlayerVisor(1), Vector3.zero, false);
-                StartCoroutine(Menu.instance.VisualizarEquipamiento(equipment, 1));
-                Message.instance.NewMessage("¡Saluda a tu nueva mascota!");
-                eggDone = true;
-            }
+                if (obj2.IsCompleted)
+                {
+                    transform.Find("Huevo").gameObject.SetActive(false);
+                    Menu.instance.InitializeVisor(Menu.instance.GetPlayerVisor(1), Vector3.zero, false);
+                    StartCoroutine(Menu.instance.VisualizarEquipamiento(equipment, 1));
+                    Message.instance.NewMessage("¡Saluda a tu nueva mascota!");
+                    eggDone = true;
+                }
 
-            if (obj2.IsFaulted)
-            {
-                transform.Find("Huevo").GetComponent<Button>().interactable = true;
-            }
-        });
+                if (obj2.IsFaulted)
+                {
+                    transform.Find("Huevo").GetComponent<Button>().interactable = true;
+                }
+            });
+        }else
+        {
+            PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder()
+            .Build();
+            PlayGamesPlatform.InitializeInstance(config);
+            PlayGamesPlatform.Activate();
+
+            Social.Active.Authenticate(Social.localUser, (bool success) => {
+                if (success)
+                {
+                    BTN_HUEVO();
+                }
+            });
+        }
+
+        
     }
 
     void Update()
