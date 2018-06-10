@@ -7,20 +7,16 @@ using Enums;
 
 public class EquipMenu : MonoBehaviour {
 
+    public float clampLeft;
+    public float distanciaItemsScrollBar = 80f;
     Transform inventarioT;
     Image[] item_image;
     Image[] rarity_image;
     string[] storage_ID;
     Equip_Position currentEquipView = Equip_Position.None;
-    int currentPage = 0;
-    Button btn_back;
-    Button btn_forw;
     List<Equipable_Item> actualList = new List<Equipable_Item>();
-    RectTransform tic_new;
-    RectTransform tic_equip;
-    Vector3 pos_tic_new = new Vector3(17, 17, 0);
-    Vector3 pos_tic_equip = new Vector3(15, -11, 0);
     List<int> equip_list_id = new List<int>();
+    public GameObject buttonPrefab;
 
     //Item Info Menu:
     Image retrato;
@@ -60,11 +56,8 @@ public class EquipMenu : MonoBehaviour {
         value_luck = infoT.Find("Value_Luck").GetComponent<Text>();
 
         Transform inventario = transform.Find("Panel_Inventario").Find("Inventario");
-        inventarioT = inventario.Find("Botones_Items");
-        btn_back = inventario.Find("Arrow_Left").GetComponent<Button>();
-        btn_forw = inventario.Find("Arrow_Right").GetComponent<Button>();
-        tic_new = inventario.Find("Tic_New").GetComponent<RectTransform>();
-        tic_equip = inventario.Find("Tic_Equip").GetComponent<RectTransform>();
+        inventarioT = inventario.Find("Scroll").Find("Botones_Items");
+        //buttonPrefab = inventarioT.Find("Button").gameObject;
         storage_ID = new string[inventarioT.childCount];
         item_image = new Image[inventarioT.childCount];
         rarity_image = new Image[inventarioT.childCount];
@@ -193,112 +186,104 @@ public class EquipMenu : MonoBehaviour {
         return true;
     }
 
-    IEnumerator Visualizar(Equip_Position equipList, int pagNumber)
+    IEnumerator VisualizarScroll(Equip_Position equipList)
     {
-        if (pagNumber == 0) btn_back.interactable = false; else btn_back.interactable = true;
-        int totalSlots = inventarioT.childCount;
-        int y = 0 + (totalSlots * pagNumber); //ITERATOR
-        string equipedID = "";
-        storage_ID = new string[totalSlots];
-        Equip_Position lastView = currentEquipView;
-        currentEquipView = equipList;
-        currentPage = pagNumber;
-        tic_equip.transform.gameObject.SetActive(false);
-        for (var x = 0; x < totalSlots; x++) //Limpia las imagenes antes de cargar las nuevas.
+        if(equipList != currentEquipView)
         {
-            item_image[x].sprite = null;
-            rarity_image[x].color = ColorByQuality(Quality.Common);
-        }
-        if(lastView != currentEquipView) //Lee lista de objetos y los ordena.
-        {
+
+            string equipedID = "";
+
+            foreach(Transform t in inventarioT) //Limpiar casillas previas
+            {
+                Destroy(t.gameObject);
+            }
+
             switch (equipList)
             {
-                case Equip_Position.Head: actualList = SortListByQuality(Items.instance.inventory_headgear); break;
-                case Equip_Position.Body: actualList = SortListByQuality(Items.instance.inventory_bodies); break;
-                case Equip_Position.Arms: actualList = SortListByQuality(Items.instance.inventory_arms);  break;
-                case Equip_Position.Legs: actualList = SortListByQuality(Items.instance.inventory_legs);  break;
+                case Equip_Position.Head: actualList = SortListByQuality(Items.instance.inventory_headgear);
+                    equipedID = GameManager.instance.player.criatura.equipment.head.ID_string; break;
+                case Equip_Position.Body: actualList = SortListByQuality(Items.instance.inventory_bodies);
+                    equipedID = GameManager.instance.player.criatura.equipment.body.ID_string; break;
+                case Equip_Position.Arms: actualList = SortListByQuality(Items.instance.inventory_arms);
+                    equipedID = GameManager.instance.player.criatura.equipment.arms.ID_string; break;
+                case Equip_Position.Legs: actualList = SortListByQuality(Items.instance.inventory_legs);
+                    equipedID = GameManager.instance.player.criatura.equipment.legs.ID_string; break;
             }
-        }
-        switch (equipList) //Lee ID equipado según lista.
-        {
-            case Equip_Position.Head: equipedID = GameManager.instance.player.criatura.equipment.head.ID_string; break;
-            case Equip_Position.Body: equipedID = GameManager.instance.player.criatura.equipment.body.ID_string; break;
-            case Equip_Position.Arms: equipedID = GameManager.instance.player.criatura.equipment.arms.ID_string; break;
-            case Equip_Position.Legs: equipedID = GameManager.instance.player.criatura.equipment.legs.ID_string; break;
-        }
-        for (var x = 0; x < totalSlots; x++) //Por cada slot de equipamiento.
-        {
-            if(y < actualList.Count) //Lee elementos y si no hay acaba el bucle
+            storage_ID = new string[actualList.Count];
+            int n = 0;
+            foreach (Equipable_Item e in actualList)
             {
-                storage_ID[x] = actualList[y].ID_string;
-                rarity_image[x].color = ColorByQuality(actualList[y].quality);
-                yield return Items.instance.ItemSpriteByID(actualList[y].ID, result => {
-                    item_image[x].sprite = result;
-                    item_image[x].preserveAspect = true;
-                    });
-                if (storage_ID[x] == equipedID) Colocar_Tic_Equip(x);
-                y++;
+                yield return Colocar_Pieza_Slider(e.ID_string, n);
+                n++;
+            }
+            if(n > 1)
+            {
+                float distance = Vector3.Distance(inventarioT.GetChild(0).localPosition, inventarioT.GetChild(1).localPosition);
+                clampLeft = -distance * n;
             }else
             {
-                btn_forw.interactable = false;
-                break;
-            }  
+                clampLeft = 0;
+            }
+
+            currentEquipView = equipList;
         }
-        if (storage_ID[inventarioT.childCount - 1].Length > 0) btn_forw.interactable = true; else btn_forw.interactable = false;
-        StartCoroutine(ViewItemInfo());
+
     }
 
-    void Colocar_Tic_New(int id)
+
+    IEnumerator Colocar_Pieza_Slider(string itemID, int n)
     {
-        tic_new.position = item_image[id].rectTransform.position + pos_tic_new;
-        tic_new.transform.gameObject.SetActive(true);
+        GameObject go = Instantiate(buttonPrefab, inventarioT);
+        Quality itemQuality = Quality.Common;
+        int rarity = int.Parse(itemID.Substring(3, 1));
+
+        switch (rarity)
+        {
+            case 1: itemQuality = Quality.Common; break;
+            case 2: itemQuality = Quality.Rare; break;
+            case 3: itemQuality = Quality.Epic; break;
+            case 4: itemQuality = Quality.Legendary; break;
+        }
+
+        go.GetComponent<Image>().color = ColorByQuality(itemQuality);
+        go.name = n.ToString();
+        yield return Items.instance.ItemSpriteByID(int.Parse(itemID.Substring(0,3)), result => {
+            go.transform.Find("Image").GetComponent<Image>().sprite = result;
+        });
+        Vector3 pos0 = new Vector3(0, 0, 0);
+        Vector3 posPlus = new Vector3(distanciaItemsScrollBar * n, 0, 0);
+        go.transform.localPosition = pos0 + posPlus;
+        go.GetComponent<Button>().onClick.AddListener(BTN_ITEM);
+        storage_ID[n] = itemID;
+        go.SetActive(true);
     }
 
-    void Colocar_Tic_Equip(int id)
-    {
-        tic_equip.position = item_image[id].rectTransform.position + pos_tic_equip;
-        tic_equip.transform.gameObject.SetActive(true);
-    }
+ 
 
     public void BTN_HEAD()
     {
-        StartCoroutine(Visualizar(Equip_Position.Head, 0));
+        StartCoroutine(VisualizarScroll(Equip_Position.Head));
         CanvasBase.instance.ShowItemInfo(GameManager.instance.player.criatura.equipment.head.ID_string);
     }
 
     public void BTN_BODY()
     {
-        StartCoroutine(Visualizar(Equip_Position.Body, 0));
+        StartCoroutine(VisualizarScroll(Equip_Position.Body));
         CanvasBase.instance.ShowItemInfo(GameManager.instance.player.criatura.equipment.body.ID_string);
     }
 
     public void BTN_ARMS()
     {
-        StartCoroutine(Visualizar(Equip_Position.Arms, 0));
+        StartCoroutine(VisualizarScroll(Equip_Position.Arms));
         CanvasBase.instance.ShowItemInfo(GameManager.instance.player.criatura.equipment.arms.ID_string);
     }
 
     public void BTN_LEGS()
     {
-        StartCoroutine(Visualizar(Equip_Position.Legs, 0));
+        StartCoroutine(VisualizarScroll(Equip_Position.Legs));
         CanvasBase.instance.ShowItemInfo(GameManager.instance.player.criatura.equipment.legs.ID_string);
     }
 
-    public void BTN_BACK()
-    {
-        StopCoroutine("Visualizar");
-        if (currentPage > 0) StartCoroutine(Visualizar(currentEquipView, --currentPage));
-    }
-
-    public void BTN_NEXT()
-    {
-        try
-        {
-            StopCoroutine("Visualizar");
-            if (storage_ID[inventarioT.childCount - 1].Length > 0) StartCoroutine(Visualizar(currentEquipView, ++currentPage));
-        }catch { print("Oops"); }
-        
-    }
 
     public void BTN_ITEM()
     {
@@ -311,7 +296,7 @@ public class EquipMenu : MonoBehaviour {
                 StartCoroutine(Menu.instance.VisualizarEquipamiento(GameManager.instance.player.criatura.equipment, 1));
                 StartCoroutine(ViewItemInfo());
                 CanvasBase.instance.StatsRefresh();
-                Colocar_Tic_Equip(id);
+                //MarcarEquipado(id);
             }
         }catch { print("Oops"); }
         
@@ -335,6 +320,15 @@ public class EquipMenu : MonoBehaviour {
     {
         GameObject info_window = transform.Find("Info").gameObject;
         info_window.SetActive(info_window.activeSelf ? false : true);
+    }
+
+    void Update()
+    {
+        if (gameObject.activeSelf && !Input.GetMouseButton(0))
+        {
+            Vector3 vectorLimite = new Vector3(Mathf.Clamp(inventarioT.localPosition.x, clampLeft, 10), inventarioT.localPosition.y, inventarioT.localPosition.z);
+            inventarioT.localPosition = Vector3.Lerp(inventarioT.localPosition, vectorLimite, Time.deltaTime * 10);
+        }
     }
 
 }

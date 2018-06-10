@@ -265,6 +265,7 @@ public class CanvasBase : MonoBehaviour {
 
     public void BTN_EQUIP()
     {
+        CanvasBase.instance.StatsRefresh();
         equipment.gameObject.SetActive(true);
         start_menu.gameObject.SetActive(false);
         camVectorPoint = camPosition.leftPos;
