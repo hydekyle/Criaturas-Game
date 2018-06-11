@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour {
         Menu.instance.InitializeVisor(Menu.instance.GetPlayerVisor(visorN), visorPosition, flip);
         yield return null;
         StartCoroutine(Menu.instance.VisualizarEquipamiento(playerP.criatura.equipment, visorN));
+        StartCoroutine(CanvasBase.instance.MostrarJugador());
     }
 
     public void ErrorGeneral()

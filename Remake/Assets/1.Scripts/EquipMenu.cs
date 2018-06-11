@@ -17,7 +17,7 @@ public class EquipMenu : MonoBehaviour {
     List<Equipable_Item> actualList = new List<Equipable_Item>();
     List<int> equip_list_id = new List<int>();
     public GameObject buttonPrefab;
-
+    bool swaping;
     //Item Info Menu:
     Image retrato;
     Text rarity_text;
@@ -219,7 +219,7 @@ public class EquipMenu : MonoBehaviour {
             if(n > 1)
             {
                 float distance = Vector3.Distance(inventarioT.GetChild(0).localPosition, inventarioT.GetChild(1).localPosition);
-                clampLeft = -distance * n;
+                clampLeft = -distance * n + distance;
             }else
             {
                 clampLeft = 0;
@@ -287,18 +287,31 @@ public class EquipMenu : MonoBehaviour {
 
     public void BTN_ITEM()
     {
-        try
+        if (!swaping)
         {
-            int id = int.Parse(EventSystem.current.currentSelectedGameObject.name);
-            if (storage_ID[id].Length > 0)
+            swaping = true;
+            try
             {
-                EquiparItem(storage_ID[id]);
-                StartCoroutine(Menu.instance.VisualizarEquipamiento(GameManager.instance.player.criatura.equipment, 1));
-                StartCoroutine(ViewItemInfo());
-                CanvasBase.instance.StatsRefresh();
-                //MarcarEquipado(id);
+                int id = int.Parse(EventSystem.current.currentSelectedGameObject.name);
+                if (storage_ID[id].Length > 0)
+                {
+                    EquiparItem(storage_ID[id]);
+                    switch (int.Parse(storage_ID[id].Substring(0, 1)))
+                    {
+                        case 1: StartCoroutine(CanvasBase.instance.MostrarPieza(Equip_Position.Head, ended => { if (ended) swaping = false; })); break;
+                        case 2: StartCoroutine(CanvasBase.instance.MostrarPieza(Equip_Position.Body, ended => { if (ended) swaping = false; })); break;
+                        case 3: StartCoroutine(CanvasBase.instance.MostrarPieza(Equip_Position.Arms, ended => { if (ended) swaping = false; })); break;
+                        case 4: StartCoroutine(CanvasBase.instance.MostrarPieza(Equip_Position.Legs, ended => { if (ended) swaping = false; })); break;
+                    }
+                    StartCoroutine(Menu.instance.VisualizarEquipamiento(GameManager.instance.player.criatura.equipment, 1));
+                    StartCoroutine(ViewItemInfo());
+                    CanvasBase.instance.StatsRefresh();
+                    //MarcarEquipado(id);
+                }
             }
-        }catch { print("Oops"); }
+            catch { print("Oops"); }
+        }
+        
         
     }
 

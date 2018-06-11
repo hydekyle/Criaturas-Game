@@ -51,7 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\_Subpanel.cs" />
+     <Compile Include="Assets\1.Scripts\_Subpanel.cs" />
      <Compile Include="Assets\1.Scripts\AccuracyMoon.cs" />
      <Compile Include="Assets\1.Scripts\AccuracySystem.cs" />
      <Compile Include="Assets\1.Scripts\BattleSystem.cs" />
@@ -459,6 +459,7 @@
      <None Include="Assets\Resources\BodyBounds\215.txt" />
      <None Include="Assets\Resources\FixedScale\121.txt" />
      <None Include="Assets\Resources\BodyBounds\250.txt" />
+     <None Include="Assets\DissolveEffectShader.shader" />
      <None Include="Assets\Resources\FixedScale\319.txt" />
      <None Include="Assets\Resources\FixedScale\132.txt" />
      <None Include="Assets\Resources\FixedScale\114.txt" />

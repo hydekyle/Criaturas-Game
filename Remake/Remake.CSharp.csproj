@@ -381,7 +381,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\_Subpanel.cs" />
+    <Compile Include="Assets\1.Scripts\_Subpanel.cs" />
     <Compile Include="Assets\1.Scripts\AccuracyMoon.cs" />
     <Compile Include="Assets\1.Scripts\AccuracySystem.cs" />
     <Compile Include="Assets\1.Scripts\BattleSystem.cs" />
@@ -588,6 +588,7 @@
     <Compile Include="Assets\GPGSIds.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\DissolveEffectShader.shader" />
     <None Include="Assets\Firebase\Editor\AnalyticsDependencies.xml" />
     <None Include="Assets\Firebase\Editor\AppDependencies.xml" />
     <None Include="Assets\Firebase\Editor\AuthDependencies.xml" />

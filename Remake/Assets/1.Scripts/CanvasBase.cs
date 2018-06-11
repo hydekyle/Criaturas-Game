@@ -11,6 +11,7 @@ using Firebase.Database;
 using Firebase.Auth;
 using UnityEngine.SceneManagement;
 using System;
+using Enums;
 
 public class CanvasBase : MonoBehaviour {
 
@@ -20,6 +21,8 @@ public class CanvasBase : MonoBehaviour {
         public Vector3 midPos = new Vector3(0, 0, -500);
         public Vector3 rightPos = new Vector3(138, 0, -500);
     }
+
+    public Material dissolve_material;
 
     StatsWindow stats_window = new StatsWindow();
 
@@ -101,11 +104,6 @@ public class CanvasBase : MonoBehaviour {
         stats_window.health.text = totalStats.health.ToString();
         stats_window.skill.text = totalStats.skill.ToString();
         stats_window.luck.text = totalStats.luck.ToString();
-    }
-
-    void Update()
-    {
-        if (camMovementEnabled) camara.transform.position = Vector3.Lerp(camara.transform.position, camVectorPoint, Time.deltaTime * 10);
     }
 
     void ConectarseGooglePlay()
@@ -264,7 +262,7 @@ public class CanvasBase : MonoBehaviour {
 
     public void BTN_EQUIP()
     {
-        CanvasBase.instance.StatsRefresh();
+        StatsRefresh();
         equipment.gameObject.SetActive(true);
         start_menu.gameObject.SetActive(false);
         camVectorPoint = camPosition.leftPos;
@@ -327,6 +325,64 @@ public class CanvasBase : MonoBehaviour {
         });
     }
 
+    public IEnumerator MostrarJugador() //EFECTO DISOLVER
+    {
+        dissolve_material.SetFloat("_Level", 1f);
+        Menu.instance.SetMaterialVisor(Menu.instance.GetPlayerVisor(1), dissolve_material);
+        yield return StartCoroutine(DisolverAnim());
+        Menu.instance.SetMaterialVisor(Menu.instance.GetPlayerVisor(1), null);
+        dissolve_material.SetFloat("_Level", 1f);
+
+    }
+
+    public IEnumerator MostrarPieza(Equip_Position posi, Action<bool> ended)
+    {
+        dissolve_material.SetFloat("_Level", 1f);
+        switch (posi)
+        {
+            case Equip_Position.Head: Menu.instance.visor_player1.headgear.material = dissolve_material; break;
+            case Equip_Position.Body: Menu.instance.visor_player1.body.material = dissolve_material; break;
+            case Equip_Position.Arms: Menu.instance.visor_player1.arm_left.material = dissolve_material;
+                                        Menu.instance.visor_player1.arm_right.material = dissolve_material; break;
+            case Equip_Position.Legs: Menu.instance.visor_player1.leg_left.material = dissolve_material;
+                                            Menu.instance.visor_player1.leg_right.material = dissolve_material; break;
+        }
+        yield return StartCoroutine(DisolverAnim());
+        switch (posi)
+        {
+            case Equip_Position.Head: Menu.instance.visor_player1.headgear.material = null; break;
+            case Equip_Position.Body: Menu.instance.visor_player1.body.material = null; break;
+            case Equip_Position.Arms:
+                Menu.instance.visor_player1.arm_left.material = null;
+                Menu.instance.visor_player1.arm_right.material = null; break;
+            case Equip_Position.Legs:
+                Menu.instance.visor_player1.leg_left.material = null;
+                Menu.instance.visor_player1.leg_right.material = null; break;
+        }
+        ended(true);
+
+    }
+
+    IEnumerator DisolverAnim()
+    {
+        float t = 1.0f;
+        while (t > 0.01f)
+        {
+            dissolve_material.SetFloat("_Level", t);
+            t -= Time.deltaTime;
+            t = Mathf.Clamp(t, 0f, 1f);
+            yield return null;
+        }
+    }
+
+    void Update()
+    {
+        if (camMovementEnabled) camara.transform.position = Vector3.Lerp(camara.transform.position, camVectorPoint, Time.deltaTime * 10);
+
+        if (Input.GetKeyDown(KeyCode.J)) StartCoroutine(MostrarPieza(Equip_Position.Body, ended => { if (ended) print("ENDED"); }));
+    }
+
+
     void LogSuccessful()
     {
         Database.instance.ObtenerEquipSetting();
@@ -335,6 +391,7 @@ public class CanvasBase : MonoBehaviour {
         LoadYourItems();
         //CreateWaitingRoom();
         FirebaseAuth.DefaultInstance.StateChanged += TryRelog;
+        
     }
 
 }

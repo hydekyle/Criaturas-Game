@@ -9,8 +9,8 @@ public class Menu : MonoBehaviour {
 
     public static Menu instance;
     public Equipment loadedEquipment = new Equipment();
-    Visor visor_player1;
-    Visor visor_player2;
+    public Visor visor_player1;
+    public Visor visor_player2;
     public bool inicialized;
     
 
@@ -21,6 +21,17 @@ public class Menu : MonoBehaviour {
         visor_player2 = new Visor();
         Initialize();
     }
+
+    public void SetMaterialVisor(Visor visor, Material material)
+    {
+        visor.headgear.material = material;
+        visor.body.material = material;
+        visor.leg_left.material = material;
+        visor.leg_right.material = material;
+        visor.arm_left.material = material;
+        visor.arm_right.material = material;
+    }
+
 
     void Initialize()
     {
