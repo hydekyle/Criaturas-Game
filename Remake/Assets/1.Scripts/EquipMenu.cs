@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Enums;
+using System;
 
 public class EquipMenu : MonoBehaviour {
 
@@ -186,7 +187,7 @@ public class EquipMenu : MonoBehaviour {
         return true;
     }
 
-    IEnumerator VisualizarScroll(Equip_Position equipList)
+    IEnumerator VisualizarScroll(Equip_Position equipList, Action<bool> ended)
     {
         if(equipList != currentEquipView)
         {
@@ -197,6 +198,8 @@ public class EquipMenu : MonoBehaviour {
             {
                 Destroy(t.gameObject);
             }
+            inventarioT.gameObject.SetActive(false);
+            inventarioT.localPosition = Vector3.zero;
 
             switch (equipList)
             {
@@ -226,10 +229,30 @@ public class EquipMenu : MonoBehaviour {
             }
 
             currentEquipView = equipList;
+            ended(true);
         }
 
     }
 
+    void DisableButtonEquiped(Equip_Position position)
+    {
+        string equipedID = "";
+        switch (position)
+        {
+            case Equip_Position.Head: equipedID = GameManager.instance.player.criatura.equipment.head.ID_string; break;
+            case Equip_Position.Body: equipedID = GameManager.instance.player.criatura.equipment.body.ID_string; break;
+            case Equip_Position.Arms: equipedID = GameManager.instance.player.criatura.equipment.arms.ID_string; break;
+            case Equip_Position.Legs: equipedID = GameManager.instance.player.criatura.equipment.legs.ID_string; break;
+        }
+
+
+        for(var x = 0; x < storage_ID.Length; x++)
+        {
+            if (storage_ID[x] == equipedID) inventarioT.GetChild(x).GetComponent<Button>().interactable = false;
+            else inventarioT.GetChild(x).GetComponent<Button>().interactable = true;
+        }
+        inventarioT.gameObject.SetActive(true);
+    }
 
     IEnumerator Colocar_Pieza_Slider(string itemID, int n)
     {
@@ -262,25 +285,26 @@ public class EquipMenu : MonoBehaviour {
 
     public void BTN_HEAD()
     {
-        StartCoroutine(VisualizarScroll(Equip_Position.Head));
+        StartCoroutine(VisualizarScroll(Equip_Position.Head, ended => { DisableButtonEquiped(Equip_Position.Head); }));
         CanvasBase.instance.ShowItemInfo(GameManager.instance.player.criatura.equipment.head.ID_string);
+        
     }
 
     public void BTN_BODY()
     {
-        StartCoroutine(VisualizarScroll(Equip_Position.Body));
+        StartCoroutine(VisualizarScroll(Equip_Position.Body, ended => { DisableButtonEquiped(Equip_Position.Body); }));
         CanvasBase.instance.ShowItemInfo(GameManager.instance.player.criatura.equipment.body.ID_string);
     }
 
     public void BTN_ARMS()
     {
-        StartCoroutine(VisualizarScroll(Equip_Position.Arms));
+        StartCoroutine(VisualizarScroll(Equip_Position.Arms, ended => { DisableButtonEquiped(Equip_Position.Arms); }));
         CanvasBase.instance.ShowItemInfo(GameManager.instance.player.criatura.equipment.arms.ID_string);
     }
 
     public void BTN_LEGS()
     {
-        StartCoroutine(VisualizarScroll(Equip_Position.Legs));
+        StartCoroutine(VisualizarScroll(Equip_Position.Legs, ended => { DisableButtonEquiped(Equip_Position.Legs); }));
         CanvasBase.instance.ShowItemInfo(GameManager.instance.player.criatura.equipment.legs.ID_string);
     }
 
@@ -298,20 +322,19 @@ public class EquipMenu : MonoBehaviour {
                     EquiparItem(storage_ID[id]);
                     switch (int.Parse(storage_ID[id].Substring(0, 1)))
                     {
-                        case 1: StartCoroutine(CanvasBase.instance.MostrarPieza(Equip_Position.Head, ended => { if (ended) swaping = false; })); break;
-                        case 2: StartCoroutine(CanvasBase.instance.MostrarPieza(Equip_Position.Body, ended => { if (ended) swaping = false; })); break;
-                        case 3: StartCoroutine(CanvasBase.instance.MostrarPieza(Equip_Position.Arms, ended => { if (ended) swaping = false; })); break;
-                        case 4: StartCoroutine(CanvasBase.instance.MostrarPieza(Equip_Position.Legs, ended => { if (ended) swaping = false; })); break;
+                        case 1: StartCoroutine(CanvasBase.instance.MostrarPieza(Equip_Position.Head, ended => { swaping = false; })); break;
+                        case 2: StartCoroutine(CanvasBase.instance.MostrarPieza(Equip_Position.Body, ended => { swaping = false; })); break;
+                        case 3: StartCoroutine(CanvasBase.instance.MostrarPieza(Equip_Position.Arms, ended => { swaping = false; })); break;
+                        case 4: StartCoroutine(CanvasBase.instance.MostrarPieza(Equip_Position.Legs, ended => { swaping = false; })); break;
                     }
                     StartCoroutine(Menu.instance.VisualizarEquipamiento(GameManager.instance.player.criatura.equipment, 1));
                     StartCoroutine(ViewItemInfo());
                     CanvasBase.instance.StatsRefresh();
-                    //MarcarEquipado(id);
+                    DisableButtonEquiped(currentEquipView);
                 }
             }
             catch { print("Oops"); }
         }
-        
         
     }
 
