@@ -43,7 +43,9 @@ public class Huevo : MonoBehaviour {
             gold = 800,
             gold_VIP = 100,
             victorias = 0,
-            derrotas = 0
+            derrotas = 0,
+            coronas = 0,
+            last_time_reward = "1/00:00"
         };
 
         EquipDB equip = new EquipDB()

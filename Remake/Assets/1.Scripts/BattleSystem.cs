@@ -291,8 +291,9 @@ public class BattleSystem : MonoBehaviour {
             }
         }
 
+        int vidaEnemiga = enemigo.status.health_now;
         textoEnemyHP.text = enemigo.status.health_now.ToString();
-        print(enemigo.status.bleed);
+        if (vidaEnemiga <= 0) GanarPartida();
     }
 
     public Player MySelf()
@@ -395,6 +396,11 @@ public class BattleSystem : MonoBehaviour {
         SceneManager.LoadScene(0);
     }
 
-
+    private void GanarPartida()
+    {
+        Database.instance.ReferenceDB().Child("data").Child("coronas").SetValueAsync(GameManager.instance.userdb.coronas + 1);
+        Destroy(GameManager.instance.gameObject);
+        SceneManager.LoadScene(0);
+    }
 
 }

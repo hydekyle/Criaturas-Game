@@ -43,7 +43,7 @@ public class CanvasBase : MonoBehaviour {
     
 
     CameraPos camPosition = new CameraPos();
-    Vector3 camVectorPoint;
+    public Vector3 camVectorPoint;
 
     public static CanvasBase instance;
 
@@ -127,23 +127,17 @@ public class CanvasBase : MonoBehaviour {
 
     public void UpdateGoldView()
     {
-        FirebaseDatabase.DefaultInstance.RootReference.Child("Inventario").Child(Social.localUser.id).Child("data").Child("gold").GetValueAsync()
-            .ContinueWith(task => {
-                if (task.IsCompleted)
-                {
-                    DataSnapshot snap = task.Result;
-                    goldText.text = snap.Value.ToString();
-                }
-            });
-        FirebaseDatabase.DefaultInstance.RootReference.Child("Inventario").Child(Social.localUser.id).Child("data").Child("gold_VIP").GetValueAsync()
-            .ContinueWith(task2 => {
-                if (task2.IsCompleted)
-                {
-                    DataSnapshot snap = task2.Result;
-                    gold_VIP.text = snap.Value.ToString();
-                }
-            });
-
+        //FirebaseDatabase.DefaultInstance.RootReference.Child("Inventario").Child(Social.localUser.id).Child("data").GetValueAsync().ContinueWith(task => {
+        //    if (task.IsCompleted)
+        //    {
+        //        string json = task.Result.GetRawJsonValue();
+        //        UserDB user = JsonUtility.FromJson<UserDB>(json);
+        //        goldText.text = user.gold.ToString();
+        //        gold_VIP.text = user.gold_VIP.ToString();
+        //    }
+        //});
+        goldText.text = GameManager.instance.userdb.gold.ToString();
+        gold_VIP.text = GameManager.instance.userdb.gold_VIP.ToString();
     }
 
     public void UpdateGoldViewNoDB(string value)
@@ -190,20 +184,35 @@ public class CanvasBase : MonoBehaviour {
     {
         DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference;
 
+        reference.Child("Inventario").Child(Social.localUser.id).Child("data").ChildChanged += OnUserDataChanged; //Listener para userdata changed
+
         reference.Child("Inventario").Child(Social.localUser.id).GetValueAsync().ContinueWith(task => {
-            if (!task.Result.Exists) //Si es la primera vez que juegas
+            if (task.Result.Exists) //Si ya has jugado
+            {
+                string json = task.Result.Child("data").GetRawJsonValue();
+                UserDB user = JsonUtility.FromJson<UserDB>(json);
+                print(string.Format("Tienes {0} victorias y {1} de dinero", user.victorias, user.gold_VIP));
+                GameManager.instance.userdb = user;
+                LogSuccessful();
+            }
+            else 
             {
                 start_menu.gameObject.SetActive(false);
                 transform.Find("Loading").gameObject.SetActive(false);
                 camMovementEnabled = false;
                 SceneManager.LoadScene(1);
-            }
-            else
-            {
-                LogSuccessful();
-                print("Todo cargado correctamente");
+
             }
         });
+    }
+
+    private void OnUserDataChanged(object sender, ChildChangedEventArgs e)
+    {
+        FirebaseDatabase.DefaultInstance.RootReference.Child("Inventario").Child(Social.localUser.id).Child("data").GetValueAsync().ContinueWith(task => {
+            string json = task.Result.GetRawJsonValue();
+            GameManager.instance.userdb = JsonUtility.FromJson<UserDB>(json);
+        });
+        print("Cambio: " + e.Snapshot);
     }
 
     bool IsUserLogged()
@@ -382,7 +391,6 @@ public class CanvasBase : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.J)) StartCoroutine(MostrarPieza(Equip_Position.Body, ended => { if (ended) print("ENDED"); }));
     }
 
-
     void LogSuccessful()
     {
         Database.instance.ObtenerEquipSetting();
@@ -391,7 +399,14 @@ public class CanvasBase : MonoBehaviour {
         LoadYourItems();
         //CreateWaitingRoom();
         FirebaseAuth.DefaultInstance.StateChanged += TryRelog;
-        
+        Message.instance.MostrarCofresVIP();
     }
+
+    public void SetCamTarget(Vector3 targetPOS)
+    {
+        camVectorPoint = new Vector3(targetPOS.x, targetPOS.y, -500);
+    }
+
+    
 
 }

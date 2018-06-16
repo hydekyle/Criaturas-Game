@@ -13,6 +13,60 @@ public class Database : MonoBehaviour {
     void Awake()
     {
         instance = this;
+        StartCoroutine(GetRealTime());
+    }
+
+    public DatabaseReference ReferenceDB()
+    {
+        return FirebaseDatabase.DefaultInstance.RootReference.Child("Inventario").Child(Social.localUser.id);
+    }
+
+    public IEnumerator GetRealTime()
+    {
+        WWW www = new WWW("http://evolution-battle.com/EvolutionPortable/GetTime.php");
+        yield return www;
+        if (www.isDone)
+        {
+            string[] info = www.text.Split('T');
+            string[] fecha = info[0].Split('-');
+            string[] hora = info[1].Replace("Z", string.Empty).Split(':');
+            Fecha fechaActual = new Fecha()
+            {
+                month = int.Parse(fecha[1]),
+                day = int.Parse(fecha[2]),
+                hour = int.Parse(hora[0]),
+                min = int.Parse(hora[1])
+            };
+            print(string.Format("Son las {0} y {1} minutos. Día {2}", fechaActual.hour, fechaActual.min, fechaActual.day));
+            GetLastTimeReward();
+        }
+    }
+
+    public void GetLastTimeReward()
+    {
+        ReferenceDB().Child("data").Child("last_time_reward").GetValueAsync().ContinueWith(task => {
+            if (task.IsCompleted)
+            {
+                string[] info = task.Result.Value.ToString().Split('/');
+                string[] time = info[2].Split(':');
+
+                Fecha fechaLast = new Fecha()
+                {
+                    month = int.Parse(info[0]),
+                    day = int.Parse(info[1]),
+                    hour = int.Parse(time[0]),
+                    min = int.Parse(time[1])
+                };
+
+                print(string.Format("Último reward fue el día {0} a las {1} y {2} minutos. Mes: {3}", fechaLast.day, fechaLast.hour, fechaLast.min, fechaLast.month));
+
+            }
+        });
+    }
+
+    public void CompareDates(Fecha actual_fecha, Fecha reward_fecha)
+    {
+        
     }
 
 

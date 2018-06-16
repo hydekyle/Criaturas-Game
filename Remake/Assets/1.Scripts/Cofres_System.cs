@@ -1,21 +1,37 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using UnityEngine.UI;
 using Firebase.Database;
 
 public class Cofres_System : MonoBehaviour {
 
+    public Sprite s_chest, s_chestVIP, s_shadow_chest, s_shadow_chestVIP;
     Transform resplandor;
+    public static Cofres_System instance;
+    Transform chest;
 
     void OnEnable()
     {
-        Transform chest = transform.Find("Chest");
-        chest.GetComponent<Animator>().Play("Chest_Caer");
+        chest = transform.Find("Chest");
         resplandor = chest.Find("Resplandor");
         Transform cofresCount = transform.Find("Cofres");
-        UpdateChestsAmount();
+
+        SetChestAmount(GameManager.instance.userdb.chests.ToString());
+        SetChestAmount_VIP(GameManager.instance.userdb.chests_VIP.ToString());
+        DefaultSetup();
+        CanvasBase.instance.UpdateGoldView();
     }
+
+    private void DefaultSetup()
+    {
+        transform.Find("Buy_Chest_VIP").gameObject.SetActive(false);
+        transform.Find("Buy_Chest").gameObject.SetActive(true);
+        SetChestType(false);
+    }
+
+
 
     void Update()
     {
@@ -45,16 +61,26 @@ public class Cofres_System : MonoBehaviour {
         AbrirCofre();
     }
 
-    void UpdateChestsAmount()
+    public void UpdateChestsAmount()
     {
         FirebaseDatabase.DefaultInstance.RootReference.Child("Inventario").Child(Social.localUser.id).Child("data").Child("chests").GetValueAsync()
             .ContinueWith(task => {
                 if (task.IsCompleted)
                 {
                     DataSnapshot snap = task.Result;
-                    transform.Find("Cofres").Find("Text").GetComponent<Text>().text = snap.Value.ToString();
+                    SetChestAmount(snap.Value.ToString());
                 }
             });
+    }
+
+    public void SetChestAmount(string amount)
+    {
+        transform.Find("Cofres").Find("Text").GetComponent<Text>().text = amount;
+    }
+
+    void SetChestAmount_VIP(string amount)
+    {
+        transform.Find("Cofres").Find("Cofres_VIP").Find("Text").GetComponent<Text>().text = amount;
     }
 
     public void COMPRAR_COFRE()
@@ -142,4 +168,35 @@ public class Cofres_System : MonoBehaviour {
         
 
     }
+
+    public void BTN_CHEST_NORMAL()
+    {
+        SetChestType(false);
+    }
+
+    public void BTN_CHEST_VIP()
+    {
+        SetChestType(true);
+    }
+
+    private void SetChestType(bool VIP)
+    {
+        chest.gameObject.SetActive(false);
+
+        if (VIP) PutChestSprites(s_chestVIP, s_shadow_chestVIP);
+        else PutChestSprites(s_chest, s_shadow_chest);
+
+        transform.Find("Buy_Chest").gameObject.SetActive(!VIP);
+        transform.Find("Buy_Chest_VIP").gameObject.SetActive(VIP);
+
+        chest.gameObject.SetActive(true);
+        chest.GetComponent<Animator>().Play("Chest_Caer");
+    }
+
+    private void PutChestSprites(Sprite chestSprite, Sprite shadow)
+    {
+        chest.GetComponent<Image>().sprite = shadow;
+        chest.Find("Chest").GetComponent<Image>().sprite = chestSprite;
+    }
+
 }

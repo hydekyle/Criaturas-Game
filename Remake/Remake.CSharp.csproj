@@ -586,6 +586,7 @@
     <Compile Include="Assets\GooglePlayGames\Platforms\TokenClient.cs" />
     <Compile Include="Assets\GooglePlayGames\Plugins\Android\PluginVersion.cs" />
     <Compile Include="Assets\GPGSIds.cs" />
+    <Compile Include="Assets\Simple UI\Samples\IconPreview.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\DissolveEffectShader.shader" />
@@ -816,6 +817,7 @@
     <None Include="Assets\Resources\FixedScale\446.txt" />
     <None Include="Assets\Resources\FixedScale\447.txt" />
     <None Include="Assets\Resources\FixedScale\448.txt" />
+    <None Include="Assets\Simple UI\Fonts\OFL.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

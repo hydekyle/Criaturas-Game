@@ -153,10 +153,20 @@ public class UserDB
 {
     public int gold;
     public int gold_VIP;
+    public int coronas;
     public int chests;
     public int chests_VIP;
+    public string last_time_reward;
     public int victorias;
     public int derrotas;
+}
+
+public class Fecha
+{
+    public int month;
+    public int day;
+    public int hour;
+    public int min;
 }
 
 public class objetos {
