@@ -17,9 +17,9 @@ public class CanvasBase : MonoBehaviour {
 
     public class CameraPos
     {
-        public Vector3 leftPos = new Vector3(-56, 0, -500);
+        public Vector3 leftPos = new Vector3(-135, 0, -500);
         public Vector3 midPos = new Vector3(0, 0, -500);
-        public Vector3 rightPos = new Vector3(138, 0, -500);
+        public Vector3 rightPos = new Vector3(224, -125, -500);
     }
 
     public Material dissolve_material;
@@ -35,15 +35,16 @@ public class CanvasBase : MonoBehaviour {
     Text gold_VIP;
     EquipMenu equip_menu;
 
+    CameraPos camPosition = new CameraPos();
     Camera camara;
     bool camMovementEnabled = true;
+    public float cam_velocity = 10f;
+    public float cam_size = 300;
+    public Vector3 camVectorPoint;
 
     GameObject sub_menu_play;
-
     
-
-    CameraPos camPosition = new CameraPos();
-    public Vector3 camVectorPoint;
+    
 
     public static CanvasBase instance;
 
@@ -52,6 +53,7 @@ public class CanvasBase : MonoBehaviour {
         instance = this;
         camara = Camera.main;
         camVectorPoint = camPosition.midPos;
+        SetCamSize(300);
     }
 
     void Start()
@@ -191,7 +193,6 @@ public class CanvasBase : MonoBehaviour {
             {
                 string json = task.Result.Child("data").GetRawJsonValue();
                 UserDB user = JsonUtility.FromJson<UserDB>(json);
-                print(string.Format("Tienes {0} victorias y {1} de dinero", user.victorias, user.gold_VIP));
                 GameManager.instance.userdb = user;
                 LogSuccessful();
             }
@@ -259,6 +260,7 @@ public class CanvasBase : MonoBehaviour {
         treasures.gameObject.SetActive(true);
         start_menu.gameObject.SetActive(false);
         camVectorPoint = camPosition.rightPos;
+        SetCamSize(150);
     }
 
     public void BTN_OK_Equipment()
@@ -267,6 +269,7 @@ public class CanvasBase : MonoBehaviour {
         equipment.gameObject.SetActive(false);
         start_menu.gameObject.SetActive(true);
         camVectorPoint = camPosition.midPos;
+        SetCamSize(300);
     }
 
     public void BTN_EQUIP()
@@ -275,12 +278,14 @@ public class CanvasBase : MonoBehaviour {
         equipment.gameObject.SetActive(true);
         start_menu.gameObject.SetActive(false);
         camVectorPoint = camPosition.leftPos;
+        SetCamSize(400);
     }
 
     public void BackToMenu()
     {
         start_menu.gameObject.SetActive(true);
         camVectorPoint = camPosition.midPos;
+        SetCamSize(300);
     }
 
     private void TryRelog(object sender, EventArgs e)
@@ -384,22 +389,64 @@ public class CanvasBase : MonoBehaviour {
         }
     }
 
-    void Update()
-    {
-        if (camMovementEnabled) camara.transform.position = Vector3.Lerp(camara.transform.position, camVectorPoint, Time.deltaTime * 10);
-
-        if (Input.GetKeyDown(KeyCode.J)) StartCoroutine(MostrarPieza(Equip_Position.Body, ended => { if (ended) print("ENDED"); }));
-    }
-
     void LogSuccessful()
     {
         Database.instance.ObtenerEquipSetting();
-        transform.Find("Loading").gameObject.SetActive(false);
         UpdateGoldView();
         LoadYourItems();
         //CreateWaitingRoom();
         FirebaseAuth.DefaultInstance.StateChanged += TryRelog;
         Message.instance.MostrarCofresVIP();
+        StartCoroutine(LagSpikeMenuFixer(onEnded => transform.Find("Loading").gameObject.SetActive(false)));
+
+        
+    }
+
+    IEnumerator LagSpikeMenuFixer(Action<bool> onEnded)
+    {
+        treasures.gameObject.SetActive(true);
+        equipment.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        treasures.gameObject.SetActive(false);
+        equipment.gameObject.SetActive(false);
+        onEnded(true);
+
+    }
+
+    void Update()
+    {
+        if (camMovementEnabled)
+        {
+            camara.transform.position = Vector3.Lerp(camara.transform.position, camVectorPoint, Time.deltaTime * cam_velocity);
+            camara.orthographicSize = Mathf.Lerp(camara.orthographicSize, cam_size, Time.deltaTime * cam_velocity);
+            //if (Input.GetKeyDown(KeyCode.I)) StartCoroutine(C_Inspeccionar(1));
+            //if (Input.GetKeyDown(KeyCode.O)) StartCoroutine(C_Inspeccionar(2));
+            if (Input.GetKeyDown(KeyCode.K)) SetCamTarget((Posi(Equip_Position.Body, 2) + Posi(Equip_Position.Body, 1)) / 2);
+            if (Input.GetKeyDown(KeyCode.L)) SetCamTarget(Posi(Equip_Position.Legs, 2));
+
+            if (Input.GetKeyDown(KeyCode.N)) SetCamVelocity(Velocity.Slow);
+            if (Input.GetKeyDown(KeyCode.M)) SetCamVelocity(Velocity.Fast);
+        }
+    }
+
+    void SetCamSize(float newSize)
+    {
+        cam_size = newSize;
+    }
+
+    void SetCamVelocity(float newVelocity)
+    {
+        cam_velocity = newVelocity;
+    }
+
+    void SetCamVelocity(Velocity vel)
+    {
+        switch (vel)
+        {
+            case Velocity.Fast: cam_velocity = 8f; break;
+            case Velocity.Normal: cam_velocity = 5f; break;
+            case Velocity.Slow: cam_velocity = 1.5f; break;
+        }
     }
 
     public void SetCamTarget(Vector3 targetPOS)
@@ -407,6 +454,46 @@ public class CanvasBase : MonoBehaviour {
         camVectorPoint = new Vector3(targetPOS.x, targetPOS.y, -500);
     }
 
-    
+    public IEnumerator C_Inspeccionar(int playerN, Action<bool> onEnded)
+    {
+        SetCamVelocity(Velocity.Normal);
+        SetCamSize(300);
+        SetCamTarget(Posi(Equip_Position.Legs, playerN));
+        while (!CamIsOnTarget()) yield return null;
+        SetCamVelocity(Velocity.Slow);
+        SetCamSize(120);
+        SetCamTarget((Posi(Equip_Position.Body, playerN) + Posi(Equip_Position.Head, playerN)) / 2);
+        while (!CamIsOnTarget()) yield return null;
+        onEnded(true);
+    }
+
+    Vector3 Posi(Equip_Position equip_position, int playerN)
+    {
+        Vector3 v = Vector3.zero;
+
+        switch (equip_position)
+        {
+            case Equip_Position.Head: v = Menu.instance.GetPlayerVisor(playerN).headgear.transform.position; break;
+            case Equip_Position.Body: v = Menu.instance.GetPlayerVisor(playerN).body.transform.position; break;
+            case Equip_Position.Arms: v = (Menu.instance.GetPlayerVisor(playerN).arm_right.transform.position + Menu.instance.GetPlayerVisor(playerN).arm_left.transform.position) /2; break;
+            case Equip_Position.Legs: v = (Menu.instance.GetPlayerVisor(playerN).leg_right.transform.position + Menu.instance.GetPlayerVisor(playerN).leg_left.transform.position)/2; break;
+            default: v = Menu.instance.GetPlayerVisor(playerN).body.transform.position; break;
+        }
+        return v;
+    }
+
+    public IEnumerator PointReached(Action<bool> onEnded)
+    {
+        while (!CamIsOnTarget())
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+        onEnded(true);
+    }
+
+    bool CamIsOnTarget()
+    {
+        return Mathf.Approximately((int)camara.transform.position.x, (int)camVectorPoint.x) && Mathf.Approximately((int)camara.transform.position.y, (int)camVectorPoint.y);
+    }
 
 }

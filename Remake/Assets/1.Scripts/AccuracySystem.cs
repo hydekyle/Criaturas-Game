@@ -12,14 +12,6 @@ public class AccuracySystem : MonoBehaviour {
         instance = this;
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            Iniciar();
-        }
-    }
-
     public void Iniciar()
     {
         transform.Find("LunaGame").gameObject.SetActive(true);

@@ -7,27 +7,34 @@ using Firebase.Database;
 
 public class Cofres_System : MonoBehaviour {
 
-    public Sprite s_chest, s_chestVIP, s_shadow_chest, s_shadow_chestVIP;
-    Transform resplandor;
     public static Cofres_System instance;
-    Transform chest;
+    public Sprite s_chest, s_chestVIP, s_shadow_chest, s_shadow_chestVIP;
+    public Transform chest, buy_chest_VIP, buy_chest, resplandor;
+    public Text text_chest, text_chest_VIP;
+
+    void Awake()
+    {
+        instance = instance ?? this;
+    }
 
     void OnEnable()
     {
-        chest = transform.Find("Chest");
-        resplandor = chest.Find("Resplandor");
-        Transform cofresCount = transform.Find("Cofres");
-
+        chest.gameObject.SetActive(true);
         SetChestAmount(GameManager.instance.userdb.chests.ToString());
         SetChestAmount_VIP(GameManager.instance.userdb.chests_VIP.ToString());
         DefaultSetup();
         CanvasBase.instance.UpdateGoldView();
     }
 
+    void OnDisable()
+    {
+        chest.gameObject.SetActive(false);
+    }
+
     private void DefaultSetup()
     {
-        transform.Find("Buy_Chest_VIP").gameObject.SetActive(false);
-        transform.Find("Buy_Chest").gameObject.SetActive(true);
+        buy_chest_VIP.gameObject.SetActive(false);
+        buy_chest_VIP.gameObject.SetActive(true);
         SetChestType(false);
     }
 
@@ -75,12 +82,12 @@ public class Cofres_System : MonoBehaviour {
 
     public void SetChestAmount(string amount)
     {
-        transform.Find("Cofres").Find("Text").GetComponent<Text>().text = amount;
+        text_chest.text = amount;
     }
 
     void SetChestAmount_VIP(string amount)
     {
-        transform.Find("Cofres").Find("Cofres_VIP").Find("Text").GetComponent<Text>().text = amount;
+        text_chest_VIP.text = amount;
     }
 
     public void COMPRAR_COFRE()
@@ -186,8 +193,8 @@ public class Cofres_System : MonoBehaviour {
         if (VIP) PutChestSprites(s_chestVIP, s_shadow_chestVIP);
         else PutChestSprites(s_chest, s_shadow_chest);
 
-        transform.Find("Buy_Chest").gameObject.SetActive(!VIP);
-        transform.Find("Buy_Chest_VIP").gameObject.SetActive(VIP);
+        buy_chest.gameObject.SetActive(!VIP);
+        buy_chest_VIP.gameObject.SetActive(VIP);
 
         chest.gameObject.SetActive(true);
         chest.GetComponent<Animator>().Play("Chest_Caer");

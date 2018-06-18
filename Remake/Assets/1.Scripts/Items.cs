@@ -373,78 +373,57 @@ public class Items : MonoBehaviour {
         return skill1ID;
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            CanvasBase.instance.ShowItemInfo(GetRandomItemID(Evolution.Level1));
-        }
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            CanvasBase.instance.ShowItemInfo(GetRandomItemID(Evolution.Level2));
-        }
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            CanvasBase.instance.ShowItemInfo(GetRandomItemID(Evolution.Level3));
-        }
-
-    }
-
-
-
-
-
     //MEJORAS
-    public GiveStat MejoraAleatoria(int randomValue)
-    {
-        int list = int.Parse(randomValue.ToString().Substring(0, 1));
-        int value = int.Parse(randomValue.ToString().Substring(1));
-        GiveStat mejora = new GiveStat();
-        switch (list)
-        {
-            case 1: mejora = GiveStrenght(value); break;
-            case 2: mejora = GiveHealth(value); break;
-            case 3: mejora = GiveSkill(value); break;
-            case 4: mejora = GiveLuck(value); break;
-        }
-        return mejora;
-    }
+    //public GiveStat MejoraAleatoria(int randomValue)
+    //{
+    //    int list = int.Parse(randomValue.ToString().Substring(0, 1));
+    //    int value = int.Parse(randomValue.ToString().Substring(1));
+    //    GiveStat mejora = new GiveStat();
+    //    switch (list)
+    //    {
+    //        case 1: mejora = GiveStrenght(value); break;
+    //        case 2: mejora = GiveHealth(value); break;
+    //        case 3: mejora = GiveSkill(value); break;
+    //        case 4: mejora = GiveLuck(value); break;
+    //    }
+    //    return mejora;
+    //}
 
-    private GiveStat GiveStrenght(int value)
-    {
-        GiveStat mejora = new GiveStat() {
-            stat_type = Stat.Strenght,
-            value = value
-        };
-        return mejora;
-    }
-    private GiveStat GiveHealth(int value)
-    {
-        GiveStat mejora = new GiveStat()
-        {
-            stat_type = Stat.Health,
-            value = value
-        };
-        return mejora;
-    }
-    private GiveStat GiveSkill(int value)
-    {
-        GiveStat mejora = new GiveStat()
-        {
-            stat_type = Stat.Dextery,
-            value = value
-        };
-        return mejora;
-    }
-    private GiveStat GiveLuck(int value)
-    {
-        GiveStat mejora = new GiveStat()
-        {
-            stat_type = Stat.Luck,
-            value = value
-        };
-        return mejora;
-    }
+    //private GiveStat GiveStrenght(int value)
+    //{
+    //    GiveStat mejora = new GiveStat() {
+    //        stat_type = Stat.Strenght,
+    //        value = value
+    //    };
+    //    return mejora;
+    //}
+    //private GiveStat GiveHealth(int value)
+    //{
+    //    GiveStat mejora = new GiveStat()
+    //    {
+    //        stat_type = Stat.Health,
+    //        value = value
+    //    };
+    //    return mejora;
+    //}
+    //private GiveStat GiveSkill(int value)
+    //{
+    //    GiveStat mejora = new GiveStat()
+    //    {
+    //        stat_type = Stat.Dextery,
+    //        value = value
+    //    };
+    //    return mejora;
+    //}
+    //private GiveStat GiveLuck(int value)
+    //{
+    //    GiveStat mejora = new GiveStat()
+    //    {
+    //        stat_type = Stat.Luck,
+    //        value = value
+    //    };
+    //    return mejora;
+    //}
 
     
 

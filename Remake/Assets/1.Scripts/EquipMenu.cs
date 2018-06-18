@@ -189,7 +189,7 @@ public class EquipMenu : MonoBehaviour {
 
     IEnumerator VisualizarScroll(Equip_Position equipList, Action<bool> ended)
     {
-        if(equipList != currentEquipView)
+        if(equipList != currentEquipView && GameManager.instance.player != null)
         {
 
             string equipedID = "";
@@ -285,8 +285,13 @@ public class EquipMenu : MonoBehaviour {
 
     public void BTN_HEAD()
     {
-        StartCoroutine(VisualizarScroll(Equip_Position.Head, ended => { DisableButtonEquiped(Equip_Position.Head); }));
-        CanvasBase.instance.ShowItemInfo(GameManager.instance.player.criatura.equipment.head.ID_string);
+        try
+        {
+            StartCoroutine(VisualizarScroll(Equip_Position.Head, ended => { DisableButtonEquiped(Equip_Position.Head); }));
+            CanvasBase.instance.ShowItemInfo(GameManager.instance.player.criatura.equipment.head.ID_string);
+        }
+        catch { }
+        
         
     }
 

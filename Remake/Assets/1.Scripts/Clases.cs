@@ -14,6 +14,7 @@ namespace Enums {
     public enum Buffs { Attack, Dextery, Luck, Shield, Barrier}
     public enum Debuffs { Attack, Dextery, Bleed, Poison, Dizziness, Confusion};
     public enum Evolution { Level1, Level2, Level3}
+    public enum Velocity { Slow, Normal, Fast}
 }
 
 public class Item

@@ -41,6 +41,7 @@ public class BattleSystem : MonoBehaviour {
 
     Transform headT, bodyT, armsT, legsT;
 
+    int tic_camera = 1;
 
     void Start()
     {
@@ -101,14 +102,34 @@ public class BattleSystem : MonoBehaviour {
         player1 = GameManager.instance.player;
         player2 = ConstruirIA();
 
-        StartCoroutine(GameManager.instance.MostrarJugador(player2, 2, new Vector3(120, 40, 0), false)); //Visualizar oponente
-        Menu.instance.SetVisorPosition(1, new Vector3(-120, 40, -1), true); //Recolocar jugador 1
+        Menu.instance.SetVisorPosition(1, new Vector3(-243, -16, -1), true); //Recolocar jugador 1
+        StartCoroutine(GameManager.instance.MostrarJugador(player2, 2, new Vector3(160, -16, 0), false)); //Visualizar oponente
 
         LeerStats();
+        StartCoroutine(CanvasBase.instance.C_Inspeccionar(1, onEnded => StartCoroutine(AutoCamera()))); //Comienza rutina cámara
     }
 
     #region Engine
 
+    IEnumerator AutoCamera()
+    {
+        bool b = false;
+        while (gameObject.activeSelf)
+        {
+            if (tic_camera % 2 == 0)
+            {
+                StartCoroutine(CanvasBase.instance.C_Inspeccionar(1, onEnded => b = true));
+            }
+            else
+            {
+                StartCoroutine(CanvasBase.instance.C_Inspeccionar(2, onEnded => b = true));
+            }
+            while (!b) yield return null;
+            b = false;
+            tic_camera++;
+        }
+        
+    }
 
 
     public List<Equipable_Item> ObtenerListaEquipamiento(Player player)

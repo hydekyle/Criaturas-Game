@@ -256,6 +256,7 @@
      <Compile Include="Assets\GooglePlayGames\Platforms\TokenClient.cs" />
      <Compile Include="Assets\GooglePlayGames\Plugins\Android\PluginVersion.cs" />
      <Compile Include="Assets\GPGSIds.cs" />
+     <Compile Include="Assets\Simple UI\Samples\IconPreview.cs" />
      <None Include="Assets\Resources\FixedScale\127.txt" />
      <None Include="Assets\Resources\FixedScale\415.txt" />
      <None Include="Assets\Resources\FixedScale\435.txt" />
@@ -334,6 +335,7 @@
      <None Include="Assets\Resources\BodyBounds\254.txt" />
      <None Include="Assets\Resources\FixedScale\447.txt" />
      <None Include="Assets\Resources\BodyBounds\234.txt" />
+     <None Include="Assets\Simple UI\Fonts\OFL.txt" />
      <None Include="Assets\Resources\BodyBounds\217.txt" />
      <None Include="Assets\Resources\FixedScale\333.txt" />
      <None Include="Assets\Resources\FixedScale\412.txt" />
