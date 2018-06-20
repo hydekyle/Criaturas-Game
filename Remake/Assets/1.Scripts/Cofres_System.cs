@@ -38,8 +38,6 @@ public class Cofres_System : MonoBehaviour {
         SetChestType(false);
     }
 
-
-
     void Update()
     {
         if (gameObject.activeSelf) resplandor.Rotate(Vector3.forward * 80 * Time.deltaTime);

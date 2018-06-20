@@ -27,18 +27,21 @@ public class Database : MonoBehaviour {
         yield return www;
         if (www.isDone)
         {
-            string[] info = www.text.Split('T');
-            string[] fecha = info[0].Split('-');
-            string[] hora = info[1].Replace("Z", string.Empty).Split(':');
-            Fecha fechaActual = new Fecha()
+            try
             {
-                month = int.Parse(fecha[1]),
-                day = int.Parse(fecha[2]),
-                hour = int.Parse(hora[0]),
-                min = int.Parse(hora[1])
-            };
-            print(string.Format("Son las {0} y {1} minutos. Día {2}", fechaActual.hour, fechaActual.min, fechaActual.day));
-            GetLastTimeReward();
+                string[] info = www.text.Split('T');
+                string[] fecha = info[0].Split('-');
+                string[] hora = info[1].Replace("Z", string.Empty).Split(':');
+                Fecha fechaActual = new Fecha()
+                {
+                    month = int.Parse(fecha[1]),
+                    day = int.Parse(fecha[2]),
+                    hour = int.Parse(hora[0]),
+                    min = int.Parse(hora[1])
+                };
+                print(string.Format("Son las {0} y {1} minutos. Día {2}", fechaActual.hour, fechaActual.min, fechaActual.day));
+                GetLastTimeReward();
+            }catch { print("ERROR EN TIME WWW: " + www.text); }
         }
     }
 

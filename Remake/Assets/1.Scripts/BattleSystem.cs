@@ -36,8 +36,9 @@ public class BattleSystem : MonoBehaviour {
     bool yourTurn;
     float fadeToAphaValue = 0;
 
-    public int yMax = 50;
-    public int yMin = -50;
+    public int yMax = 150, yMin = -50;
+    public float sMin = 1f, sMax = 1.5f;
+    Vector3 scaleMin, scaleMax;
 
     Transform headT, bodyT, armsT, legsT;
 
@@ -46,6 +47,8 @@ public class BattleSystem : MonoBehaviour {
     void Start()
     {
         instance = this;
+        scaleMin = new Vector3(sMin, sMin, sMin);
+        scaleMax = new Vector3(sMax, sMax, sMax);
         Initialize();
         StartTurn();
     }
@@ -371,33 +374,37 @@ public class BattleSystem : MonoBehaviour {
 
     void Update()
     {
-        
-        if(selectedButton == 1) headT.localPosition = Vector3.Lerp(headT.localPosition, new Vector3(headT.localPosition.x, yMax, 0), Time.deltaTime * 10);
-        else headT.localPosition = Vector3.Lerp(headT.localPosition, new Vector3(headT.localPosition.x, yMin, 0), Time.deltaTime * 10);
+        if (selectedButton == 1) MoveCard(headT, true); else MoveCard(headT, false);
 
-        if (selectedButton == 2) bodyT.localPosition = Vector3.Lerp(bodyT.localPosition, new Vector3(bodyT.localPosition.x, yMax, 0), Time.deltaTime * 10);
-        else bodyT.localPosition = Vector3.Lerp(bodyT.localPosition, new Vector3(bodyT.localPosition.x, yMin, 0), Time.deltaTime * 10);
+        if (selectedButton == 2) MoveCard(bodyT, true); else MoveCard(bodyT, false);
 
-        if (selectedButton == 3) armsT.localPosition = Vector3.Lerp(armsT.localPosition, new Vector3(armsT.localPosition.x, yMax, 0), Time.deltaTime * 10);
-        else armsT.localPosition = Vector3.Lerp(armsT.localPosition, new Vector3(armsT.localPosition.x, yMin, 0), Time.deltaTime * 10);
+        if (selectedButton == 3) MoveCard(armsT, true); else MoveCard(armsT, false);
 
-        if (selectedButton == 4) legsT.localPosition = Vector3.Lerp(legsT.localPosition, new Vector3(legsT.localPosition.x, yMax, 0), Time.deltaTime * 10);
-        else legsT.localPosition = Vector3.Lerp(legsT.localPosition, new Vector3(legsT.localPosition.x, yMin, 0), Time.deltaTime * 10);
+        if (selectedButton == 4) MoveCard(legsT, true); else MoveCard(legsT, false);
 
         RectPositions();
 
     }
 
+    void MoveCard(Transform t, bool focus)
+    {
+        if (focus)
+        {
+            t.localPosition = Vector3.Lerp(t.localPosition, new Vector3(t.localPosition.x, yMax, 0), Time.deltaTime * 10);
+            t.localScale = Vector3.Lerp(t.localScale, scaleMax, Time.deltaTime * 10);
+        }else
+        {
+            t.localPosition = Vector3.Lerp(t.localPosition, new Vector3(t.localPosition.x, yMin, 0), Time.deltaTime * 10);
+            t.localScale = Vector3.Lerp(t.localScale, scaleMin, Time.deltaTime * 10);
+        }
+        
+    }
+
     void RectPositions()
     {
-        if (yourTurn)
-        {
-            rect_skills.localPosition = Vector3.Lerp(rect_skills.localPosition, Vector3.zero, Time.deltaTime * 5);
-        }
-        else
-        {
-            rect_skills.localPosition = Vector3.Lerp(rect_skills.localPosition, new Vector3(0, -100, 0), Time.deltaTime * 5);
-        }
+        if (yourTurn) rect_skills.localPosition = Vector3.Lerp(rect_skills.localPosition, Vector3.zero, Time.deltaTime * 5);
+        else rect_skills.localPosition = Vector3.Lerp(rect_skills.localPosition, new Vector3(0, -100, 0), Time.deltaTime * 5);
+
         if (!Mathf.Approximately(fadeScreen.color.a, fadeToAphaValue))
         {
             fadeScreen.color = Color.Lerp(fadeScreen.color, new Color(fadeScreen.color.r, fadeScreen.color.g, fadeScreen.color.b, fadeToAphaValue), Time.deltaTime * 2);

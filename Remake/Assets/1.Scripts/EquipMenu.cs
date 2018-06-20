@@ -21,18 +21,10 @@ public class EquipMenu : MonoBehaviour {
     bool swaping;
     //Item Info Menu:
     Image retrato;
-    Text rarity_text;
-    Text rarity_shadow;
-    Text skill1_name;
-    Image skill1_orb;
-    Text skill2_name;
-    Image skill2_orb;
-    Text skill3_name;
-    Image skill3_orb;
-    Text value_life;
-    Text value_attack;
-    Text value_skill;
-    Text value_luck;
+    Text rarity_text, rarity_shadow, skill1_name, skill2_name, skill3_name, value_life, value_attack, value_skill, value_luck;
+    Image skill1_orb, skill2_orb, skill3_orb;
+    Image skill1_orb2, skill2_orb2, skill3_orb2;
+
 
     void Awake()
     {
@@ -44,11 +36,14 @@ public class EquipMenu : MonoBehaviour {
         Transform infoT = transform.Find("Info");
         retrato = infoT.Find("Retrato").GetComponent<Image>();
         skill1_name = infoT.Find("Skill1").Find("Name").GetComponent<Text>();
-        skill1_orb = infoT.Find("Skill1").Find("Orbe").GetComponent<Image>();
         skill2_name = infoT.Find("Skill2").Find("Name").GetComponent<Text>();
-        skill2_orb = infoT.Find("Skill2").Find("Orbe").GetComponent<Image>();
         skill3_name = infoT.Find("Skill3").Find("Name").GetComponent<Text>();
+        skill1_orb = infoT.Find("Skill1").Find("Orbe").GetComponent<Image>();
+        skill2_orb = infoT.Find("Skill2").Find("Orbe").GetComponent<Image>();
         skill3_orb = infoT.Find("Skill3").Find("Orbe").GetComponent<Image>();
+        skill1_orb2 = infoT.Find("Skill1").Find("Orbe2").GetComponent<Image>();
+        skill2_orb2 = infoT.Find("Skill2").Find("Orbe2").GetComponent<Image>();
+        skill3_orb2 = infoT.Find("Skill3").Find("Orbe2").GetComponent<Image>();
         rarity_text = infoT.Find("Rarity_Color").GetComponent<Text>();
         rarity_shadow = infoT.Find("Rarity_Shadow").GetComponent<Text>();
         value_life = infoT.Find("Value_Life").GetComponent<Text>();
@@ -111,9 +106,9 @@ public class EquipMenu : MonoBehaviour {
         value_skill.text = item.skill.ToString();
         value_luck.text = item.luck.ToString();
 
-        skill1_orb.sprite = Items.instance.SphereBySkillID(item.skill_1.ID);
-        skill2_orb.sprite = Items.instance.SphereBySkillID(item.skill_2.ID);
-        skill3_orb.sprite = Items.instance.SphereBySkillID(item.skill_3.ID);
+        skill1_orb.sprite = skill1_orb2.sprite = Items.instance.SphereBySkillID(item.skill_1.ID);
+        skill2_orb.sprite = skill2_orb2.sprite = Items.instance.SphereBySkillID(item.skill_2.ID);
+        skill3_orb.sprite = skill3_orb2.sprite = Items.instance.SphereBySkillID(item.skill_3.ID);
 
         if (Lenguaje.Instance.spanish_language)
         {

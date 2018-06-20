@@ -20,6 +20,7 @@ public class CanvasBase : MonoBehaviour {
         public Vector3 leftPos = new Vector3(-135, 0, -500);
         public Vector3 midPos = new Vector3(0, 0, -500);
         public Vector3 rightPos = new Vector3(224, -125, -500);
+        public Vector3 upPos = new Vector3(185, 142, -500);
     }
 
     public Material dissolve_material;
@@ -44,8 +45,6 @@ public class CanvasBase : MonoBehaviour {
 
     GameObject sub_menu_play;
     
-    
-
     public static CanvasBase instance;
 
     void Awake()
@@ -54,6 +53,14 @@ public class CanvasBase : MonoBehaviour {
         camara = Camera.main;
         camVectorPoint = camPosition.midPos;
         SetCamSize(300);
+    }
+
+    public void BTN_TIENDA()
+    {
+        transform.Find("Tienda").gameObject.SetActive(true);
+        transform.Find("Treasures").gameObject.SetActive(false);
+        camVectorPoint = camPosition.upPos;
+        SetCamSize(150);
     }
 
     void Start()
